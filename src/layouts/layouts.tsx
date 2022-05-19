@@ -1,4 +1,4 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import NavBar from './navBar/navBar';
@@ -7,7 +7,7 @@ export const Container = styled.div`
   padding: 2rem;
 `;
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <NavBar />
