@@ -30,7 +30,7 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "test": "react-scripts test",
+    "test": "jest --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts,.tsx ./src",
     "fix": "yarn format && yarn lint:fix",
@@ -68,7 +68,9 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^28.1.0",
     "prettier": "^2.6.2",
+    "ts-jest": "^28.0.2",
     "vite": "^2.9.9",
     "vite-tsconfig-paths": "^3.4.1"
   }
