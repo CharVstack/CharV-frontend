@@ -60,20 +60,12 @@ module.exports = {
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal", ["parent", "sibling"], "object", "type", "index"],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "object", "type", "index"],
         "newlines-between": "always",
-        "pathGroupsExcludedImportTypes": ["builtin"],
+        "pathGroupsExcludedImportTypes": ["builtin", "object"],
         "alphabetize": { "order": "asc", "caseInsensitive": true },
         "pathGroups": [
-          // ここに書いた順序で間に1行空行をあけつつ整頓される
-          { "pattern": "@/libs/**", "group": "internal", "position": "before" },
-          { "pattern": "@/generated/**", "group": "internal", "position": "before" },
-          // ... 省略
-          { "pattern": "@/components/ui/**", "group": "internal", "position": "before" },
-
-          // styles
-          // 最後尾にしたいのでgroupをindex扱いにする
-          { "pattern": "./**.module.css", "group": "index", "position": "before" },
+          { "pattern": "@src/**", "group": "parent", "position": "before" },
         ]
       }
     ],
