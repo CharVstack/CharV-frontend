@@ -1,6 +1,6 @@
 import Layout from '../layouts/layouts';
 
-export default function Home() {
+export function Home() {
   return (
     <Layout>
       <h1>Home</h1>

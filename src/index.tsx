@@ -2,9 +2,9 @@ import { createTheme, GlobalStyles, ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import NotFound from './pages/404';
-import Home from './pages/home';
-import Instances from './pages/instances';
+import { NotFound } from './pages/404';
+import { Home } from './pages/home';
+import { Instances } from './pages/instances';
 
 const darkTheme = createTheme({
   palette: {

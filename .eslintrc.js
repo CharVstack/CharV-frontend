@@ -11,6 +11,15 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "prettier"
   ],
+  overrides: [
+    {
+      files: ['**/__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
+      extends: [
+        'plugin:jest-dom/recommended',
+        'plugin:testing-library/react'
+      ]
+    }
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -25,9 +34,13 @@ module.exports = {
     "react",
     "@typescript-eslint",
     "unused-imports",
+    "jest-dom",
+    "testing-library"
   ],
   ignorePatterns: [
-    ".eslintrc.js"
+    ".eslintrc.js",
+    "vite.config.ts",
+    "vitest.setup.ts"
   ],
   rules: {
     "no-use-before-define": "off",

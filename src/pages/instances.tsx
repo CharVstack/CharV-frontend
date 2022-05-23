@@ -1,6 +1,6 @@
 import Layout from '../layouts/layouts';
 
-export default function Instances() {
+export function Instances() {
   return (
     <Layout>
       <h1>Instances</h1>

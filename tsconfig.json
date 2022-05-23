@@ -22,9 +22,11 @@
     "paths": {
       "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"],
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": [
-    "src"
+    "src",
+    "vitest.setup.ts"
   ]
 }
