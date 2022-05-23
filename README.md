@@ -29,7 +29,8 @@ yarn build
 yarn lint
 
 # フォーマット
-yarn fix
+yarn fix:prettier
+yarn fix:eslint
 ```
 
 テスト
