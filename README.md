@@ -13,7 +13,10 @@ yarn install
 `http://localhost:3000` をブラウザで開く
 
 ```shell
-yarn start
+# フロントサーバの開始
+yarn start:front
+# モックサーバの開始
+yarn start:api
 ```
 
 ビルド
