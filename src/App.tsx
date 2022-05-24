@@ -1,10 +1,10 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import { NavBar } from '@components/NavBar';
-import { NotFound } from '@pages/ErrorPages';
-import { Home } from '@pages/Home';
-import { Instances } from '@pages/Instances';
+import { NavBar } from '@components/molecules/NavBar';
+import { NotFound } from '@components/pages/ErrorPages';
+import { Home } from '@components/pages/Home';
+import { Instances } from '@components/pages/Instances';
 
 const routes: RouteObject[] = [
   {
