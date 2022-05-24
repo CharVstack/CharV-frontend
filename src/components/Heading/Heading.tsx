@@ -1,0 +1,46 @@
+import { Typography } from '@mui/material';
+import { ReactNode } from 'react';
+
+type HeadingProps = {
+  children: ReactNode;
+};
+
+export const H1 = ({ children }: HeadingProps) => {
+  return (
+    <Typography variant="h2" component="h1">
+      {children}
+    </Typography>
+  );
+};
+
+export const H2 = ({ children }: HeadingProps) => {
+  return (
+    <Typography variant="h3" component="h2">
+      {children}
+    </Typography>
+  );
+};
+
+export const H3 = ({ children }: HeadingProps) => {
+  return (
+    <Typography variant="h4" component="h3">
+      {children}
+    </Typography>
+  );
+};
+
+export const H4 = ({ children }: HeadingProps) => {
+  return (
+    <Typography variant="h5" component="h4">
+      {children}
+    </Typography>
+  );
+};
+
+export const H5 = ({ children }: HeadingProps) => {
+  return (
+    <Typography variant="h6" component="h5">
+      {children}
+    </Typography>
+  );
+};

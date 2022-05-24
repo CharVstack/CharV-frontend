@@ -1,7 +1,7 @@
 import { Box, AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
 
-export function NavBar() {
+export const NavBar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky">
@@ -16,4 +16,4 @@ export function NavBar() {
       </AppBar>
     </Box>
   );
-}
+};
