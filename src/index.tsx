@@ -1,15 +1,10 @@
-import { createTheme, GlobalStyles, ThemeProvider } from '@mui/material';
+import { GlobalStyles, ThemeProvider } from '@mui/material';
 import ReactDOM from 'react-dom/client';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import { App } from '@App';
-
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
+import { darkTheme } from '@utils/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(

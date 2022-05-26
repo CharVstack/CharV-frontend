@@ -32,13 +32,23 @@
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
     "@openapitools/openapi-generator-cli": "^2.5.1",
     "@stoplight/prism-cli": "^4.9.3",
     "@stoplight/spectral-cli": "^6.4.0",
+    "@storybook/addon-actions": "^6.5.5",
+    "@storybook/addon-essentials": "^6.5.5",
+    "@storybook/addon-interactions": "^6.5.5",
+    "@storybook/addon-links": "^6.5.5",
+    "@storybook/builder-vite": "^0.1.35",
+    "@storybook/react": "^6.5.5",
+    "@storybook/testing-library": "^0.0.11",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
     "@vitejs/plugin-react": "^1.3.2",
+    "ajv": "^8.6.3",
+    "babel-loader": "^8.2.5",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "^8.5.0",
@@ -47,6 +57,7 @@
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-storybook": "^0.5.12",
     "eslint-plugin-testing-library": "^5.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "happy-dom": "^4.0.1",
@@ -83,7 +94,9 @@
     "start:front": "vite",
     "test": "vitest --run",
     "test:ci": "vitest --coverage",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint-staged",
