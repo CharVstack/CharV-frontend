@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: CharVstack-API
+  description: A sample API to illustrate OpenAPI concepts
+paths:
+  /vms:
+    get:
+      summary: VM一覧の取得
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vms:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cpu:
+                          type: integer
+                        memory:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  total:
+                    type: integer
+              examples:
+                example-1:
+                  value:
+                    vms:
+                      - cpu: 0
+                        memory: 0
+                        id: string
+                        name: string
+                    total: 0
+      operationId: get-api-v1-vm
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: offset
+          description: レスポンスの開始位置
+        - schema:
+            type: integer
+          in: query
+          name: limit
+          description: レスポンスの終了位置
+    post:
+      summary: VMの作成
+      tags: []
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: 作成されたリソースのURI
+      operationId: post-api-v1-vm
+    parameters: []
+  '/vms/{vmId}':
+    parameters:
+      - schema:
+          type: string
+        name: vmId
+        in: path
+        required: true
+        description: VMのID
+    get:
+      summary: VMの情報
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cpu:
+                    type: integer
+                  memory:
+                    type: integer
+                  id:
+                    type: string
+                  name:
+                    type: string
+                x-examples:
+                  example-1:
+                    cpu: 0
+                    memory: 0
+                    id: string
+                    name: string
+      operationId: get-vm-vmId
+      parameters: []
+    delete:
+      summary: VMの削除
+      tags: []
+      responses:
+        '204':
+          description: No Content
+      operationId: delete-vm-vmId
+    patch:
+      summary: VMの更新
+      operationId: patch-vms-vmId
+      responses:
+        '200':
+          description: OK
+servers:
+  - url: '/api/v1'

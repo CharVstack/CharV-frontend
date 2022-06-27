@@ -1,0 +1,9 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/GetApiV1Vm200Response.ts
+models/GetApiV1Vm200ResponseVmsInner.ts
+models/GetVmVmId200Response.ts
+models/index.ts
+runtime.ts
