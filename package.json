@@ -90,7 +90,7 @@
     "start:api": "prism mock ./src/openapi-spec/v1.yaml",
     "start:front": "vite",
     "test": "vitest --run",
-    "test:ci": "vitest --coverage",
+    "test:ci": "vitest --run --coverage",
     "test:watch": "vitest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
