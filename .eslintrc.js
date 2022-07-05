@@ -59,14 +59,19 @@ module.exports = {
       "varsIgnorePattern": "^_",
       "args": "after-used",
       "argsIgnorePattern": "^_"
-    }]
+    }],
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ]
   },
   settings: {
     'import/resolver': {
       node: {
         paths: ['src'],
         extensions: ['.js', '.jsx', '.ts', '.tsx']
-      }
+      },
+      typescript: {}
     }
   }
 };
