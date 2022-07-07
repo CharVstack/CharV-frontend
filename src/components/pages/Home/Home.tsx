@@ -7,7 +7,7 @@ import { Grid } from '@mui/material';
 export const Home = () => {
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={4}>
         <Grid item xs={6}>
           <HomeInstanceCard />
         </Grid>

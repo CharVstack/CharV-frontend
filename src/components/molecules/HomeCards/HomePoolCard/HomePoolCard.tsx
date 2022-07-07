@@ -1,9 +1,10 @@
-import { Card, CardHeader } from '@mui/material';
+import { Card } from '../Styles/Card';
+import { H3 } from '@components/atoms/Heading';
 
 export const HomePoolCard = () => {
   return (
-    <Card style={{ backgroundColor: '#282A36' }}>
-      <CardHeader title="Pool" />
+    <Card>
+      <H3>Pool</H3>
     </Card>
   );
 };

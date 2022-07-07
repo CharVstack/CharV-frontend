@@ -1,5 +1,5 @@
 import { RouteObject, useRoutes } from 'react-router-dom';
-import { Box, ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { Box, ThemeProvider, CssBaseline } from '@mui/material';
 
 import { NavBar } from '@components/molecules/NavBar';
 import { NotFound } from '@components/pages/ErrorPages';
@@ -23,7 +23,7 @@ export const App = () => {
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <NavBar />
-      <Box component="div" sx={{ padding: '2rem' }}>
+      <Box component="div" sx={{ pt: '2rem', pb: '2rem', pr: '6rem', pl: '6rem' }}>
         {element}
       </Box>
     </ThemeProvider>
