@@ -4,7 +4,7 @@ import { H3 } from '@components/atoms/Heading';
 import styled from 'styled-components';
 import { CircularProgress } from '@mui/material';
 
-//import Image from '@static/host-image.jpg';
+import Image from '@static/host-image.jpg';
 
 const StyledCircularBar = styled(CircularProgress)`
   position: absolute;
