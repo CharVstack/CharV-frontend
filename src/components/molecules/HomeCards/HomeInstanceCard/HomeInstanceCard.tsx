@@ -1,6 +1,5 @@
-import { Card } from '../Styles/Card';
-import { ImageStyle } from './styles/image';
-import { H3 } from '@components/atoms/Heading';
+import { Card, LeftBox, RightBox, ImageStyle } from '../Styles/Card';
+//import { H3 } from '@components/atoms/Heading';
 import styled from 'styled-components';
 import { CircularProgress } from '@mui/material';
 
@@ -13,15 +12,13 @@ const StyledCircularBar = styled(CircularProgress)`
 export const HomeInstanceCard = () => {
   return (
     <Card>
-      <H3>Instance</H3>
-      <div>
-        <a href="#">
-          <ImageStyle src={Image} alt="Instance Image" />
-        </a>
-      </div>
-      <div>
+      <LeftBox>
+        <ImageStyle src={Image} alt="Instance Image" />
+      </LeftBox>
+
+      <RightBox>
         <StyledCircularBar variant="determinate" size={96} value={80} color="secondary" />
-      </div>
+      </RightBox>
     </Card>
   );
 };
