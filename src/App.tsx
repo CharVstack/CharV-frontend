@@ -23,7 +23,7 @@ export const App = () => {
     <ThemeProvider theme={lightTheme}>
       <CssBaseline />
       <NavBar />
-      <Box component="div" sx={{ pt: '2rem', pb: '2rem', pr: '6rem', pl: '6rem' }}>
+      <Box component="div" sx={{ pt: '2rem', pb: '2rem', pr: '10rem', pl: '10rem' }}>
         {element}
       </Box>
     </ThemeProvider>
