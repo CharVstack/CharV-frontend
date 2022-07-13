@@ -10,6 +10,7 @@ const StyledCircularBar = styled(CircularProgress)`
 `;
 
 export const HomeMemoryCard = () => {
+  const used: number = 46;
   return (
     <Card>
       <LeftBox>
@@ -19,7 +20,9 @@ export const HomeMemoryCard = () => {
 
       <RightBox>
         <StyledCircularBar variant="determinate" size={136} value={70} color="secondary" />
-        <p>aaaaaaaaaaaa</p>
+        <div>
+          <p>Used: {used}GB</p>
+        </div>
       </RightBox>
     </Card>
   );
