@@ -70,7 +70,8 @@
                         "$ref": "#/components/schemas/vm"
                       }
                     }
-                  }
+                  },
+                  "required": ["vms"]
                 },
                 "examples": {
                   "example-1": {
@@ -218,28 +219,29 @@
                         "$ref": "#/components/schemas/storage_pool"
                       }
                     }
-                  }
+                  },
+                  "required": ["cpu", "mem", "storage_pools"]
                 },
                 "examples": {
                   "example-1": {
                     "value": {
                       "cpu": {
-                        "cpu": 4,
-                        "cpu_mhz": 0
+                        "counts": 4,
+                        "percent": 5
                       },
                       "mem": {
-                        "total": 2048,
-                        "used": 0,
-                        "free": 0,
-                        "used_percent": 20
+                        "total": 16526876672,
+                        "used": 8849772544,
+                        "free": 315400192,
+                        "used_percent": 53.54776174371394
                       },
                       "storage_pools": [
                         {
-                          "name": "default",
-                          "total_size": 20000,
-                          "used_size": 10000,
-                          "path": "/var/lib/libvirt/images",
-                          "status": "active"
+                          "name": "string",
+                          "total_size": 1006530654208,
+                          "used_size": 371360915456,
+                          "path": "string",
+                          "status": "string"
                         }
                       ]
                     }
@@ -257,9 +259,6 @@
     "schemas": {
       "vm": {
         "title": "vm",
-        "x-stoplight": {
-          "id": "5txew3qu80ak2"
-        },
         "type": "object",
         "x-tags": ["vm"],
         "description": "",
@@ -269,6 +268,7 @@
           },
           "metadata": {
             "type": "object",
+            "required": ["id", "api_version"],
             "properties": {
               "id": {
                 "type": "string"
@@ -286,6 +286,7 @@
           },
           "devices": {
             "type": "object",
+            "required": ["disk"],
             "properties": {
               "disk": {
                 "type": "array",
@@ -298,66 +299,63 @@
                     "path": {
                       "type": "string"
                     }
-                  }
+                  },
+                  "required": ["type", "path"]
                 }
               }
             }
           }
-        }
+        },
+        "required": ["name", "metadata", "memory", "vcpu", "devices"]
       },
       "cpu": {
         "title": "cpu",
-        "x-stoplight": {
-          "id": "fph02iclwns7j"
-        },
         "type": "object",
+        "x-tags": ["host"],
         "properties": {
-          "cpu": {
+          "counts": {
             "type": "integer"
           },
-          "cpu_mhz": {
-            "type": "number"
+          "percent": {
+            "type": "integer",
+            "format": "uint64"
           }
         },
-        "x-tags": ["host"]
+        "required": ["counts", "percent"]
       },
       "memory": {
         "title": "memory",
-        "x-stoplight": {
-          "id": "dgl6tqiyb7itd"
-        },
         "type": "object",
         "x-tags": ["host"],
         "properties": {
           "total": {
-            "type": "integer"
+            "$ref": "#/components/schemas/type_uint64"
           },
           "used": {
-            "type": "integer"
+            "$ref": "#/components/schemas/type_uint64"
           },
           "free": {
-            "type": "integer"
+            "$ref": "#/components/schemas/type_uint64"
           },
           "used_percent": {
-            "type": "number"
+            "$ref": "#/components/schemas/type_float64"
           }
-        }
+        },
+        "required": ["total", "used", "free", "used_percent"]
       },
       "storage_pool": {
         "title": "storage_pool",
-        "x-stoplight": {
-          "id": "aeklue11tdj8x"
-        },
         "type": "object",
+        "x-tags": ["host"],
         "properties": {
           "name": {
             "type": "string"
           },
           "total_size": {
-            "type": "integer"
+            "$ref": "#/components/schemas/type_uint64"
           },
           "used_size": {
-            "type": "integer"
+            "$ref": "#/components/schemas/type_uint64"
           },
           "path": {
             "type": "string"
@@ -366,13 +364,35 @@
             "type": "string"
           }
         },
-        "x-tags": ["host"]
+        "required": ["name", "total_size", "used_size", "path", "status"]
+      },
+      "type_uint64": {
+        "type": "integer",
+        "title": "type_uint64",
+        "x-tags": ["type"],
+        "format": "int64",
+        "minimum": 0,
+        "maximum": 18446744073709552000,
+        "x-go-type": "uint64"
+      },
+      "type_float64": {
+        "title": "type_float64",
+        "x-tags": ["type"],
+        "type": "number",
+        "x-go-type": "float64",
+        "x-examples": {}
       }
     }
   },
   "tags": [
     {
       "name": "vm"
+    },
+    {
+      "name": "host"
+    },
+    {
+      "name": "type"
     }
   ]
 }
