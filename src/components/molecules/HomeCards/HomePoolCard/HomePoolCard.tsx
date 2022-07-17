@@ -1,5 +1,14 @@
-import { Card, LeftBox, ImageStyle, PoolBlock, PoolInfo } from '../Styles/Card';
-import { H4 } from '@components/atoms/Heading';
+import {
+  Card,
+  LeftBox,
+  PoolInfoCentering,
+  PoolBlock,
+  PoolInfo,
+  LeftBoxTitle,
+  LeftBoxInfo,
+  LeftBoxFooter,
+} from '../Styles/Card';
+import { H1, H3, H4 } from '@components/atoms/Heading';
 import Image from '@static/pool-image.jpg';
 
 export const HomePoolCard = () => {
@@ -9,9 +18,18 @@ export const HomePoolCard = () => {
 
   return (
     <Card>
-      <LeftBox>
-        <ImageStyle src={Image} alt="Memory Image" />
-        <p>Pool</p>
+      <LeftBox image={Image}>
+        <LeftBoxTitle>
+          <H3>Pool</H3>
+        </LeftBoxTitle>
+        <LeftBoxInfo>
+          <PoolInfoCentering>
+            <H1>Default</H1>
+            <p>Size: 64GiB</p>
+            <p>State: Active</p>
+          </PoolInfoCentering>
+        </LeftBoxInfo>
+        <LeftBoxFooter />
       </LeftBox>
 
       <PoolBlock>

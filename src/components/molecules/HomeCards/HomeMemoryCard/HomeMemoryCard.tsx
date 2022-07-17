@@ -1,27 +1,42 @@
-import { Card, LeftBox, RightBox, ImageStyle } from '../Styles/Card';
+import {
+  Card,
+  LeftBox,
+  RightBox,
+  ImageStyle,
+  GraphInfo,
+  LeftBoxTitle,
+  LeftBoxInfo,
+  LeftBoxFooter,
+} from '../Styles/Card';
 //import { H3 } from '@components/atoms/Heading';
 import { CircularProgress } from '@mui/material';
 import styled from 'styled-components';
 import Image from '@static/memory-image.jpg';
-
-const StyledCircularBar = styled(CircularProgress)`
-  margin-top: 35%;
-  vertical-align: middle;
-`;
+import { H1, H3 } from '@components/atoms/Heading';
 
 export const HomeMemoryCard = () => {
   const used: number = 46;
+  const total: number = 74;
+
   return (
     <Card>
-      <LeftBox>
-        <ImageStyle src={Image} alt="Memory Image" />
-        <p>Memory</p>
+      <LeftBox image={Image}>
+        <LeftBoxTitle>
+          <H3>Memory</H3>
+        </LeftBoxTitle>
+        <LeftBoxInfo>
+          <H1>{total}</H1>
+          <p>GB</p>
+        </LeftBoxInfo>
+        <LeftBoxFooter />
       </LeftBox>
 
       <RightBox>
-        <StyledCircularBar variant="determinate" size={136} value={70} color="secondary" />
         <div>
-          <p>Used: {used}GB</p>
+          <CircularProgress variant="determinate" size={136} value={70} color="secondary" />
+          <GraphInfo>
+            <p>Used: {used}GB</p>
+          </GraphInfo>
         </div>
       </RightBox>
     </Card>

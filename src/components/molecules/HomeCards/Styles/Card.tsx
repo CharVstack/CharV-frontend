@@ -7,30 +7,61 @@ export const Card = styled.div`
   display: flex;
 `;
 
-export const LeftBox = styled.div`
+export const LeftBox = styled.div<{ image: string }>`
   flex: 4;
   width: 40%;
   height: 100%;
-  position: relative;
+  display: flex;
   background-color: black;
-  p {
+  flex-direction: column;
+  background-image: url(${({ image }) => image});
+  background-size: cover;
+  position: relative;
+
+  ::before {
+    content: '';
     position: absolute;
-    color: white;
-    margin: 5px;
-    font-size: 2.5rem;
     top: 0;
+    bottom: 0;
     left: 0;
+    right: 0;
+    background: black;
+    opacity: 0.4;
   }
+`;
+
+export const LeftBoxTitle = styled.div`
+  height: 10%;
+  width: 100%;
+  flex: 1;
+  display: flex;
+`;
+
+export const LeftBoxInfo = styled.div`
+  height: 80%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex: 10;
+  display: flex;
+`;
+
+export const LeftBoxFooter = styled.div`
+  height: 10%;
+  width: 100%;
+  flex: 1;
+  display: flex;
 `;
 
 export const RightBox = styled.div`
   flex: 6;
   width: 100%;
   height: 100%;
-  text-align: center;
+  //text-align: center;
+  display: flex;
   //display: flex;
-  //justify-content: center; /*左右中央揃え*/
-  //align-items: center;     /*上下中央揃え*/
+  justify-content: center; /*左右中央揃え*/
+  align-items: center; /*上下中央揃え*/
 `;
 
 export const ImageStyle = styled.img`
@@ -93,6 +124,10 @@ export const PoolBlock = styled.div`
 `;
 
 export const PoolInfo = styled.div`
+  text-align: center;
+`;
+
+export const PoolInfoCentering = styled.div`
   text-align: center;
 `;
 
