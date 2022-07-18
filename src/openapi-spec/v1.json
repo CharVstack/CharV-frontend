@@ -1,0 +1,378 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "291epccbgj72d"
+  },
+  "info": {
+    "title": "CharVstack-API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1"
+    }
+  ],
+  "paths": {
+    "/vms": {
+      "post": {
+        "summary": "Create a new VM",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "post-api-v1-vms",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "integer"
+                  },
+                  "vcpu": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["name", "memory", "vcpu"]
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "name": "ubuntu20.04",
+                    "memory": 2048,
+                    "vcpu": 4
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": ["vm"]
+      },
+      "get": {
+        "summary": "Get all VMs list",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "vms": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/vm"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "vms": [
+                        {
+                          "name": "ubuntu20.04",
+                          "metadata": {
+                            "id": "v1",
+                            "api_version": "4e0a3c48-f483-422a-b520-2820207cef42"
+                          },
+                          "memory": 2048,
+                          "vcpu": 4,
+                          "devices": {
+                            "disk": [
+                              {
+                                "type": "qcow2",
+                                "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-vms",
+        "tags": ["vm"]
+      }
+    },
+    "/vms/{vmId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "vmId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Get a VM",
+        "tags": ["vm"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/vm"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "name": "ubuntu20.04",
+                      "metadata": {
+                        "id": "v1",
+                        "api_version": "4e0a3c48-f483-422a-b520-2820207cef42"
+                      },
+                      "memory": 2048,
+                      "vcpu": 4,
+                      "devices": {
+                        "disk": [
+                          {
+                            "type": "qcow2",
+                            "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-vms-vmId"
+      },
+      "patch": {
+        "summary": "Update a VM",
+        "operationId": "patch-api-v1-vms-vmId",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": ["vm"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "memory": {
+                    "type": "integer"
+                  },
+                  "vcpu": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "name": "centos_stream",
+                    "memory": 1024,
+                    "vcpu": 2
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/host": {
+      "get": {
+        "summary": "Get a host",
+        "tags": ["host"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "$ref": "#/components/schemas/cpu"
+                    },
+                    "mem": {
+                      "$ref": "#/components/schemas/memory"
+                    },
+                    "storage_pools": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/storage_pool"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "cpu": {
+                        "cpu": 4,
+                        "cpu_mhz": 0
+                      },
+                      "mem": {
+                        "total": 2048,
+                        "used": 0,
+                        "free": 0,
+                        "used_percent": 20
+                      },
+                      "storage_pools": [
+                        {
+                          "name": "default",
+                          "total_size": 20000,
+                          "used_size": 10000,
+                          "path": "/var/lib/libvirt/images",
+                          "status": "active"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api-v1-host"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "vm": {
+        "title": "vm",
+        "x-stoplight": {
+          "id": "5txew3qu80ak2"
+        },
+        "type": "object",
+        "x-tags": ["vm"],
+        "description": "",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "api_version": {
+                "type": "string"
+              }
+            }
+          },
+          "memory": {
+            "type": "integer"
+          },
+          "vcpu": {
+            "type": "integer"
+          },
+          "devices": {
+            "type": "object",
+            "properties": {
+              "disk": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "cpu": {
+        "title": "cpu",
+        "x-stoplight": {
+          "id": "fph02iclwns7j"
+        },
+        "type": "object",
+        "properties": {
+          "cpu": {
+            "type": "integer"
+          },
+          "cpu_mhz": {
+            "type": "number"
+          }
+        },
+        "x-tags": ["host"]
+      },
+      "memory": {
+        "title": "memory",
+        "x-stoplight": {
+          "id": "dgl6tqiyb7itd"
+        },
+        "type": "object",
+        "x-tags": ["host"],
+        "properties": {
+          "total": {
+            "type": "integer"
+          },
+          "used": {
+            "type": "integer"
+          },
+          "free": {
+            "type": "integer"
+          },
+          "used_percent": {
+            "type": "number"
+          }
+        }
+      },
+      "storage_pool": {
+        "title": "storage_pool",
+        "x-stoplight": {
+          "id": "aeklue11tdj8x"
+        },
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "total_size": {
+            "type": "integer"
+          },
+          "used_size": {
+            "type": "integer"
+          },
+          "path": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "x-tags": ["host"]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "vm"
+    }
+  ]
+}
