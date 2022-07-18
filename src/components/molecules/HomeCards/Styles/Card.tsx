@@ -38,6 +38,9 @@ export const LeftBoxTitle = styled.div`
   flex: 1;
   display: flex;
   z-index: 1;
+  H3 {
+    padding: 1rem 0 0 1rem;
+  }
 `;
 
 export const LeftBoxInfo = styled.div`

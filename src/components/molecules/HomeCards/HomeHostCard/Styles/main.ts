@@ -11,6 +11,9 @@ export const HostTitle = styled.div`
   width: 100%;
   display: flex;
   flex: 1;
+  H3 {
+    padding: 1rem 0 0 1rem;
+  }
 `;
 
 export const HostInfo = styled.div`
