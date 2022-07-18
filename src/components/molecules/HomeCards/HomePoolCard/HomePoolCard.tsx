@@ -1,13 +1,5 @@
-import {
-  Card,
-  LeftBox,
-  PoolInfoCentering,
-  PoolBlock,
-  PoolInfo,
-  LeftBoxTitle,
-  LeftBoxInfo,
-  LeftBoxFooter,
-} from '../Styles/Card';
+import { Card, LeftBox, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
+import { PoolInfoCentering, PoolBlock, PoolInfo } from './Styles/main';
 import { H1, H3, H4 } from '@components/atoms/Heading';
 import Image from '@static/pool-image.jpg';
 
@@ -15,6 +7,8 @@ export const HomePoolCard = () => {
   const location: string = 'var/lib/libvirt/images';
   const free: number = 48;
   const volumes: number = 2;
+  const size: number = 64;
+  const active: string = 'Active';
 
   return (
     <Card>
@@ -25,8 +19,8 @@ export const HomePoolCard = () => {
         <LeftBoxInfo>
           <PoolInfoCentering>
             <H1>Default</H1>
-            <p>Size: 64GiB</p>
-            <p>State: Active</p>
+            <p>Size: {size}GiB</p>
+            <p>State: {active}</p>
           </PoolInfoCentering>
         </LeftBoxInfo>
         <LeftBoxFooter />

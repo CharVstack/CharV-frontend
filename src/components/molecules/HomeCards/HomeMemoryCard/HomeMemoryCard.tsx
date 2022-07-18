@@ -1,16 +1,5 @@
-import {
-  Card,
-  LeftBox,
-  RightBox,
-  ImageStyle,
-  GraphInfo,
-  LeftBoxTitle,
-  LeftBoxInfo,
-  LeftBoxFooter,
-} from '../Styles/Card';
-//import { H3 } from '@components/atoms/Heading';
+import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 import { CircularProgress } from '@mui/material';
-import styled from 'styled-components';
 import Image from '@static/memory-image.jpg';
 import { H1, H3 } from '@components/atoms/Heading';
 

@@ -1,8 +1,8 @@
-import { Card, HostFoot } from '../Styles/Card';
+import { Card } from '../Styles/Card';
+import { HostBlock, HostTitle, HostInfo, HostInfoString, HostInfoGraph, HostFoot } from './Styles/main';
 import { H3, H4 } from '@components/atoms/Heading';
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
-import { HostBlock, HostTitle, HostInfo, HostInfoString, HostInfoGraph } from '../Styles/Card';
 
 export const HomeHostCard = () => {
   const CPU: number = 70;
