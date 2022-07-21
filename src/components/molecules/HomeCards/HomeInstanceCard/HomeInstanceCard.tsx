@@ -1,12 +1,16 @@
 import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 import { H3, H1 } from '@components/atoms/Heading';
-import { CircularProgress } from '@mui/material';
-
+import { Vm } from '@api-hooks/v1/@types';
+import { DoughnutGraph } from '@components/atoms/DoughnutGraph';
 import Image from '@static/host-image.jpg';
 
-export const HomeInstanceCard = () => {
-  const running: number = 8;
-  const total_vm: number = 12;
+type Props = {
+  Vms: Vm[];
+};
+
+export const HomeInstanceCard = ({ Vms }: Props) => {
+  const total = Vms.length;
+  const running = 4;
 
   return (
     <Card>
@@ -15,7 +19,7 @@ export const HomeInstanceCard = () => {
           <H3>Instance</H3>
         </LeftBoxTitle>
         <LeftBoxInfo>
-          <H1>{total_vm}</H1>
+          <H1>{total}</H1>
           <p>vm</p>
         </LeftBoxInfo>
         <LeftBoxFooter />
@@ -23,7 +27,7 @@ export const HomeInstanceCard = () => {
 
       <RightBox>
         <div>
-          <CircularProgress variant="determinate" size={136} value={70} color="secondary" />
+          <DoughnutGraph Label1={'Active'} Label2={'Deactive'} Data1={running} Data2={total - running} />
           <GraphInfo>
             <p>Running: {running}</p>
           </GraphInfo>

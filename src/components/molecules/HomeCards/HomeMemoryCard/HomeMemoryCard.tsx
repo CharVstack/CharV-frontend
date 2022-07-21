@@ -1,11 +1,20 @@
 import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
-import { CircularProgress } from '@mui/material';
 import Image from '@static/memory-image.jpg';
 import { H1, H3 } from '@components/atoms/Heading';
+import { Memory } from '@api-hooks/v1/@types';
+import { DoughnutGraph } from '@components/atoms/DoughnutGraph';
 
-export const HomeMemoryCard = () => {
-  const used: number = 46;
-  const total: number = 74;
+type Props = {
+  Memory: Memory;
+};
+
+export const HomeMemoryCard = ({ Memory }: Props) => {
+  const usedMemory = Memory.used;
+  const totalMemory = Memory.total;
+
+  if (usedMemory == undefined || totalMemory == undefined) {
+    return <p>Loading</p>;
+  }
 
   return (
     <Card>
@@ -14,7 +23,7 @@ export const HomeMemoryCard = () => {
           <H3>Memory</H3>
         </LeftBoxTitle>
         <LeftBoxInfo>
-          <H1>{total}</H1>
+          <H1>{totalMemory}</H1>
           <p>GB</p>
         </LeftBoxInfo>
         <LeftBoxFooter />
@@ -22,9 +31,9 @@ export const HomeMemoryCard = () => {
 
       <RightBox>
         <div>
-          <CircularProgress variant="determinate" size={136} value={70} color="secondary" />
+          <DoughnutGraph Label1={'Free'} Label2={'Used'} Data1={totalMemory - usedMemory} Data2={usedMemory} />
           <GraphInfo>
-            <p>Used: {used}GB</p>
+            <p>Used: {usedMemory}GB</p>
           </GraphInfo>
         </div>
       </RightBox>
