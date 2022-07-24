@@ -1,13 +1,16 @@
-import { Card } from '../Styles/Card';
-import { HostBlock, HostTitle, HostInfo, HostInfoString, HostInfoGraph, HostFoot } from './Styles/main';
-import { H3, H4 } from '@components/atoms/Heading';
-import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
+import Stack from '@mui/material/Stack';
+
+import { H3, H4 } from '@components/atoms/Heading';
+
+import { Card } from '../Styles/Card';
+
+import { HostBlock, HostTitle, HostInfo, HostInfoString, HostInfoGraph, HostFoot } from './Styles/main';
 
 export const HomeHostCard = () => {
-  const CPU: number = 70;
-  const Memory: number = 46;
-  const Storage: number = 48;
+  const CPU = 70;
+  const Memory = 46;
+  const Storage = 48;
 
   return (
     <Card>
@@ -27,14 +30,14 @@ export const HomeHostCard = () => {
 
           <HostInfoGraph>
             <Stack sx={{ width: '95%', color: 'grey.500' }} spacing={4}>
-              <LinearProgress variant="determinate" color={'secondary'} value={CPU} />
-              <LinearProgress variant="determinate" color={'secondary'} value={Memory} />
-              <LinearProgress variant="determinate" color={'secondary'} value={Storage} />
+              <LinearProgress variant="determinate" color="secondary" value={CPU} />
+              <LinearProgress variant="determinate" color="secondary" value={Memory} />
+              <LinearProgress variant="determinate" color="secondary" value={Storage} />
             </Stack>
           </HostInfoGraph>
         </HostInfo>
 
-        <HostFoot></HostFoot>
+        <HostFoot />
       </HostBlock>
 
       <LinearProgress variant="determinate" value={80} />

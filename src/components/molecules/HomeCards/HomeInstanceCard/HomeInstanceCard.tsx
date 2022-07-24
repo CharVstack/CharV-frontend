@@ -1,8 +1,9 @@
-import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
-import { H3, H1 } from '@components/atoms/Heading';
 import { Vm } from '@api-hooks/v1/@types';
 import { DoughnutGraph } from '@components/atoms/DoughnutGraph';
+import { H3, H1 } from '@components/atoms/Heading';
 import Image from '@static/host-image.jpg';
+
+import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 
 type Props = {
   Vms: Vm[];
@@ -27,7 +28,7 @@ export const HomeInstanceCard = ({ Vms }: Props) => {
 
       <RightBox>
         <div>
-          <DoughnutGraph Label1={'Active'} Label2={'Deactive'} Data1={running} Data2={total - running} />
+          <DoughnutGraph Label1="Active" Label2="Deactive" Data1={running} Data2={total - running} />
           <GraphInfo>
             <p>Running: {running}</p>
           </GraphInfo>

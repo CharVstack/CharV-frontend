@@ -1,5 +1,5 @@
-import { RouteObject, useRoutes } from 'react-router-dom';
 import { Box, ThemeProvider, CssBaseline } from '@mui/material';
+import { RouteObject, useRoutes } from 'react-router-dom';
 
 import { NavBar } from '@components/molecules/NavBar';
 import { NotFound } from '@components/pages/ErrorPages';

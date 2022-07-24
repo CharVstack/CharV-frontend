@@ -1,18 +1,19 @@
-import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
-import Image from '@static/memory-image.jpg';
-import { H1, H3 } from '@components/atoms/Heading';
 import { Memory } from '@api-hooks/v1/@types';
 import { DoughnutGraph } from '@components/atoms/DoughnutGraph';
+import { H1, H3 } from '@components/atoms/Heading';
+import Image from '@static/memory-image.jpg';
+
+import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 
 type Props = {
-  Memory: Memory;
+  MemoryMetrics: Memory;
 };
 
-export const HomeMemoryCard = ({ Memory }: Props) => {
-  const usedMemory = Memory.used;
-  const totalMemory = Memory.total;
+export const HomeMemoryCard = ({ MemoryMetrics }: Props) => {
+  const usedMemory = MemoryMetrics.used;
+  const totalMemory = MemoryMetrics.total;
 
-  if (usedMemory == undefined || totalMemory == undefined) {
+  if (usedMemory === undefined || totalMemory === undefined) {
     return <p>Loading</p>;
   }
 
@@ -31,7 +32,7 @@ export const HomeMemoryCard = ({ Memory }: Props) => {
 
       <RightBox>
         <div>
-          <DoughnutGraph Label1={'Free'} Label2={'Used'} Data1={totalMemory - usedMemory} Data2={usedMemory} />
+          <DoughnutGraph Label1="Free" Label2="Used" Data1={totalMemory - usedMemory} Data2={usedMemory} />
           <GraphInfo>
             <p>Used: {usedMemory}GB</p>
           </GraphInfo>
