@@ -21,7 +21,11 @@ export const Home = () => {
         <HomeInstanceCard Vms={vmData.vms} />
       </Grid>
       <Grid item xs={6}>
-        <HomeHostCard />
+        <HomeHostCard
+          cpuMetrics={hostData.cpu}
+          memoryMetrics={hostData.mem}
+          storagePoolMetrics={hostData.storage_pools[0]}
+        />
       </Grid>
       <Grid item xs={6}>
         <HomeMemoryCard MemoryMetrics={hostData.mem} />

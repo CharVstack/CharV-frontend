@@ -1,16 +1,26 @@
-import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 
+import { Cpu, Memory, Storage_pool } from '@api-hooks/v1/@types';
 import { H3, H4 } from '@components/atoms/Heading';
+import { HorizontalBarGraph } from '@components/atoms/HorizontalBarGraph';
 
 import { Card } from '../Styles/Card';
 
 import { HostBlock, HostTitle, HostInfo, HostInfoString, HostInfoGraph, HostFoot } from './Styles/main';
 
-export const HomeHostCard = () => {
-  const CPU = 70;
-  const Memory = 46;
-  const Storage = 48;
+type Props = {
+  cpuMetrics: Cpu;
+  memoryMetrics: Memory;
+  storagePoolMetrics: Storage_pool;
+};
+
+export const HomeHostCard = ({ cpuMetrics, memoryMetrics, storagePoolMetrics }: Props) => {
+  const usedMemory = memoryMetrics.used;
+  const totalMemory = memoryMetrics.total;
+
+  if (usedMemory === undefined || totalMemory === undefined || storagePoolMetrics === undefined) {
+    return <p>Loading</p>;
+  }
 
   return (
     <Card>
@@ -30,17 +40,13 @@ export const HomeHostCard = () => {
 
           <HostInfoGraph>
             <Stack sx={{ width: '95%', color: 'grey.500' }} spacing={4}>
-              <LinearProgress variant="determinate" color="secondary" value={CPU} />
-              <LinearProgress variant="determinate" color="secondary" value={Memory} />
-              <LinearProgress variant="determinate" color="secondary" value={Storage} />
+              <HorizontalBarGraph CPUMetrics={0.4} MemoryMetrics={0.5} StorageMetrics={0.9} />
             </Stack>
           </HostInfoGraph>
         </HostInfo>
 
         <HostFoot />
       </HostBlock>
-
-      <LinearProgress variant="determinate" value={80} />
     </Card>
   );
 };
