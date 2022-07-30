@@ -14,21 +14,35 @@ export const HorizontalBarGraph = ({ CPUMetrics, MemoryMetrics, StorageMetrics }
 
     datasets: [
       {
-        indexAxis: 'y' as const,
         data: [CPUMetrics, MemoryMetrics, StorageMetrics],
         backgroundColor: ['#00A056'],
-        borderWidth: 0,
+        barPercentage: 0.4,
+        categoryPercentage: 0.8,
       },
     ],
   };
 
   const option: ChartOptions<'bar'> = {
+    indexAxis: 'y',
+    scales: {
+      xAxes: {
+        display: false,
+      },
+      yAxes: {
+        display: true,
+        ticks: {
+          font: {
+            size: 24,
+          },
+          color: '#DBDBDB',
+        },
+      },
+    },
     plugins: {
       legend: {
         display: false,
       },
     },
-    scales: {},
   };
 
   return <Bar data={data} options={option} />;

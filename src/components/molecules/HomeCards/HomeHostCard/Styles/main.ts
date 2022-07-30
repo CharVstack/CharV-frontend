@@ -17,26 +17,12 @@ export const HostTitle = styled.div`
 `;
 
 export const HostInfo = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex: 10;
-`;
-
-export const HostInfoString = styled.div`
-  flex: 3;
-  width: 40%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const HostInfoGraph = styled.div`
-  flex: 10;
-  width: 60%;
+  flex: 8;
+  width: 100%;
 
   display: flex;
   align-items: center;
+  padding: 1rem 2rem 2rem;
 `;
 
 export const HostFoot = styled.div`
