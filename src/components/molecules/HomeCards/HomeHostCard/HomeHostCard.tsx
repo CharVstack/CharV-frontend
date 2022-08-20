@@ -13,18 +13,14 @@ type Props = {
 };
 
 export const HomeHostCard = ({ cpuMetrics, memoryMetrics, storagePoolMetrics }: Props) => {
-  if (
-    memoryMetrics.used === undefined ||
-    memoryMetrics.total === undefined ||
-    storagePoolMetrics.used_size === undefined ||
-    storagePoolMetrics.total_size === undefined
-  ) {
-    return <p>Loading</p>;
-  }
-
   console.log(cpuMetrics.cpu);
 
-  return (
+  return memoryMetrics.used === undefined ||
+    memoryMetrics.total === undefined ||
+    storagePoolMetrics.used_size === undefined ||
+    storagePoolMetrics.total_size === undefined ? (
+    <p>Loading</p>
+  ) : (
     <Card>
       <HostBlock>
         <HostTitle>
