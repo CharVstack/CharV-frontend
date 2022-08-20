@@ -190,3 +190,6 @@ dist
 .pnp.*
 
 build/
+
+# nodenv
+.node-version
