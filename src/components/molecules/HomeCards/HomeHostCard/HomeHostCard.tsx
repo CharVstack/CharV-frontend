@@ -29,9 +29,9 @@ export const HomeHostCard = ({ cpuMetrics, memoryMetrics, storagePoolMetrics }: 
 
         <HostInfo>
           <HorizontalBarGraph
-            CPUMetrics={0.4}
-            MemoryMetrics={memoryMetrics.used / memoryMetrics.total}
-            StorageMetrics={storagePoolMetrics.used_size / storagePoolMetrics.total_size}
+            cpuMetrics={0.4}
+            memoryMetrics={memoryMetrics.used / memoryMetrics.total}
+            storageMetrics={storagePoolMetrics.used_size / storagePoolMetrics.total_size}
           />
         </HostInfo>
 

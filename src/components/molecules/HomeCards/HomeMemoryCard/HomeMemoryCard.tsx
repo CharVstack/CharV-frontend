@@ -6,8 +6,8 @@ import Image from '@static/memory-image.jpg';
 
 import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 
-export const HomeMemoryCard = ({ MemoryMetrics }: { MemoryMetrics: Memory }) =>
-  MemoryMetrics.used === undefined || MemoryMetrics.total === undefined ? (
+export const HomeMemoryCard = ({ memoryMetrics }: { memoryMetrics: Memory }) => {
+  return memoryMetrics.used === undefined || memoryMetrics.total === undefined ? (
     <p>Loading</p>
   ) : (
     <Card>
@@ -16,8 +16,8 @@ export const HomeMemoryCard = ({ MemoryMetrics }: { MemoryMetrics: Memory }) =>
           <H3>Memory</H3>
         </LeftBoxTitle>
         <LeftBoxInfo>
-          <H1>{ClacUnitSize(MemoryMetrics.total).calculatedSize.toFixed(2)}</H1>
-          <p>{ClacUnitSize(MemoryMetrics.total).unit}</p>
+          <H1>{ClacUnitSize(memoryMetrics.total).calculatedSize.toFixed(2)}</H1>
+          <p>{ClacUnitSize(memoryMetrics.total).unit}</p>
         </LeftBoxInfo>
         <LeftBoxFooter />
       </LeftBox>
@@ -29,18 +29,19 @@ export const HomeMemoryCard = ({ MemoryMetrics }: { MemoryMetrics: Memory }) =>
             Label2="Used"
             Data1={parseFloat(
               (
-                ClacUnitSize(MemoryMetrics.total).calculatedSize - ClacUnitSize(MemoryMetrics.used).calculatedSize
+                ClacUnitSize(memoryMetrics.total).calculatedSize - ClacUnitSize(memoryMetrics.used).calculatedSize
               ).toFixed(2)
             )}
-            Data2={parseFloat(ClacUnitSize(MemoryMetrics.total).calculatedSize.toFixed(2))}
+            Data2={parseFloat(ClacUnitSize(memoryMetrics.total).calculatedSize.toFixed(2))}
           />
           <GraphInfo>
             <p>
-              Used: {ClacUnitSize(MemoryMetrics.used).calculatedSize.toFixed(2)}
-              {ClacUnitSize(MemoryMetrics.used).unit}
+              Used: {ClacUnitSize(memoryMetrics.used).calculatedSize.toFixed(2)}
+              {ClacUnitSize(memoryMetrics.used).unit}
             </p>
           </GraphInfo>
         </div>
       </RightBox>
     </Card>
   );
+};

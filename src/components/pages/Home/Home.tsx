@@ -11,11 +11,9 @@ export const Home = () => {
   const { data: hostData } = useAspidaSWR(apiClient.host, {});
   const { data: vmData } = useAspidaSWR(apiClient.vms, {});
 
-  if (vmData === undefined || hostData === undefined) {
-    return <p>Loading ...</p>;
-  }
-
-  return (
+  return vmData === undefined || hostData === undefined ? (
+    <p>Loading</p>
+  ) : (
     <Grid container spacing={4}>
       <Grid item xs={6}>
         <HomeInstanceCard Vms={vmData.vms} />
@@ -28,7 +26,7 @@ export const Home = () => {
         />
       </Grid>
       <Grid item xs={6}>
-        <HomeMemoryCard MemoryMetrics={hostData.mem} />
+        <HomeMemoryCard memoryMetrics={hostData.mem} />
       </Grid>
       <Grid item xs={6}>
         <HomePoolCard />

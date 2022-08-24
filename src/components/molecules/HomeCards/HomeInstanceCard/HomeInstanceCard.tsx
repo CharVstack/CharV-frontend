@@ -5,11 +5,7 @@ import Image from '@static/host-image.jpg';
 
 import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 
-type Props = {
-  Vms: Vm[];
-};
-
-export const HomeInstanceCard = ({ Vms }: Props) => {
+export const HomeInstanceCard = ({ Vms }: { Vms: Vm[] }) => {
   const total = Vms.length;
   const running = 4;
 

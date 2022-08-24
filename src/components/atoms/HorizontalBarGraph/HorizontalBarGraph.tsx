@@ -3,18 +3,18 @@ import { ChartOptions, ChartData } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 type Props = {
-  CPUMetrics: number;
-  MemoryMetrics: number;
-  StorageMetrics: number;
+  cpuMetrics: number;
+  memoryMetrics: number;
+  storageMetrics: number;
 };
 
-export const HorizontalBarGraph = ({ CPUMetrics, MemoryMetrics, StorageMetrics }: Props) => {
+export const HorizontalBarGraph = ({ cpuMetrics, memoryMetrics, storageMetrics }: Props) => {
   const data: ChartData<'bar'> = {
     labels: ['CPU', 'Memory', 'Storage'],
 
     datasets: [
       {
-        data: [CPUMetrics, MemoryMetrics, StorageMetrics],
+        data: [cpuMetrics, memoryMetrics, storageMetrics],
         backgroundColor: ['#00A056'],
         barPercentage: 0.4,
         categoryPercentage: 0.8,
