@@ -1,16 +1,16 @@
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { Box, AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { Box, AppBar, IconButton, Toolbar } from '@mui/material';
+
+import { H5 } from '@components/atoms/Heading';
 
 export const NavBar = () => (
   <Box sx={{ flexGrow: 1 }}>
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ color: '#FFFFFF', backgroundColor: '#6272A4' }}>
       <Toolbar>
         <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          CharVstack
-        </Typography>
+        <H5>CharVstack</H5>
       </Toolbar>
     </AppBar>
   </Box>

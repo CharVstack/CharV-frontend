@@ -36,7 +36,7 @@ export type Memory = {
   used_percent?: number | undefined;
 };
 
-export type Storage_pool = {
+export type Storagepool = {
   name?: string | undefined;
   total_size?: number | undefined;
   used_size?: number | undefined;
