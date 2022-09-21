@@ -6,8 +6,8 @@ import Image from '@static/memory-image.jpg';
 
 import { Card, LeftBox, RightBox, GraphInfo, LeftBoxTitle, LeftBoxInfo, LeftBoxFooter } from '../Styles/Card';
 
-export const HomeMemoryCard = ({ memoryMetrics }: { memoryMetrics: Memory }) => {
-  return memoryMetrics.used === undefined || memoryMetrics.total === undefined ? (
+export const HomeMemoryCard = ({ memoryMetrics }: { memoryMetrics: Memory }) =>
+  memoryMetrics.used === undefined || memoryMetrics.total === undefined ? (
     <p>Loading</p>
   ) : (
     <Card>
@@ -44,4 +44,3 @@ export const HomeMemoryCard = ({ memoryMetrics }: { memoryMetrics: Memory }) => 
       </RightBox>
     </Card>
   );
-};
