@@ -104,7 +104,6 @@
     "build-storybook": "build-storybook"
   },
   "simple-git-hooks": {
-    "pre-commit": "yarn run lint-staged",
-    "pre-push": "yarn run npm-run-all -s test lint"
+    "pre-commit": "yarn run lint-staged"
   }
 }
