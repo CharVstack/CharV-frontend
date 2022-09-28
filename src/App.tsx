@@ -1,31 +1,20 @@
-import { Box, ThemeProvider, CssBaseline } from '@mui/material';
-import { RouteObject, useRoutes } from 'react-router-dom';
+import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
-import { NavBar } from '@components/molecules/NavBar';
-import { NotFound } from '@components/pages/ErrorPages';
-import { Home } from '@components/pages/Home';
-import { Instances } from '@components/pages/Instances';
-import { lightTheme } from '@utils/theme';
+import GlobalStyle from '@styles/globalStyles';
+import { Routing } from '@utils/Routing';
 
-const routes: RouteObject[] = [
-  {
-    path: '/',
-    element: <Home />,
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
   },
-  { path: 'instances', element: <Instances /> },
-  { path: '*', element: <NotFound /> },
-];
+});
 
-export const App = () => {
-  const element = useRoutes(routes);
+const App = () => (
+  <ThemeProvider theme={darkTheme}>
+    <CssBaseline />
+    <GlobalStyle />
+    <Routing />
+  </ThemeProvider>
+);
 
-  return (
-    <ThemeProvider theme={lightTheme}>
-      <CssBaseline />
-      <NavBar />
-      <Box component="div" sx={{ pt: '2rem', pb: '2rem', pr: '10rem', pl: '10rem' }}>
-        {element}
-      </Box>
-    </ThemeProvider>
-  );
-};
+export default App;
