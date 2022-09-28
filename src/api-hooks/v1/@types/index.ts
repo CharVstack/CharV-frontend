@@ -1,45 +1,45 @@
 /* eslint-disable */
+/** 仮想マシンを表すモデル */
 export type Vm = {
-  name?: string | undefined;
+  name: string;
 
-  metadata?:
-    | {
-        id?: string | undefined;
-        api_version?: string | undefined;
-      }
-    | undefined;
+  metadata: {
+    id: string;
+    api_version: string;
+  };
 
-  memory?: number | undefined;
-  vcpu?: number | undefined;
+  memory: number;
+  vcpu: number;
 
-  devices?:
-    | {
-        disk?:
-          | {
-              type?: string | undefined;
-              path?: string | undefined;
-            }[]
-          | undefined;
-      }
-    | undefined;
+  devices: {
+    disk: {
+      type: string;
+      path: string;
+    }[];
+  };
 };
 
+/** ホストのCPU情報 */
 export type Cpu = {
-  cpu?: number | undefined;
-  cpu_mhz?: number | undefined;
+  counts: number;
+  percent: number;
 };
 
+/** ホストのメモリ情報 */
 export type Memory = {
-  total?: number | undefined;
-  used?: number | undefined;
-  free?: number | undefined;
-  used_percent?: number | undefined;
+  total: Type_uint64;
+  used: Type_uint64;
+  free: Type_uint64;
+  used_percent: number;
 };
 
-export type Storagepool = {
-  name?: string | undefined;
-  total_size?: number | undefined;
-  used_size?: number | undefined;
-  path?: string | undefined;
-  status?: string | undefined;
+/** ホストが持つストレージプールの情報 */
+export type Storage_pool = {
+  name: string;
+  total_size: Type_uint64;
+  used_size: Type_uint64;
+  path: string;
+  status: string;
 };
+
+export type Type_uint64 = number;

@@ -1,7 +1,8 @@
 /* eslint-disable */
-import type * as Types from '../@types';
+import type * as Types from '../../../@types';
 
 export type Methods = {
+  /** VMを作成する */
   post: {
     status: 200;
 
@@ -12,6 +13,7 @@ export type Methods = {
     };
   };
 
+  /** 全てのVM一覧を取得する */
   get: {
     status: 200;
 
