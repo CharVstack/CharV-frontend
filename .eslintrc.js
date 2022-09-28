@@ -63,7 +63,10 @@ module.exports = {
     "react/function-component-definition": [
       2,
       { "namedComponents": "arrow-function" }
-    ]
+    ],
+    "react/require-default-props": [
+      0,
+    ],
   },
   settings: {
     'import/resolver': {
