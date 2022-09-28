@@ -1,20 +1,13 @@
-import { GlobalStyles, ThemeProvider } from '@mui/material';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { StrictMode } from 'react';
+import * as ReactDOMClient from 'react-dom/client';
 
-import { App } from '@App';
-import { darkTheme } from '@utils/theme';
+import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const rootElement = document.getElementById('root') as Element;
+const root = ReactDOMClient.createRoot(rootElement);
+
 root.render(
-  <Router>
-    <ThemeProvider theme={darkTheme}>
-      <GlobalStyles
-        styles={{
-          body: { margin: 0 },
-        }}
-      />
-      <App />
-    </ThemeProvider>
-  </Router>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
