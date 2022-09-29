@@ -19,9 +19,16 @@ export const RunningVmsCard = ({ allVms, runningVms }: { allVms: number; running
         <Grid item xs={5}>
           <InstanceCardBanner bgImg={bgImg}>
             <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography variant="h3" component="div">
-                {runningVms}
-              </Typography>
+              <Grid container justifyContent="center" alignItems="flex-end">
+                <Grid item>
+                  <Typography variant="h3" component="div">
+                    {runningVms}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography>VMs</Typography>
+                </Grid>
+              </Grid>
             </Box>
           </InstanceCardBanner>
         </Grid>

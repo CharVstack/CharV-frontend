@@ -28,7 +28,7 @@ const CardContent = (props: Pick<StoragePool, 'total_size' | 'used_size' | 'path
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Stack spacing={2} textAlign={'center'}>
+      <Stack spacing={2} textAlign="center">
         <Typography>Path: {poolLocationPath}</Typography>
         <Typography>
           Free: {poolSize} {unit}

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 
 import { InstanceCard, InstanceCardContent } from '@components/molecules/Cards';
-import { BarChart } from '@components/molecules/Charts';
+import { BarChart, Charts } from '@components/molecules/Charts';
 
 type Props = {
   cpuUsageRate: number;
@@ -11,7 +11,7 @@ type Props = {
 
 export const HostStatusCard = (props: Props) => {
   const { cpuUsageRate, memoryUsageRate, storageUsageRate } = props;
-  const hostData = {
+  const hostData: Charts = {
     CPU: { value: cpuUsageRate },
     Memory: { value: memoryUsageRate },
     Storage: { value: storageUsageRate },
