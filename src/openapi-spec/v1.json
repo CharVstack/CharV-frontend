@@ -68,13 +68,37 @@
                     "vms": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/vm"
+                        "$ref": "#/components/schemas/Vm"
                       }
                     }
                   },
                   "required": ["vms"]
                 },
-                "examples": {}
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "vms": [
+                        {
+                          "name": "ubuntu",
+                          "metadata": {
+                            "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                            "api_version": "v1"
+                          },
+                          "memory": 2048,
+                          "vcpu": 4,
+                          "devices": {
+                            "disk": [
+                              {
+                                "type": "qcow2",
+                                "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -105,9 +129,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/vm"
+                  "$ref": "#/components/schemas/Vm"
                 },
-                "examples": {}
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "name": "ubuntu",
+                      "metadata": {
+                        "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                        "api_version": "v1"
+                      },
+                      "memory": 2048,
+                      "vcpu": 4,
+                      "devices": {
+                        "disk": [
+                          {
+                            "type": "qcow2",
+                            "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -169,21 +213,45 @@
                   "type": "object",
                   "properties": {
                     "cpu": {
-                      "$ref": "#/components/schemas/cpu"
+                      "$ref": "#/components/schemas/Cpu"
                     },
                     "mem": {
-                      "$ref": "#/components/schemas/memory"
+                      "$ref": "#/components/schemas/Memory"
                     },
                     "storage_pools": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/storage_pool"
+                        "$ref": "#/components/schemas/StoragePool"
                       }
                     }
                   },
                   "required": ["cpu", "mem", "storage_pools"]
                 },
-                "examples": {}
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "cpu": {
+                        "counts": 4,
+                        "percent": 8
+                      },
+                      "mem": {
+                        "total": 16656519168,
+                        "used": 5022781440,
+                        "free": 6728339456,
+                        "used_percent": 30.1550485388905
+                      },
+                      "storage_pools": [
+                        {
+                          "name": "default",
+                          "total_size": 199239593984,
+                          "used_size": 160473669632,
+                          "path": "/var/lib/libvirt/default",
+                          "status": "Active"
+                        }
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -196,8 +264,8 @@
   },
   "components": {
     "schemas": {
-      "vm": {
-        "title": "vm",
+      "Vm": {
+        "title": "Vm",
         "type": "object",
         "x-tags": ["vm"],
         "description": "仮想マシンを表すモデル",
@@ -266,32 +334,40 @@
         },
         "required": ["name", "metadata", "memory", "vcpu", "devices"]
       },
-      "cpu": {
-        "title": "cpu",
+      "Cpu": {
+        "title": "Cpu",
         "type": "object",
         "x-tags": ["host"],
-        "properties": {
-          "counts": {
-            "type": "integer"
-          },
-          "percent": {
-            "type": "integer",
-            "format": "uint64"
-          }
-        },
-        "required": ["counts", "percent"],
         "x-examples": {
           "default": {
             "counts": 4,
             "percent": 5
           }
         },
-        "description": "ホストのCPU情報"
+        "description": "ホストのCPU情報",
+        "properties": {
+          "counts": {
+            "type": "integer"
+          },
+          "percent": {
+            "$ref": "#/components/schemas/type_float64"
+          }
+        },
+        "required": ["counts", "percent"]
       },
-      "memory": {
-        "title": "memory",
+      "Memory": {
+        "title": "Memory",
         "type": "object",
         "x-tags": ["host"],
+        "x-examples": {
+          "default": {
+            "total": 16526876672,
+            "used": 8849772544,
+            "free": 315400192,
+            "used_percent": 53.54776174371394
+          }
+        },
+        "description": "ホストのメモリ情報",
         "properties": {
           "total": {
             "$ref": "#/components/schemas/type_uint64"
@@ -303,23 +379,13 @@
             "$ref": "#/components/schemas/type_uint64"
           },
           "used_percent": {
-            "type": "number",
-            "format": "float"
+            "$ref": "#/components/schemas/type_float64"
           }
         },
-        "required": ["total", "used", "free", "used_percent"],
-        "x-examples": {
-          "default": {
-            "total": 16526876672,
-            "used": 8849772544,
-            "free": 315400192,
-            "used_percent": 32
-          }
-        },
-        "description": "ホストのメモリ情報"
+        "required": ["total", "used", "free", "used_percent"]
       },
-      "storage_pool": {
-        "title": "storage_pool",
+      "StoragePool": {
+        "title": "StoragePool",
         "type": "object",
         "x-tags": ["host"],
         "properties": {
@@ -359,6 +425,13 @@
         "minimum": 0,
         "maximum": 18446744073709552000,
         "x-go-type": "uint64"
+      },
+      "type_float64": {
+        "type": "number",
+        "title": "type_float64",
+        "x-go-type": "float64",
+        "x-tags": ["type"],
+        "format": "float"
       }
     }
   },

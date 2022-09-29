@@ -10,7 +10,7 @@ export type Methods = {
     resBody: {
       cpu: Types.Cpu;
       mem: Types.Memory;
-      storage_pools: Types.Storage_pool[];
+      storage_pools: Types.StoragePool[];
     };
   };
 };
