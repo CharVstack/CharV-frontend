@@ -1,4 +1,4 @@
-export const ClacUnitSize = (byteSize: number) => {
+export const calcUnitSize = (byteSize: number): [string, number] => {
   const KiB = 1024;
   const MiB = KiB ** 2;
   const GiB = KiB ** 3;
@@ -8,28 +8,26 @@ export const ClacUnitSize = (byteSize: number) => {
     const unit = 'TiB';
     const calculatedSize = byteSize / TiB;
 
-    return { unit, calculatedSize };
+    return [unit, calculatedSize];
   }
   if (byteSize >= GiB) {
     const unit = 'GiB';
     const calculatedSize = byteSize / GiB;
 
-    return { unit, calculatedSize };
+    return [unit, calculatedSize];
   }
   if (byteSize >= MiB) {
     const unit = 'MiB';
     const calculatedSize = byteSize / MiB;
 
-    return { unit, calculatedSize };
+    return [unit, calculatedSize];
   }
   if (byteSize >= KiB) {
     const unit = 'KiB';
     const calculatedSize = byteSize / KiB;
 
-    return { unit, calculatedSize };
+    return [unit, calculatedSize];
   }
   const unit = 'B';
-  const calculatedSize = byteSize;
-
-  return { unit, calculatedSize };
+  return [unit, byteSize];
 };
