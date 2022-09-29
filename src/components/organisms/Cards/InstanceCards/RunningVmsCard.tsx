@@ -4,11 +4,7 @@ import { InstanceCard, InstanceCardBanner, InstanceCardContent } from '@componen
 import { Charts, DoughnutChart } from '@components/molecules/Charts';
 import bgImg from '@static/host-image.jpg';
 
-export const RunningVmsCard = () => {
-  // ToDo: 消す
-  const runningVms = 12;
-  const allVms = 20;
-
+export const RunningVmsCard = ({ allVms, runningVms }: { allVms: number; runningVms: number }) => {
   const theme = useTheme();
   const freeVmsColor: string = theme.palette.grey['800'];
 

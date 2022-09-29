@@ -3,8 +3,19 @@ import { Box } from '@mui/material';
 import { InstanceCard, InstanceCardContent } from '@components/molecules/Cards';
 import { BarChart } from '@components/molecules/Charts';
 
-export const HostStatusCard = () => {
-  const hostData = { CPU: { value: 20 }, Memory: { value: 30 }, Storage: { value: 40 } };
+type Props = {
+  cpuUsageRate: number;
+  memoryUsageRate: number;
+  storageUsageRate: number;
+};
+
+export const HostStatusCard = (props: Props) => {
+  const { cpuUsageRate, memoryUsageRate, storageUsageRate } = props;
+  const hostData = {
+    CPU: { value: cpuUsageRate },
+    Memory: { value: memoryUsageRate },
+    Storage: { value: storageUsageRate },
+  };
 
   return (
     <InstanceCard title="Host">
