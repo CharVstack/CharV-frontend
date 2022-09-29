@@ -15,7 +15,7 @@ export const BarChart = ({ data }: { data: Charts }) => {
       {
         data: Object.values(data).map((i) => i.value),
         backgroundColor: Object.values(data).map((x) => x.color ?? defaultColor),
-        barPercentage: 0.4,
+        barPercentage: 0.6,
         categoryPercentage: 0.8,
       },
     ],
@@ -26,6 +26,8 @@ export const BarChart = ({ data }: { data: Charts }) => {
     scales: {
       xAxes: {
         display: false,
+        max: 100,
+        min: 0,
       },
       yAxes: {
         display: true,
