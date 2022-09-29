@@ -6,25 +6,25 @@ export const calcUnitSize = (byteSize: number): [string, number] => {
 
   if (byteSize >= TiB) {
     const unit = 'TiB';
-    const calculatedSize = byteSize / TiB;
+    const calculatedSize = Math.ceil(byteSize / TiB);
 
     return [unit, calculatedSize];
   }
   if (byteSize >= GiB) {
     const unit = 'GiB';
-    const calculatedSize = byteSize / GiB;
+    const calculatedSize = Math.ceil(byteSize / GiB);
 
     return [unit, calculatedSize];
   }
   if (byteSize >= MiB) {
     const unit = 'MiB';
-    const calculatedSize = byteSize / MiB;
+    const calculatedSize = Math.ceil(byteSize / MiB);
 
     return [unit, calculatedSize];
   }
   if (byteSize >= KiB) {
     const unit = 'KiB';
-    const calculatedSize = byteSize / KiB;
+    const calculatedSize = Math.ceil(byteSize / KiB);
 
     return [unit, calculatedSize];
   }
