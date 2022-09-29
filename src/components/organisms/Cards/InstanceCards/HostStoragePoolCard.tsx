@@ -1,10 +1,10 @@
 import { Box, Container, Grid, Stack, Typography } from '@mui/material';
 
-import { Storage_pool } from '@api-hooks/v1/@types';
+import { StoragePool } from '@api-hooks/v1/@types';
 import { InstanceCard, InstanceCardBanner, InstanceCardContent } from '@components/molecules/Cards';
 import bgImg from '@static/pool-image.jpg';
 
-const BannerContent = (props: Pick<Storage_pool, 'total_size' | 'name' | 'status'>) => {
+const BannerContent = (props: Pick<StoragePool, 'total_size' | 'name' | 'status'>) => {
   const { total_size: totalPoolSize, name: poolName, status: poolStatus } = props;
 
   return (
@@ -18,7 +18,7 @@ const BannerContent = (props: Pick<Storage_pool, 'total_size' | 'name' | 'status
   );
 };
 
-const CardContent = (props: Pick<Storage_pool, 'total_size' | 'used_size' | 'path'>) => {
+const CardContent = (props: Pick<StoragePool, 'total_size' | 'used_size' | 'path'>) => {
   const { total_size: totalPoolSize, used_size: usedPoolSize, path: poolLocationPath } = props;
 
   return (
@@ -31,8 +31,8 @@ const CardContent = (props: Pick<Storage_pool, 'total_size' | 'used_size' | 'pat
   );
 };
 
-export const HostStoragePoolCard = (props: Storage_pool) => {
-  const storageData: Storage_pool = props;
+export const HostStoragePoolCard = (props: StoragePool) => {
+  const storageData: StoragePool = props;
   return (
     <InstanceCard title="Pool">
       <Grid container alignItems="stretch" sx={{ height: '100%' }}>
