@@ -1,33 +1,40 @@
-import { Box, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Stack, Typography } from '@mui/material';
 
 import { StoragePool } from '@api-hooks/v1/@types';
 import { InstanceCard, InstanceCardBanner, InstanceCardContent } from '@components/molecules/Cards';
 import bgImg from '@static/pool-image.jpg';
+import { calcUnitSize } from '@utils/CalcUnitSize';
 
 const BannerContent = (props: Pick<StoragePool, 'total_size' | 'name' | 'status'>) => {
   const { total_size: totalPoolSize, name: poolName, status: poolStatus } = props;
+  const [unit, poolSize] = calcUnitSize(totalPoolSize);
 
   return (
-    <Container sx={{ display: 'flex', alignItems: 'center', height: '100%', padding: '2rem' }}>
-      <Stack>
-        <Typography variant="h4">{poolName}</Typography>
-        <Typography>{totalPoolSize}</Typography>
-        <Typography>{poolStatus}</Typography>
+    <Box sx={{ display: 'flex', alignItems: 'center', height: '100%', textAlign: 'center' }}>
+      <Stack sx={{ margin: '0 auto' }}>
+        <Typography variant="h3">{poolName}</Typography>
+        <Typography>
+          Size: {poolSize} {unit}
+        </Typography>
+        <Typography>State: {poolStatus}</Typography>
       </Stack>
-    </Container>
+    </Box>
   );
 };
 
 const CardContent = (props: Pick<StoragePool, 'total_size' | 'used_size' | 'path'>) => {
   const { total_size: totalPoolSize, used_size: usedPoolSize, path: poolLocationPath } = props;
+  const [unit, poolSize] = calcUnitSize(totalPoolSize - usedPoolSize);
 
   return (
-    <Container>
-      <Stack>
-        <Typography noWrap>{poolLocationPath}</Typography>
-        <Typography variant="body2">{totalPoolSize - usedPoolSize}</Typography>
+    <Box sx={{ width: '100%' }}>
+      <Stack spacing={2} textAlign={'center'}>
+        <Typography>Path: {poolLocationPath}</Typography>
+        <Typography>
+          Free: {poolSize} {unit}
+        </Typography>
       </Stack>
-    </Container>
+    </Box>
   );
 };
 
