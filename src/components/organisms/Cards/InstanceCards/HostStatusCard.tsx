@@ -1,5 +1,3 @@
-import { Box } from '@mui/material';
-
 import { InstanceCard, InstanceCardContent } from '@components/molecules/Cards';
 import { BarChart, Charts } from '@components/molecules/Charts';
 
@@ -18,12 +16,10 @@ export const HostStatusCard = (props: Props) => {
   };
 
   return (
-    <InstanceCard title="Host">
-      <Box sx={{ padding: '2rem', height: '100%' }}>
-        <InstanceCardContent>
-          <BarChart data={hostData} />
-        </InstanceCardContent>
-      </Box>
+    <InstanceCard hasAsideContent={false} title="Host">
+      <InstanceCardContent>
+        <BarChart data={hostData} />
+      </InstanceCardContent>
     </InstanceCard>
   );
 };

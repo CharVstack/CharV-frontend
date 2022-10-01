@@ -1,12 +1,12 @@
 import { Box, CardMedia, useTheme } from '@mui/material';
 import { ReactNode } from 'react';
 
-export const InstanceCardBanner = ({ children, bgImg }: { children: ReactNode; bgImg?: string }) => {
+export const InstanceCardAsideContent = ({ children, bgImg }: { children: ReactNode; bgImg?: string }) => {
   const theme = useTheme();
   const textColor: string = theme.palette.common.white;
 
   return (
-    <Box sx={{ position: 'relative', height: '100%', color: textColor }}>
+    <Box height="100%" sx={{ position: 'relative', color: textColor }}>
       {(
         <CardMedia
           component="img"
@@ -25,10 +25,12 @@ export const InstanceCardBanner = ({ children, bgImg }: { children: ReactNode; b
           top: 0,
           left: 0,
           width: '100%',
-          height: '100%',
+          height: 'inherit',
         }}
       >
-        {children}
+        <Box height="inherit" sx={{ display: 'flex', alignItems: 'center', p: 2 }}>
+          {children}
+        </Box>
       </Box>
     </Box>
   );
