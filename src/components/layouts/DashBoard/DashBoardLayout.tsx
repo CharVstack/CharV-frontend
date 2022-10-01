@@ -6,6 +6,6 @@ import { NavBar } from '@components/organisms/Bars';
 export const DashBoardLayout = ({ children }: { children: ReactNode }) => (
   <>
     <NavBar />
-    <Box sx={{ paddingTop: '2rem', paddingBottom: '2rem' }}>{children}</Box>
+    <Box sx={{ pt: 4, pb: 4 }}>{children}</Box>
   </>
 );

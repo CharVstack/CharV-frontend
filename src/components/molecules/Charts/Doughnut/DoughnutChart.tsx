@@ -14,7 +14,7 @@ export const DoughnutChart = ({ data }: { data: Charts }) => {
     datasets: [
       {
         data: Object.values(data).map((i) => i.value),
-        backgroundColor: Object.values(data).map((x) => x.color ?? defaultColor),
+        backgroundColor: Object.values(data).map((i) => i.color ?? defaultColor),
         borderWidth: 0,
       },
     ],
