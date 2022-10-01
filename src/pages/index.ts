@@ -1,2 +1,2 @@
-export * from './Home/Home';
-export * from './ErrorPages/NotFound';
+export * from './Home';
+export * from './ErrorPages';

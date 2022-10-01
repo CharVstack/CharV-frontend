@@ -1,1 +1,1 @@
-export * from './DashBoard/DashBoardLayout';
+export * from './DashBoard';
