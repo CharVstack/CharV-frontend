@@ -1,8 +1,7 @@
 import { Box, Stack } from '@mui/material';
 import Card from '@mui/material/Card';
 
-import { InstanceCardUnion } from '@components/molecules/Cards';
-
+import { InstanceCardUnion } from './InstanceCardProps';
 import { InstanceCardTitle } from './InstanceCardTitle';
 
 export const InstanceCard = (props: InstanceCardUnion) => {
