@@ -49,8 +49,7 @@ const CardContent = (props: Pick<StoragePool, 'total_size' | 'used_size' | 'path
 export const HostStoragePoolCard = (props: StoragePool) => {
   const storageData: StoragePool = props;
   return (
-    // prettier-ignore
-    <InstanceCard hasAsideContent={true} title="Pool">
+    <InstanceCard hasAsideContent title="Pool">
       <InstanceCardAsideContent bgImg={bgImg}>
         <AsideContent total_size={storageData.total_size} name={storageData.name} status={storageData.status} />
       </InstanceCardAsideContent>

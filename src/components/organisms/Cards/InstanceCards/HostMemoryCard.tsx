@@ -20,8 +20,7 @@ export const HostMemoryCard = (props: Pick<Memory, 'total' | 'used'>) => {
   const [unit, memorySize] = calcUnitSize(totalMemorySize);
 
   return (
-    // prettier-ignore
-    <InstanceCard hasAsideContent={true} title="Memory">
+    <InstanceCard hasAsideContent title="Memory">
       <InstanceCardAsideContent bgImg={bgImg}>
         <Grid container justifyContent="center" alignItems="flex-end">
           <Grid item>

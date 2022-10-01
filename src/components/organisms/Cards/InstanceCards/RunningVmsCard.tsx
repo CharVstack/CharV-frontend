@@ -14,8 +14,7 @@ export const RunningVmsCard = ({ allVms, runningVms }: { allVms: number; running
   };
 
   return (
-    // prettier-ignore
-    <InstanceCard hasAsideContent={true} title="VM">
+    <InstanceCard hasAsideContent title="VM">
       <InstanceCardAsideContent bgImg={bgImg}>
         <Grid container justifyContent="center" alignItems="flex-end">
           <Grid item>
