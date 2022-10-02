@@ -1,20 +1,14 @@
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 
-import GlobalStyle from '@styles/globalStyles';
+import { GlobalStyle, Theme } from '@styles';
 import { Routing } from '@utils/Routing';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-
 const App = () => (
-  <ThemeProvider theme={darkTheme}>
+  <Theme>
     <CssBaseline />
     <GlobalStyle />
     <Routing />
-  </ThemeProvider>
+  </Theme>
 );
 
 export default App;
