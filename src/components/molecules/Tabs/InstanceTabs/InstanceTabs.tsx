@@ -1,7 +1,7 @@
 import { Box, Container, Stack, Tab, Tabs } from '@mui/material';
 import { ReactNode, SyntheticEvent, useEffect, useState } from 'react';
 
-import { InstanceTabItem } from '@components/molecules/Tabs/InstanceTabs/InstanceTabsProps';
+import { InstanceTabItem } from './InstanceTabsProps';
 
 type TabPanelProps = {
   children?: ReactNode;
