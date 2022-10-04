@@ -1,5 +1,7 @@
 import { Box, Container, Stack, Tab, Tabs } from '@mui/material';
-import { ReactNode, SyntheticEvent, useEffect, useState } from 'react';
+import { Dispatch, ReactNode, SyntheticEvent, useEffect, useState } from 'react';
+
+import { Actions, TabsState } from '@components/organisms/Dialogs';
 
 import { InstanceTabItem } from './InstanceTabsProps';
 
@@ -23,7 +25,15 @@ const TabPanel = (props: TabPanelProps) => {
   );
 };
 
-export const InstanceTabs = ({ tabs, activeTabs }: { tabs: InstanceTabItem[]; activeTabs: number }) => {
+export const InstanceTabs = ({
+  tabs,
+  tabsState,
+  dispatcher,
+}: {
+  tabs: InstanceTabItem[];
+  tabsState: TabsState;
+  dispatcher: Dispatch<Actions>;
+}) => {
   // Reset flag
   /*
    * If `<Tab disable={true}/>`, the tab is NOT active (you cannot click it).
@@ -41,27 +51,23 @@ export const InstanceTabs = ({ tabs, activeTabs }: { tabs: InstanceTabItem[]; ac
   const [activeTabsFlag, setActiveTabsFlag] = useState<boolean[]>(Array(tabsLength).fill(true, 0, 1));
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
-    setCurrentTab(newValue);
+    dispatcher({ type: 'updateCurrent', value: newValue });
   };
 
-  // Switch tabs
-  const [currentTab, setCurrentTab] = useState(0);
-
-  // Update tabs flag
   useEffect(() => {
-    setActiveTabsFlag(Array(tabsLength).fill(true, 0, activeTabs + 1));
-  }, [activeTabs, tabsLength]); // tabsLength will not change.
+    setActiveTabsFlag(Array(tabsLength).fill(true, 0, tabsState.activeTabs + 1));
+  }, [tabsState.activeTabs, tabsLength]); // tabsLength will not change.
 
   return (
     <Stack direction="row">
-      <Tabs onChange={handleChange} value={currentTab} orientation="vertical">
+      <Tabs onChange={handleChange} value={tabsState.currentTab} orientation="vertical">
         {tabs.map((x, i) => (
           <Tab icon={x.tab.icon} label={x.tab.label} value={i} disabled={!activeTabsFlag[i]} />
         ))}
       </Tabs>
       <Container>
         {tabs.map((x, i) => (
-          <TabPanel value={currentTab} index={i}>
+          <TabPanel value={tabsState.currentTab} index={i}>
             {x.panel}
           </TabPanel>
         ))}
