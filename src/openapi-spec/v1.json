@@ -18,7 +18,35 @@
         "summary": "Create a new VM",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "新規作成されたVM情報",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Vm"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "name": "cent",
+                      "metadata": {
+                        "id": "8496031b-324d-4c84-b26e-982be26d0632",
+                        "api_version": "v1"
+                      },
+                      "memory": 4096,
+                      "vcpu": 8,
+                      "devices": {
+                        "disk": [
+                          {
+                            "type": "qcow2",
+                            "path": "/var/lib/charVstack/images/cent.qcow2"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "post-api-v1-vms",

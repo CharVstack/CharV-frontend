@@ -5,6 +5,8 @@ export type Methods = {
   /** VMを作成する */
   post: {
     status: 200;
+    /** 新規作成されたVM情報 */
+    resBody: Types.Vm;
 
     reqBody: {
       name: string;

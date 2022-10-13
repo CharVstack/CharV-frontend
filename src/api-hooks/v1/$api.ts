@@ -77,15 +77,22 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           },
           /**
            * VMを作成する
+           * @returns 新規作成されたVM情報
            */
           post: (option: { body: Methods1['post']['reqBody']; config?: T | undefined }) =>
-            fetch<void, BasicHeaders, Methods1['post']['status']>(prefix, PATH1, POST, option).send(),
+            fetch<Methods1['post']['resBody'], BasicHeaders, Methods1['post']['status']>(
+              prefix,
+              PATH1,
+              POST,
+              option
+            ).json(),
           /**
            * VMを作成する
+           * @returns 新規作成されたVM情報
            */
           $post: (option: { body: Methods1['post']['reqBody']; config?: T | undefined }) =>
-            fetch<void, BasicHeaders, Methods1['post']['status']>(prefix, PATH1, POST, option)
-              .send()
+            fetch<Methods1['post']['resBody'], BasicHeaders, Methods1['post']['status']>(prefix, PATH1, POST, option)
+              .json()
               .then((r) => r.body),
           /**
            * 全てのVM一覧を取得する
