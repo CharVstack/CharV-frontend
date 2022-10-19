@@ -1,0 +1,1 @@
+export { InstanceTabs } from './InstanceTabs';

@@ -69,6 +69,10 @@ module.exports = {
     ],
     "react/jsx-props-no-spreading": [
       0,
+    ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {"checksVoidReturn": {"attributes": false}}
     ]
   },
   settings: {
