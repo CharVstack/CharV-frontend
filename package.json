@@ -1,6 +1,9 @@
 {
   "name": "char-v-frontend",
   "version": "0.1.0",
+  "engines" : {
+    "node" : ">=16.0.0 <17.0.0"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
