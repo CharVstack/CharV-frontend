@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 
 import { StoragePool } from '@api-hooks/v1/@types';
+import bgImg from '@assets/images/pool-image.jpg';
 import { InstanceCard, InstanceCardContent, InstanceCardAsideContent } from '@components/molecules/Cards';
-import bgImg from '@static/pool-image.jpg';
 import { calcUnitSize } from '@utils/CalcUnitSize';
 
 const AsideContent = (props: Pick<StoragePool, 'total_size' | 'name' | 'status'>) => {

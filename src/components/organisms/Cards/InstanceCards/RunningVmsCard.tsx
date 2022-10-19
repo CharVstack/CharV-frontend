@@ -1,8 +1,8 @@
 import { Grid, Typography, useTheme } from '@mui/material';
 
+import bgImg from '@assets/images/host-image.jpg';
 import { InstanceCard, InstanceCardContent, InstanceCardAsideContent } from '@components/molecules/Cards';
 import { Charts, DoughnutChart } from '@components/molecules/Charts';
-import bgImg from '@static/host-image.jpg';
 
 export const RunningVmsCard = ({ allVms, runningVms }: { allVms: number; runningVms: number }) => {
   const theme = useTheme();
