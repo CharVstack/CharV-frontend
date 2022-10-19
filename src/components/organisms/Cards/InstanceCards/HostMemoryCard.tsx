@@ -1,9 +1,9 @@
 import { Grid, Typography, useTheme } from '@mui/material';
 
 import { Memory } from '@api-hooks/v1/@types';
+import bgImg from '@assets/images/memory-image.jpg';
 import { InstanceCard, InstanceCardContent, InstanceCardAsideContent } from '@components/molecules/Cards';
 import { Charts, DoughnutChart } from '@components/molecules/Charts';
-import bgImg from '@assets/images/memory-image.jpg';
 import { calcUnitSize } from '@utils/CalcUnitSize';
 
 export const HostMemoryCard = (props: Pick<Memory, 'total' | 'used'>) => {
