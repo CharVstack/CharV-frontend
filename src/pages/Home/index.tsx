@@ -1,7 +1,8 @@
 import useAspidaSWR from '@aspida/swr';
-import { Box, Container, Grid } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 import { DashBoardLayout } from '@components/layouts';
+import { LoadingSpinner } from '@components/molecules/Progress';
 import { HostMemoryCard, HostStatusCard, HostStoragePoolCard, RunningVmsCard } from '@components/organisms/Cards';
 import { apiClient } from '@lib/apiClient';
 
@@ -16,7 +17,9 @@ export const Home = () => {
   );
 
   return hostData === undefined || vmsData === undefined ? (
-    <Box>Loading</Box>
+    <DashBoardLayout>
+      <LoadingSpinner open />
+    </DashBoardLayout>
   ) : (
     <DashBoardLayout>
       <Container>
