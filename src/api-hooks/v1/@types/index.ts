@@ -2,46 +2,46 @@
 /** 仮想マシンを表すモデル */
 export type Vm = {
   name: string;
-
-  metadata: {
-    id: string;
-    api_version: string;
-  };
-
+  metadata: Metadata;
   memory: number;
   vcpu: number;
-
-  devices: {
-    disk: {
-      type: string;
-      path: string;
-    }[];
-  };
+  devices: Devices;
 };
 
 /** ホストのCPU情報 */
 export type Cpu = {
   counts: number;
-  percent: Type_float64;
+  percent: number;
 };
 
 /** ホストのメモリ情報 */
 export type Memory = {
-  total: Type_uint64;
-  used: Type_uint64;
-  free: Type_uint64;
-  used_percent: Type_float64;
+  total: number;
+  used: number;
+  free: number;
+  used_percent: number;
 };
 
 /** ホストが持つストレージプールの情報 */
 export type StoragePool = {
   name: string;
-  total_size: Type_uint64;
-  used_size: Type_uint64;
+  total_size: number;
+  used_size: number;
   path: string;
   status: string;
 };
 
-export type Type_uint64 = number;
+export type Disk = {
+  type: string;
+  device: string;
+  path: string;
+};
 
-export type Type_float64 = number;
+export type Devices = {
+  disk: Disk[];
+};
+
+export type Metadata = {
+  id: string;
+  api_version: string;
+};

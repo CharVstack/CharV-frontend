@@ -9,7 +9,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000"
+      "url": "http://localhost:8080"
     }
   ],
   "paths": {
@@ -38,6 +38,7 @@
                         "disk": [
                           {
                             "type": "qcow2",
+                            "device": "disk",
                             "path": "/var/lib/charVstack/images/cent.qcow2"
                           }
                         ]
@@ -118,6 +119,7 @@
                             "disk": [
                               {
                                 "type": "qcow2",
+                                "device": "disk",
                                 "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
                               }
                             ]
@@ -173,6 +175,7 @@
                         "disk": [
                           {
                             "type": "qcow2",
+                            "device": "disk",
                             "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
                           }
                         ]
@@ -321,16 +324,7 @@
             "type": "string"
           },
           "metadata": {
-            "type": "object",
-            "required": ["id", "api_version"],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "api_version": {
-                "type": "string"
-              }
-            }
+            "$ref": "#/components/schemas/Metadata"
           },
           "memory": {
             "type": "integer"
@@ -339,25 +333,7 @@
             "type": "integer"
           },
           "devices": {
-            "type": "object",
-            "required": ["disk"],
-            "properties": {
-              "disk": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "path": {
-                      "type": "string"
-                    }
-                  },
-                  "required": ["type", "path"]
-                }
-              }
-            }
+            "$ref": "#/components/schemas/Devices"
           }
         },
         "required": ["name", "metadata", "memory", "vcpu", "devices"]
@@ -378,7 +354,8 @@
             "type": "integer"
           },
           "percent": {
-            "$ref": "#/components/schemas/type_float64"
+            "type": "number",
+            "format": "double"
           }
         },
         "required": ["counts", "percent"]
@@ -398,16 +375,20 @@
         "description": "ホストのメモリ情報",
         "properties": {
           "total": {
-            "$ref": "#/components/schemas/type_uint64"
+            "type": "integer",
+            "format": "uint64"
           },
           "used": {
-            "$ref": "#/components/schemas/type_uint64"
+            "type": "integer",
+            "format": "uint64"
           },
           "free": {
-            "$ref": "#/components/schemas/type_uint64"
+            "type": "integer",
+            "format": "uint64"
           },
           "used_percent": {
-            "$ref": "#/components/schemas/type_float64"
+            "type": "number",
+            "format": "double"
           }
         },
         "required": ["total", "used", "free", "used_percent"]
@@ -416,24 +397,6 @@
         "title": "StoragePool",
         "type": "object",
         "x-tags": ["host"],
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "total_size": {
-            "$ref": "#/components/schemas/type_uint64"
-          },
-          "used_size": {
-            "$ref": "#/components/schemas/type_uint64"
-          },
-          "path": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string"
-          }
-        },
-        "required": ["name", "total_size", "used_size", "path", "status"],
         "x-examples": {
           "default": {
             "name": "string",
@@ -443,23 +406,78 @@
             "status": "string"
           }
         },
-        "description": "ホストが持つストレージプールの情報"
+        "description": "ホストが持つストレージプールの情報",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "total_size": {
+            "type": "integer",
+            "format": "uint64"
+          },
+          "used_size": {
+            "type": "integer",
+            "format": "uint64"
+          },
+          "path": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "total_size", "used_size", "path", "status"]
       },
-      "type_uint64": {
-        "type": "integer",
-        "title": "type_uint64",
-        "x-tags": ["type"],
-        "format": "int64",
-        "minimum": 0,
-        "maximum": 18446744073709552000,
-        "x-go-type": "uint64"
+      "Disk": {
+        "title": "Disk",
+        "x-stoplight": {
+          "id": "tlkfws9brap8f"
+        },
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "device": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          }
+        },
+        "required": ["type", "device", "path"]
       },
-      "type_float64": {
-        "type": "number",
-        "title": "type_float64",
-        "x-go-type": "float64",
-        "x-tags": ["type"],
-        "format": "float"
+      "Devices": {
+        "title": "Devices",
+        "x-stoplight": {
+          "id": "ygi3yz6kih90l"
+        },
+        "type": "object",
+        "properties": {
+          "disk": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Disk"
+            }
+          }
+        },
+        "required": ["disk"]
+      },
+      "Metadata": {
+        "title": "Metadata",
+        "x-stoplight": {
+          "id": "rpl1wy0d2lxgs"
+        },
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "api_version": {
+            "type": "string"
+          }
+        },
+        "required": ["id", "api_version"]
       }
     }
   },
