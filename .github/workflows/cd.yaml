@@ -1,0 +1,14 @@
+name: main action
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: update repo
+        run : ssh development@${{ secret.development_server_ip }} CD/init.sh
+
