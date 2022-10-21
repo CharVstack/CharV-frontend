@@ -10,5 +10,5 @@ jobs:
 
     steps:
       - name: update repo
-        run : ssh development@${{ env.development_server_ip }} CD/init.sh
+        run : ssh development@${{ secret.development_server_ip }} CD/init.sh
 
