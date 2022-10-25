@@ -28,12 +28,12 @@ export type StoragePool = {
   total_size: number;
   used_size: number;
   path: string;
-  status: string;
+  status: 'Active' | 'Error';
 };
 
 export type Disk = {
   type: string;
-  device: string;
+  device: 'disk' | 'cdrom';
   path: string;
 };
 
