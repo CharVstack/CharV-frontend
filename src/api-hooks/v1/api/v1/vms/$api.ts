@@ -3,7 +3,7 @@ import type { Methods as Methods1 } from './_vmId@string';
 import type { AspidaClient, BasicHeaders } from 'aspida';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'http://localhost:8080' : baseURL).replace(/\/$/, '');
+  const prefix = (baseURL === undefined ? 'http://dev.charv.test:8080' : baseURL).replace(/\/$/, '');
   const PATH0 = '/api/v1/vms';
   const GET = 'GET';
   const POST = 'POST';
