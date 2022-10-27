@@ -5,12 +5,7 @@ export type Methods = {
   /** ホスト情報を取得する */
   get: {
     status: 200;
-
-    /** OK */
-    resBody: {
-      cpu: Types.Cpu;
-      mem: Types.Memory;
-      storage_pools: Types.StoragePool[];
-    };
+    /** ホストの情報 */
+    resBody: Types.Host;
   };
 };

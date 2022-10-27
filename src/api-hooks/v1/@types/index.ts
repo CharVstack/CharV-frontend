@@ -32,8 +32,8 @@ export type StoragePool = {
 };
 
 export type Disk = {
-  type: string;
-  device: 'disk' | 'cdrom';
+  type: 'unknown' | 'qcow2';
+  device: 'disk' | 'cdrom' | 'unknown';
   path: string;
 };
 
@@ -44,4 +44,10 @@ export type Devices = {
 export type Metadata = {
   id: string;
   api_version: string;
+};
+
+export type Host = {
+  cpu: Cpu;
+  mem: Memory;
+  storage_pools: StoragePool[];
 };

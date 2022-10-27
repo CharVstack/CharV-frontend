@@ -7,49 +7,11 @@
     "title": "CharVstack-API",
     "version": "1.0"
   },
-  "servers": [
-    {
-      "url": "http://dev.charv.test:8080"
-    }
-  ],
+  "servers": [],
   "paths": {
     "/api/v1/vms": {
       "post": {
         "summary": "Create a new VM",
-        "responses": {
-          "200": {
-            "description": "新規作成されたVM情報",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Vm"
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "name": "cent",
-                      "metadata": {
-                        "id": "8496031b-324d-4c84-b26e-982be26d0632",
-                        "api_version": "v1"
-                      },
-                      "memory": 4096,
-                      "vcpu": 8,
-                      "devices": {
-                        "disk": [
-                          {
-                            "type": "qcow2",
-                            "device": "disk",
-                            "path": "/var/lib/charVstack/images/cent.qcow2"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
         "operationId": "post-api-v1-vms",
         "requestBody": {
           "content": {
@@ -82,55 +44,18 @@
           }
         },
         "tags": ["vm"],
-        "description": "VMを作成する"
+        "description": "VMを作成する",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/PostCreateNewVM200Response"
+          }
+        }
       },
       "get": {
         "summary": "Get all VMs list",
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "vms": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Vm"
-                      }
-                    }
-                  },
-                  "required": ["vms"]
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "vms": [
-                        {
-                          "name": "ubuntu",
-                          "metadata": {
-                            "id": "4e0a3c48-f483-422a-b520-2820207cef42",
-                            "api_version": "v1"
-                          },
-                          "memory": 2048,
-                          "vcpu": 4,
-                          "devices": {
-                            "disk": [
-                              {
-                                "type": "qcow2",
-                                "device": "disk",
-                                "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/GetAllVMsList200Response"
           }
         },
         "operationId": "get-api-v1-vms",
@@ -155,36 +80,7 @@
         "tags": ["vm"],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Vm"
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "name": "ubuntu",
-                      "metadata": {
-                        "id": "4e0a3c48-f483-422a-b520-2820207cef42",
-                        "api_version": "v1"
-                      },
-                      "memory": 2048,
-                      "vcpu": 4,
-                      "devices": {
-                        "disk": [
-                          {
-                            "type": "qcow2",
-                            "device": "disk",
-                            "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/GetVMByVMId200Response"
           }
         },
         "operationId": "get-api-v1-vms-:vmId",
@@ -195,7 +91,7 @@
         "operationId": "patch-api-v1-vms-:vmId",
         "responses": {
           "200": {
-            "description": "OK"
+            "$ref": "#/components/responses/PatchUpdateVMByVMId200Response"
           }
         },
         "tags": ["vm"],
@@ -237,54 +133,7 @@
         "tags": ["host"],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "cpu": {
-                      "$ref": "#/components/schemas/Cpu"
-                    },
-                    "mem": {
-                      "$ref": "#/components/schemas/Memory"
-                    },
-                    "storage_pools": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/StoragePool"
-                      }
-                    }
-                  },
-                  "required": ["cpu", "mem", "storage_pools"]
-                },
-                "examples": {
-                  "example-1": {
-                    "value": {
-                      "cpu": {
-                        "counts": 4,
-                        "percent": 8
-                      },
-                      "mem": {
-                        "total": 16656519168,
-                        "used": 5022781440,
-                        "free": 6728339456,
-                        "used_percent": 30.1550485388905
-                      },
-                      "storage_pools": [
-                        {
-                          "name": "default",
-                          "total_size": 199239593984,
-                          "used_size": 160473669632,
-                          "path": "/var/lib/libvirt/default",
-                          "status": "Active"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
+            "$ref": "#/components/responses/GetHost200Response"
           }
         },
         "operationId": "get-api-v1-host",
@@ -437,11 +286,12 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": ["unknown", "qcow2"]
           },
           "device": {
             "type": "string",
-            "enum": ["disk", "cdrom"]
+            "enum": ["disk", "cdrom", "unknown"]
           },
           "path": {
             "type": "string"
@@ -473,13 +323,212 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "format": "uuid"
           },
           "api_version": {
             "type": "string"
           }
         },
         "required": ["id", "api_version"]
+      },
+      "Host": {
+        "title": "Host",
+        "x-stoplight": {
+          "id": "lvp4m819yoen7"
+        },
+        "type": "object",
+        "properties": {
+          "cpu": {
+            "$ref": "#/components/schemas/Cpu"
+          },
+          "mem": {
+            "$ref": "#/components/schemas/Memory"
+          },
+          "storage_pools": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StoragePool"
+            }
+          }
+        },
+        "required": ["cpu", "mem", "storage_pools"]
+      }
+    },
+    "responses": {
+      "GetAllVMsList200Response": {
+        "description": "全てのVM一覧",
+        "content": {
+          "application/json": {
+            "schema": {
+              "x-examples": {
+                "example-1": {
+                  "vms": [
+                    {
+                      "name": "ubuntu",
+                      "metadata": {
+                        "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                        "api_version": "v1"
+                      },
+                      "memory": 2048,
+                      "vcpu": 4,
+                      "devices": {
+                        "disk": [
+                          {
+                            "type": "qcow2",
+                            "device": "disk",
+                            "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "type": "object",
+              "properties": {
+                "vms": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Vm"
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example-1": {
+                "value": {
+                  "vms": [
+                    {
+                      "name": "ubuntu",
+                      "metadata": {
+                        "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                        "api_version": "v1"
+                      },
+                      "memory": 2048,
+                      "vcpu": 4,
+                      "devices": {
+                        "disk": [
+                          {
+                            "type": "qcow2",
+                            "device": "disk",
+                            "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "PostCreateNewVM200Response": {
+        "description": "新規作成されたVM情報",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Vm"
+            },
+            "examples": {
+              "example-1": {
+                "value": {
+                  "name": "ubuntu",
+                  "metadata": {
+                    "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                    "api_version": "v1"
+                  },
+                  "memory": 2048,
+                  "vcpu": 4,
+                  "devices": {
+                    "disk": [
+                      {
+                        "type": "qcow2",
+                        "device": "disk",
+                        "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "GetVMByVMId200Response": {
+        "description": "VMIdに合致するVM情報",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Vm"
+            },
+            "examples": {
+              "example-1": {
+                "value": {
+                  "name": "ubuntu",
+                  "metadata": {
+                    "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                    "api_version": "v1"
+                  },
+                  "memory": 2048,
+                  "vcpu": 4,
+                  "devices": {
+                    "disk": [
+                      {
+                        "type": "qcow2",
+                        "device": "disk",
+                        "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "PatchUpdateVMByVMId200Response": {
+        "description": "更新されたVM情報",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Vm"
+            },
+            "examples": {
+              "example-1": {
+                "value": {
+                  "name": "ubuntu",
+                  "metadata": {
+                    "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                    "api_version": "v1"
+                  },
+                  "memory": 2048,
+                  "vcpu": 4,
+                  "devices": {
+                    "disk": [
+                      {
+                        "type": "qcow2",
+                        "device": "disk",
+                        "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "GetHost200Response": {
+        "description": "ホストの情報",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Host"
+            }
+          }
+        }
       }
     }
   },
