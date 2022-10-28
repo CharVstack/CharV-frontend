@@ -19,7 +19,7 @@ export type Methods = {
   get: {
     status: 200;
 
-    /** OK */
+    /** 全てのVM一覧 */
     resBody: {
       vms: Types.Vm[];
     };

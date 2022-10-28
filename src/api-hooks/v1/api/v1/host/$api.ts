@@ -2,20 +2,20 @@ import type { Methods as Methods0 } from '.';
 import type { AspidaClient, BasicHeaders } from 'aspida';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'http://dev.charv.test:8080' : baseURL).replace(/\/$/, '');
+  const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '');
   const PATH0 = '/api/v1/host';
   const GET = 'GET';
 
   return {
     /**
      * ホスト情報を取得する
-     * @returns OK
+     * @returns ホストの情報
      */
     get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
     /**
      * ホスト情報を取得する
-     * @returns OK
+     * @returns ホストの情報
      */
     $get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option)

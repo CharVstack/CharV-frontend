@@ -3,7 +3,7 @@ import type { Methods as Methods1 } from './_vmId@string';
 import type { AspidaClient, BasicHeaders } from 'aspida';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
-  const prefix = (baseURL === undefined ? 'http://dev.charv.test:8080' : baseURL).replace(/\/$/, '');
+  const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '');
   const PATH0 = '/api/v1/vms';
   const GET = 'GET';
   const POST = 'POST';
@@ -16,7 +16,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       return {
         /**
          * 個々のVM情報を取得する
-         * @returns OK
+         * @returns VMIdに合致するVM情報
          */
         get: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(
@@ -27,7 +27,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           ).json(),
         /**
          * 個々のVM情報を取得する
-         * @returns OK
+         * @returns VMIdに合致するVM情報
          */
         $get: (option?: { config?: T | undefined } | undefined) =>
           fetch<Methods1['get']['resBody'], BasicHeaders, Methods1['get']['status']>(prefix, prefix0, GET, option)
@@ -35,15 +35,22 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             .then((r) => r.body),
         /**
          * VM情報を更新する
+         * @returns 更新されたVM情報
          */
         patch: (option: { body: Methods1['patch']['reqBody']; config?: T | undefined }) =>
-          fetch<void, BasicHeaders, Methods1['patch']['status']>(prefix, prefix0, PATCH, option).send(),
+          fetch<Methods1['patch']['resBody'], BasicHeaders, Methods1['patch']['status']>(
+            prefix,
+            prefix0,
+            PATCH,
+            option
+          ).json(),
         /**
          * VM情報を更新する
+         * @returns 更新されたVM情報
          */
         $patch: (option: { body: Methods1['patch']['reqBody']; config?: T | undefined }) =>
-          fetch<void, BasicHeaders, Methods1['patch']['status']>(prefix, prefix0, PATCH, option)
-            .send()
+          fetch<Methods1['patch']['resBody'], BasicHeaders, Methods1['patch']['status']>(prefix, prefix0, PATCH, option)
+            .json()
             .then((r) => r.body),
         $path: () => `${prefix}${prefix0}`,
       };
@@ -64,13 +71,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         .then((r) => r.body),
     /**
      * 全てのVM一覧を取得する
-     * @returns OK
+     * @returns 全てのVM一覧
      */
     get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
     /**
      * 全てのVM一覧を取得する
-     * @returns OK
+     * @returns 全てのVM一覧
      */
     $get: (option?: { config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], BasicHeaders, Methods0['get']['status']>(prefix, PATH0, GET, option)
