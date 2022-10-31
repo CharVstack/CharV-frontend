@@ -56,7 +56,7 @@ export const CommonForm = (isConfirm: boolean) => {
             label="メモリ"
             onChange={(event) => field.onChange(+event.target.value)}
             InputProps={{
-              endAdornment: <InputAdornment position="end">GB</InputAdornment>,
+              endAdornment: <InputAdornment position="end">MB</InputAdornment>,
               readOnly: isConfirm,
             }}
             InputLabelProps={{ shrink: true }}
