@@ -5,8 +5,12 @@ export type Methods = {
   /** VMを作成する */
   post: {
     status: 200;
+
     /** 新規作成されたVM情報 */
-    resBody: Types.Vm;
+    resBody: {
+      vm: Types.Vm;
+      message?: string | undefined;
+    };
 
     reqBody: {
       name: string;
@@ -22,6 +26,7 @@ export type Methods = {
     /** 全てのVM一覧 */
     resBody: {
       vms: Types.Vm[];
+      message?: string | undefined;
     };
   };
 };

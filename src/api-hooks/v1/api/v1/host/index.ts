@@ -5,7 +5,11 @@ export type Methods = {
   /** ホスト情報を取得する */
   get: {
     status: 200;
+
     /** ホストの情報 */
-    resBody: Types.Host;
+    resBody: {
+      host: Types.Host;
+      message?: string | undefined;
+    };
   };
 };
