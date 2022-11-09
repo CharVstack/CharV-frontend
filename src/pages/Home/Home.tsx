@@ -2,6 +2,8 @@ import useAspidaSWR from '@aspida/swr';
 import { Container, Grid } from '@mui/material';
 
 import { LoadingSpinner } from '@components/molecules/Progress';
+import { ButtonTest } from '@components/organisms/Buttons/StopButton';
+
 import { HostMemoryCard, HostStatusCard, HostStoragePoolCard, RunningVmsCard } from '@components/organisms/Cards';
 import { apiClient } from '@lib/apiClient';
 import { DashBoard } from '@templates/DashBoard';
@@ -32,6 +34,9 @@ export const Home = () => {
   return (
     <DashBoard>
       <Container>
+        <Grid container justifyContent="flex-end" spacing={2}>
+          <ButtonTest />
+        </Grid>
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
           <Grid item xs={12} sm={8} md={6}>
             {/* APIができていないため仮の値を指定 */}
