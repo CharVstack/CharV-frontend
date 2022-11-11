@@ -1,3 +1,4 @@
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -44,7 +45,7 @@ export const VmControlMenu = () => {
 
   return (
     <Box sx={{ pb: 1 }}>
-      <Button variant="contained" onClick={handleClick} color="success">
+      <Button variant="contained" onClick={handleClick} color="success" endIcon={<KeyboardArrowDownIcon />}>
         <PowerSettingsNewIcon />
         Actions
       </Button>
