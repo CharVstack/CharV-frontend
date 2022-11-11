@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import * as React from 'react';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -45,7 +44,7 @@ export const VmControlMenu = () => {
 
   return (
     <Box sx={{ pb: 1 }}>
-      <Button variant="contained" onClick={handleClick} endIcon={<KeyboardArrowDownIcon />} color="success">
+      <Button variant="contained" onClick={handleClick} color="success">
         <PowerSettingsNewIcon />
         Actions
       </Button>

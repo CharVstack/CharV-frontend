@@ -2,9 +2,8 @@ import useAspidaSWR from '@aspida/swr';
 import { Container, Grid } from '@mui/material';
 
 import { LoadingSpinner } from '@components/molecules/Progress';
-import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
-
 import { HostMemoryCard, HostStatusCard, HostStoragePoolCard, RunningVmsCard } from '@components/organisms/Cards';
+import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
 import { apiClient } from '@lib/apiClient';
 import { DashBoard } from '@templates/DashBoard';
 
