@@ -2,7 +2,7 @@ import useAspidaSWR from '@aspida/swr';
 import { Container, Grid } from '@mui/material';
 
 import { LoadingSpinner } from '@components/molecules/Progress';
-import { ButtonTest } from '@components/organisms/Buttons/StopButton';
+import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
 
 import { HostMemoryCard, HostStatusCard, HostStoragePoolCard, RunningVmsCard } from '@components/organisms/Cards';
 import { apiClient } from '@lib/apiClient';
@@ -35,7 +35,7 @@ export const Home = () => {
     <DashBoard>
       <Container>
         <Grid container justifyContent="flex-end" spacing={2}>
-          <ButtonTest />
+          <VmControlMenu />
         </Grid>
         <Grid container justifyContent="center" alignItems="center" spacing={4}>
           <Grid item xs={12} sm={8} md={6}>
