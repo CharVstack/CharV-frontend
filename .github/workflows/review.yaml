@@ -1,10 +1,11 @@
-name: CI
+name: Review
+
 on:
   - pull_request
 
 jobs:
   build:
-    name: Code Test
+    name: Review Code
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +26,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: yarn install
-      - run: yarn lint
-      - run: yarn test
-      - run: yarn build
+      - uses: reviewdog/action-eslint@v1
+        with:
+          reporter: github-pr-review
+          eslint_flags: 'src/**/*.{ts,tsx}'

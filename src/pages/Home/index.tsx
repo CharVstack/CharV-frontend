@@ -10,10 +10,10 @@ export const Home = () => {
   const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
   const { data: vmsData } = useAspidaSWR(apiClient.api.v1.vms);
 
-  const cpuUsageRate = Math.ceil(hostData?.cpu.percent as number);
-  const memoryUsageRate = Math.ceil(hostData?.mem.used_percent as number);
+  const cpuUsageRate = Math.ceil(hostData?.host?.cpu.percent as number);
+  const memoryUsageRate = Math.ceil(hostData?.host.mem.used_percent as number);
   const storageUsageRate = Math.ceil(
-    (hostData?.storage_pools?.[0].used_size as number) / (hostData?.storage_pools?.[0].total_size as number)
+    (hostData?.host.storage_pools?.[0].used_size as number) / (hostData?.host.storage_pools?.[0].total_size as number)
   );
 
   return hostData === undefined || vmsData === undefined ? (
@@ -37,10 +37,10 @@ export const Home = () => {
             />
           </Grid>
           <Grid item xs={12} sm={8} md={6}>
-            <HostMemoryCard total={hostData.mem.total} used={hostData.mem.used} />
+            <HostMemoryCard total={hostData.host.mem.total} used={hostData.host.mem.used} />
           </Grid>
           <Grid item xs={12} sm={8} md={6}>
-            <HostStoragePoolCard {...hostData.storage_pools?.[0]} />
+            <HostStoragePoolCard {...hostData.host.storage_pools?.[0]} />
           </Grid>
         </Grid>
       </Container>
