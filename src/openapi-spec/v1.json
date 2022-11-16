@@ -165,7 +165,8 @@
                   "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
                 }
               ]
-            }
+            },
+            "status": "active"
           }
         },
         "properties": {
@@ -183,9 +184,13 @@
           },
           "devices": {
             "$ref": "#/components/schemas/Devices"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["error", "active", "pending", "unknown"]
           }
         },
-        "required": ["name", "metadata", "memory", "vcpu", "devices"]
+        "required": ["name", "metadata", "memory", "vcpu", "devices", "status"]
       },
       "Cpu": {
         "title": "Cpu",
@@ -392,8 +397,12 @@
                   "items": {
                     "$ref": "#/components/schemas/Vm"
                   }
+                },
+                "message": {
+                  "type": "string"
                 }
-              }
+              },
+              "required": ["vms"]
             },
             "examples": {
               "example-1": {
@@ -415,7 +424,8 @@
                             "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
                           }
                         ]
-                      }
+                      },
+                      "status": "active"
                     }
                   ]
                 }
@@ -429,27 +439,40 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Vm"
+              "type": "object",
+              "properties": {
+                "vm": {
+                  "$ref": "#/components/schemas/Vm"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": ["vm"]
             },
             "examples": {
               "example-1": {
                 "value": {
-                  "name": "ubuntu",
-                  "metadata": {
-                    "id": "4e0a3c48-f483-422a-b520-2820207cef42",
-                    "api_version": "v1"
+                  "vm": {
+                    "name": "ubuntu",
+                    "metadata": {
+                      "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                      "api_version": "v1"
+                    },
+                    "memory": 2048,
+                    "vcpu": 4,
+                    "devices": {
+                      "disk": [
+                        {
+                          "type": "qcow2",
+                          "device": "disk",
+                          "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                        }
+                      ]
+                    },
+                    "status": "pending"
                   },
-                  "memory": 2048,
-                  "vcpu": 4,
-                  "devices": {
-                    "disk": [
-                      {
-                        "type": "qcow2",
-                        "device": "disk",
-                        "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
-                      }
-                    ]
-                  }
+                  "message": ""
                 }
               }
             }
@@ -461,27 +484,40 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Vm"
+              "type": "object",
+              "properties": {
+                "vm": {
+                  "$ref": "#/components/schemas/Vm"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": ["vm"]
             },
             "examples": {
               "example-1": {
                 "value": {
-                  "name": "ubuntu",
-                  "metadata": {
-                    "id": "4e0a3c48-f483-422a-b520-2820207cef42",
-                    "api_version": "v1"
+                  "vm": {
+                    "name": "ubuntu",
+                    "metadata": {
+                      "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                      "api_version": "v1"
+                    },
+                    "memory": 2048,
+                    "vcpu": 4,
+                    "devices": {
+                      "disk": [
+                        {
+                          "type": "qcow2",
+                          "device": "disk",
+                          "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                        }
+                      ]
+                    },
+                    "status": "active"
                   },
-                  "memory": 2048,
-                  "vcpu": 4,
-                  "devices": {
-                    "disk": [
-                      {
-                        "type": "qcow2",
-                        "device": "disk",
-                        "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
-                      }
-                    ]
-                  }
+                  "message": ""
                 }
               }
             }
@@ -493,27 +529,40 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Vm"
+              "type": "object",
+              "properties": {
+                "vm": {
+                  "$ref": "#/components/schemas/Vm"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": ["vm"]
             },
             "examples": {
               "example-1": {
                 "value": {
-                  "name": "ubuntu",
-                  "metadata": {
-                    "id": "4e0a3c48-f483-422a-b520-2820207cef42",
-                    "api_version": "v1"
+                  "vm": {
+                    "name": "ubuntu",
+                    "metadata": {
+                      "id": "4e0a3c48-f483-422a-b520-2820207cef42",
+                      "api_version": "v1"
+                    },
+                    "memory": 2048,
+                    "vcpu": 4,
+                    "devices": {
+                      "disk": [
+                        {
+                          "type": "qcow2",
+                          "device": "disk",
+                          "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
+                        }
+                      ]
+                    },
+                    "status": "active"
                   },
-                  "memory": 2048,
-                  "vcpu": 4,
-                  "devices": {
-                    "disk": [
-                      {
-                        "type": "qcow2",
-                        "device": "disk",
-                        "path": "/var/lib/libvirt/images/ubuntu22.04.qcow2"
-                      }
-                    ]
-                  }
+                  "message": ""
                 }
               }
             }
@@ -525,7 +574,44 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "#/components/schemas/Host"
+              "type": "object",
+              "properties": {
+                "host": {
+                  "$ref": "#/components/schemas/Host"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "required": ["host"]
+            },
+            "examples": {
+              "example-1": {
+                "value": {
+                  "host": {
+                    "cpu": {
+                      "counts": 0,
+                      "percent": 0
+                    },
+                    "mem": {
+                      "total": 0,
+                      "used": 0,
+                      "free": 0,
+                      "used_percent": 0
+                    },
+                    "storage_pools": [
+                      {
+                        "name": "string",
+                        "total_size": 0,
+                        "used_size": 0,
+                        "path": "string",
+                        "status": "Active"
+                      }
+                    ]
+                  },
+                  "message": "string"
+                }
+              }
             }
           }
         }

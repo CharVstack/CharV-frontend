@@ -6,6 +6,7 @@ export type Vm = {
   memory: number;
   vcpu: number;
   devices: Devices;
+  status: 'error' | 'active' | 'pending' | 'unknown';
 };
 
 /** ホストのCPU情報 */
