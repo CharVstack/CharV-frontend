@@ -1,8 +1,8 @@
 {
   "name": "char-v-frontend",
   "version": "0.1.0",
-  "engines" : {
-    "node" : ">=16.0.0 <17.0.0"
+  "engines": {
+    "node": ">=16.0.0 <17.0.0"
   },
   "browserslist": {
     "production": [
@@ -33,6 +33,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
+    "aspida": "^1.11.0",
     "axios": "^0.27.2",
     "chart.js": "^3.8.0",
     "notistack": "^2.0.8",
