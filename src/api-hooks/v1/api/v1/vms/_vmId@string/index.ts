@@ -9,7 +9,6 @@ export type Methods = {
     /** VMIdに合致するVM情報 */
     resBody: {
       vm: Types.Vm;
-      message?: string | undefined;
     };
   };
 
@@ -20,13 +19,12 @@ export type Methods = {
     /** 更新されたVM情報 */
     resBody: {
       vm: Types.Vm;
-      message?: string | undefined;
     };
 
     reqBody: {
       name: string;
       memory: number;
-      vcpu: number;
+      cpu: number;
     };
   };
 };

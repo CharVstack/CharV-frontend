@@ -1,10 +1,14 @@
+import { dataToURLString } from 'aspida';
+
 import type { Methods as Methods0 } from '.';
 import type { Methods as Methods1 } from './_vmId@string';
+import type { Methods as Methods2 } from './_vmId@string/power';
 import type { AspidaClient, BasicHeaders } from 'aspida';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '');
   const PATH0 = '/api/v1/vms';
+  const PATH1 = '/power';
   const GET = 'GET';
   const POST = 'POST';
   const PATCH = 'PATCH';
@@ -14,6 +18,46 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       const prefix0 = `${PATH0}/${val0}`;
 
       return {
+        power: {
+          /**
+           * VMの電源状態を操作
+           */
+          post: (option?: { query?: Methods2['post']['query'] | undefined; config?: T | undefined } | undefined) =>
+            fetch<void, BasicHeaders, Methods2['post']['status']>(prefix, `${prefix0}${PATH1}`, POST, option).send(),
+          /**
+           * VMの電源状態を操作
+           */
+          $post: (option?: { query?: Methods2['post']['query'] | undefined; config?: T | undefined } | undefined) =>
+            fetch<void, BasicHeaders, Methods2['post']['status']>(prefix, `${prefix0}${PATH1}`, POST, option)
+              .send()
+              .then((r) => r.body),
+          /**
+           * VMの電源状態を取得
+           * @returns VMの電源情報
+           */
+          get: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods2['get']['resBody'], BasicHeaders, Methods2['get']['status']>(
+              prefix,
+              `${prefix0}${PATH1}`,
+              GET,
+              option
+            ).json(),
+          /**
+           * VMの電源状態を取得
+           * @returns VMの電源情報
+           */
+          $get: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods2['get']['resBody'], BasicHeaders, Methods2['get']['status']>(
+              prefix,
+              `${prefix0}${PATH1}`,
+              GET,
+              option
+            )
+              .json()
+              .then((r) => r.body),
+          $path: (option?: { method: 'post'; query: Methods2['post']['query'] } | undefined) =>
+            `${prefix}${prefix0}${PATH1}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+        },
         /**
          * 個々のVM情報を取得する
          * @returns VMIdに合致するVM情報

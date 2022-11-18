@@ -9,7 +9,6 @@ export type Methods = {
     /** ホストの情報 */
     resBody: {
       host: Types.Host;
-      message?: string | undefined;
     };
   };
 };
