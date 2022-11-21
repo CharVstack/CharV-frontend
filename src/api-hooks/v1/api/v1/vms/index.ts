@@ -9,13 +9,12 @@ export type Methods = {
     /** 新規作成されたVM情報 */
     resBody: {
       vm: Types.Vm;
-      message?: string | undefined;
     };
 
     reqBody: {
       name: string;
       memory: number;
-      vcpu: number;
+      cpu: number;
     };
   };
 
@@ -26,7 +25,6 @@ export type Methods = {
     /** 全てのVM一覧 */
     resBody: {
       vms: Types.Vm[];
-      message?: string | undefined;
     };
   };
 };

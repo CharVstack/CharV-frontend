@@ -1,12 +1,16 @@
+import { dataToURLString } from 'aspida';
+
 import type { Methods as Methods0 } from './v1/host';
 import type { Methods as Methods1 } from './v1/vms';
 import type { Methods as Methods2 } from './v1/vms/_vmId@string';
+import type { Methods as Methods3 } from './v1/vms/_vmId@string/power';
 import type { AspidaClient, BasicHeaders } from 'aspida';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '');
   const PATH0 = '/api/v1/host';
   const PATH1 = '/api/v1/vms';
+  const PATH2 = '/power';
   const GET = 'GET';
   const POST = 'POST';
   const PATCH = 'PATCH';
@@ -35,6 +39,51 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           const prefix2 = `${PATH1}/${val2}`;
 
           return {
+            power: {
+              /**
+               * VMの電源状態を操作
+               */
+              post: (option?: { query?: Methods3['post']['query'] | undefined; config?: T | undefined } | undefined) =>
+                fetch<void, BasicHeaders, Methods3['post']['status']>(
+                  prefix,
+                  `${prefix2}${PATH2}`,
+                  POST,
+                  option
+                ).send(),
+              /**
+               * VMの電源状態を操作
+               */
+              $post: (option?: { query?: Methods3['post']['query'] | undefined; config?: T | undefined } | undefined) =>
+                fetch<void, BasicHeaders, Methods3['post']['status']>(prefix, `${prefix2}${PATH2}`, POST, option)
+                  .send()
+                  .then((r) => r.body),
+              /**
+               * VMの電源状態を取得
+               * @returns VMの電源情報
+               */
+              get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods3['get']['resBody'], BasicHeaders, Methods3['get']['status']>(
+                  prefix,
+                  `${prefix2}${PATH2}`,
+                  GET,
+                  option
+                ).json(),
+              /**
+               * VMの電源状態を取得
+               * @returns VMの電源情報
+               */
+              $get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods3['get']['resBody'], BasicHeaders, Methods3['get']['status']>(
+                  prefix,
+                  `${prefix2}${PATH2}`,
+                  GET,
+                  option
+                )
+                  .json()
+                  .then((r) => r.body),
+              $path: (option?: { method: 'post'; query: Methods3['post']['query'] } | undefined) =>
+                `${prefix}${prefix2}${PATH2}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+            },
             /**
              * 個々のVM情報を取得する
              * @returns VMIdに合致するVM情報

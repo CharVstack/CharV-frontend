@@ -26,13 +26,13 @@ export const CommonForm = (isConfirm: boolean) => {
         )}
       />
       <Controller
-        name="vcpu"
+        name="cpu"
         control={control}
         defaultValue=""
         render={({ field }) => (
           <TextField
             {...field}
-            error={!!errors?.vcpu}
+            error={!!errors?.cpu}
             variant="standard"
             label="CPU"
             onChange={(event) => field.onChange(+event.target.value)}
