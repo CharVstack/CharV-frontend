@@ -193,3 +193,5 @@ build/
 
 # nodenv
 .node-version
+
+storybook-static/

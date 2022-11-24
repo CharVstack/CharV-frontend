@@ -1,10 +1,11 @@
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider, CssBaseline } from '@mui/material'
 import { darkTheme } from '../src/utils/theme'
 
 export const decorators = [
   (Story) => {
     return (
       <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
         <Story />
       </ThemeProvider>
     );

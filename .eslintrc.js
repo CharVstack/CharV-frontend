@@ -72,7 +72,17 @@ module.exports = {
     ],
     "@typescript-eslint/no-misused-promises": [
       "error",
-      {"checksVoidReturn": {"attributes": false}}
+      { "checksVoidReturn": { "attributes": false } }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.stories.*",
+          "**/.storybook/**/*.*"
+        ],
+        "peerDependencies": true
+      }
     ]
   },
   settings: {
