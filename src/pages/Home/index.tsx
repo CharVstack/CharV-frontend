@@ -10,17 +10,26 @@ export const Home = () => {
   const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
   const { data: vmsData } = useAspidaSWR(apiClient.api.v1.vms);
 
-  const cpuUsageRate = Math.ceil(hostData?.host?.cpu.percent as number);
-  const memoryUsageRate = Math.ceil(hostData?.host.memory.percent as number);
+  if (hostData === undefined || vmsData === undefined) {
+    return (
+      <DashBoardLayout>
+        <LoadingSpinner open />
+      </DashBoardLayout>
+    );
+  }
+
+  const cpuUsageRate = Math.ceil(hostData.host.cpu.percent);
+  const memoryUsageRate = Math.ceil(hostData.host.memory.percent);
   const storageUsageRate = Math.ceil(
-    (hostData?.host.storage_pools?.[0].used_size as number) / (hostData?.host.storage_pools?.[0].total_size as number)
+    hostData.host.storage_pools.reduce((sum, current) => ({ ...sum, used_size: sum.used_size + current.used_size }))
+      .used_size /
+      hostData.host.storage_pools.reduce((sum, current) => ({
+        ...sum,
+        total_size: sum.total_size + current.total_size,
+      })).total_size
   );
 
-  return hostData === undefined || vmsData === undefined ? (
-    <DashBoardLayout>
-      <LoadingSpinner open />
-    </DashBoardLayout>
-  ) : (
+  return (
     <DashBoardLayout>
       <Container>
         <Grid container justifyContent="center" alignItems="center" spacing={4}>

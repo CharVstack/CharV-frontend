@@ -1,5 +1,9 @@
 import { ThemeProvider, CssBaseline } from '@mui/material'
 import { darkTheme } from '../src/utils/theme'
+import { HANDLERS } from '../src/lib/msw/handlers'
+import { mswDecorator, initialize } from 'msw-storybook-addon'
+
+initialize()
 
 export const decorators = [
   (Story) => {
@@ -9,7 +13,8 @@ export const decorators = [
         <Story />
       </ThemeProvider>
     );
-  }
+  },
+  mswDecorator
 ];
 
 export const parameters = {
@@ -20,4 +25,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  msw: {
+    handlers: Object.values(HANDLERS).map((handlers) => handlers.success)
+  }
 };
