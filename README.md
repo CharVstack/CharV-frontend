@@ -1,5 +1,7 @@
 # CharV-frontend
 
+[![codecov](https://codecov.io/gh/CharVstack/CharV-frontend/branch/main/graph/badge.svg?token=DHXUIWOFPN)](https://codecov.io/gh/CharVstack/CharV-frontend)
+
 ## 開発環境の構築
 
 ```shell
