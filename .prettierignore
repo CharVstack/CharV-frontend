@@ -5,3 +5,4 @@ public/
 .*lintrc.js
 /*.*
 coverage/*
+storybook-static/

@@ -83,6 +83,9 @@ module.exports = {
         ],
         "peerDependencies": true
       }
+    ],
+    "no-underscore-dangle": [
+      0
     ]
   },
   settings: {
