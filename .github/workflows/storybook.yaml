@@ -1,17 +1,25 @@
-name: CI
+name: Build Storybook
+
 on:
-  - pull_request
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: Code Test
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          ref: main
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -26,6 +34,11 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
-      - run: yarn lint
-      - run: yarn test
-      - run: yarn build
+
+      - run: yarn build-storybook
+
+      - name: pages deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
