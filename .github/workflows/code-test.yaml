@@ -1,6 +1,9 @@
 name: CI
 on:
-  - pull_request
+  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -26,6 +29,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install --frozen-lockfile
-      - run: yarn lint
-      - run: yarn test
-      - run: yarn build
+      - run: yarn test:ci
+      - name: Upload Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+          directory: coverage
