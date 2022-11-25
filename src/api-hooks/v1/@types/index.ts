@@ -57,3 +57,39 @@ export type VmPowerInfo = {
   clean_power_off: boolean;
   state: 'RUNNING' | 'UNKNOWN' | 'SHUTDOWN';
 };
+
+export type PostCreateNewVMRequest = {
+  name: string;
+  memory: number;
+  cpu: number;
+};
+
+export type PatchUpdateVMRequest = {
+  name: string;
+  memory: number;
+  cpu: number;
+};
+
+export type GetAllVMsList200Response = {
+  vms: Vm[];
+};
+
+export type PostCreateNewVM200Response = {
+  vm: Vm;
+};
+
+export type GetVMByVMId200Response = {
+  vm: Vm;
+};
+
+export type PatchUpdateVMByVMId200Response = {
+  vm: Vm;
+};
+
+export type GetHost200Response = {
+  host: Host;
+};
+
+export type GetVMPowerByVMId200Response = {
+  vm_power: VmPowerInfo;
+};
