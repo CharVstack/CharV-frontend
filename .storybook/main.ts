@@ -30,8 +30,9 @@ const config: CustomizedStorybookConfig = {
     ]
     if (process.env.NODE_ENV === 'production') {
       config.build = {
-        chunkSizeWarningLimit: 1200
+        chunkSizeWarningLimit: 1200,
       }
+      config.base = './';
     }
     return config
   }
