@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { DashBoardLayout } from '@components/layouts';
 import { CreateNewVmButton } from '@components/organisms/Buttons/CreateNewVmButton';
 import { commonFormSchema } from '@components/organisms/Forms';
+import { InstanceTables } from '@components/organisms/Tables/InstanceTables';
 
 export type CommonFormInputs = z.infer<typeof commonFormSchema>;
 
@@ -18,6 +19,7 @@ export const VMs = () => {
     <DashBoardLayout>
       <FormProvider {...methods}>
         <CreateNewVmButton />
+        <InstanceTables />
       </FormProvider>
     </DashBoardLayout>
   );
