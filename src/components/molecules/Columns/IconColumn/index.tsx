@@ -1,9 +1,12 @@
-import { Box, Stack } from '@mui/material';
-import React from 'react';
+import { Box, Stack, useTheme } from '@mui/material';
 
-export const IconColumn = (icon: JSX.Element, text: string) => (
-  <Stack direction="row">
-    {icon}
-    <Box sx={{ ml: 1 }}>{text}</Box>
-  </Stack>
-);
+export const IconColumn = (icon: JSX.Element, text: string) => {
+  const { spacing } = useTheme();
+
+  return (
+    <Stack direction="row" alignItems="center" spacing={spacing(1)}>
+      {icon}
+      <Box>{text}</Box>
+    </Stack>
+  );
+};

@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { Container } from '@mui/material';
 import { useForm, FormProvider } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -19,7 +20,9 @@ export const VMs = () => {
     <DashBoardLayout>
       <FormProvider {...methods}>
         <CreateNewVmButton />
-        <InstanceTable />
+        <Container>
+          <InstanceTable />
+        </Container>
       </FormProvider>
     </DashBoardLayout>
   );
