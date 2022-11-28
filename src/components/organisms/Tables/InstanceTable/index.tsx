@@ -1,34 +1,24 @@
 import useAspidaSWR from '@aspida/swr';
 import { Stack } from '@mui/material';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
-import { GridRowId } from '@mui/x-data-grid/models/gridRows';
 import React, { useState } from 'react';
 
 import { Vm } from '@api-hooks/v1/@types';
-import { StatusColumn } from '@components/molecules/Columns';
+import { StatusColumn } from '@components/organisms/Columns';
 import { apiClient } from '@lib/apiClient';
 
-const BuildStatusColumn = (rowId: GridRowId) => {
-  const { data } = useAspidaSWR(apiClient.api.v1.vms._vmId(rowId as string).power);
-  return StatusColumn(data?.vm_power.state ?? 'UNKNOWN');
-};
+const columns: GridColDef[] = [
+  { field: 'name', headerName: 'VM', flex: 2 },
+  {
+    field: 'status',
+    headerName: 'Status',
+    flex: 1,
+    renderCell: (params: GridCellParams<string, Vm>) => StatusColumn(params.id),
+  },
+];
 
-const Columns = () => {
-  const columns: GridColDef[] = [
-    { field: 'name', headerName: 'VM', flex: 2 },
-    {
-      field: 'status',
-      headerName: 'Status',
-      flex: 1,
-      renderCell: (params: GridCellParams<string, Vm>) => BuildStatusColumn(params.id),
-    },
-  ];
-  return columns;
-};
-
-export const InstanceTables = () => {
+export const InstanceTable = () => {
   const { data } = useAspidaSWR(apiClient.api.v1.vms);
-  const columns = Columns();
   const [pageSize, setPageSize] = useState(10);
 
   return (
