@@ -101,7 +101,7 @@
   "repository": "https://github.com/CharVstack/CharV-frontend.git",
   "scripts": {
     "build": "vite build",
-    "build-storybook": "build-storybook && cpx 'dist/**/*' storybook-static",
+    "build-storybook": "VITE_BACKEND_BASE_URL='CharV-frontend/' build-storybook && cpx 'dist/**/*' storybook-static",
     "fix:eslint": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "fix:prettier": "prettier --write --config ./.prettierrc.js --ignore-path ./.prettierignore .",
     "lint": "npm-run-all lint:*",

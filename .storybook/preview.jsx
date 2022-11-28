@@ -3,7 +3,16 @@ import { darkTheme } from '../src/utils/theme'
 import { HANDLERS } from '../src/lib/msw/handlers'
 import { mswDecorator, initialize } from 'msw-storybook-addon'
 
-initialize()
+const prefix = import.meta.env.VITE_BACKEND_BASE_URL
+
+initialize({
+  serviceWorker: {
+    options: {
+      scope: prefix
+    },
+    url: prefix ? `/${prefix}mockServiceWorker.js` : undefined
+  }
+})
 
 export const decorators = [
   (Story) => {
