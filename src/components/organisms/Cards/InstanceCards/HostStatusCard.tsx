@@ -1,4 +1,4 @@
-import { InstanceCard, InstanceCardContent } from '@components/molecules/Cards';
+import { Card, CardContentBox } from '@components/molecules/Card';
 import { BarChart, Charts } from '@components/molecules/Charts';
 
 type Props = {
@@ -7,8 +7,7 @@ type Props = {
   storageUsageRate: number;
 };
 
-export const HostStatusCard = (props: Props) => {
-  const { cpuUsageRate, memoryUsageRate, storageUsageRate } = props;
+export const HostStatusCard = ({ cpuUsageRate, memoryUsageRate, storageUsageRate }: Props) => {
   const hostData: Charts = {
     CPU: { value: cpuUsageRate },
     Memory: { value: memoryUsageRate },
@@ -16,10 +15,10 @@ export const HostStatusCard = (props: Props) => {
   };
 
   return (
-    <InstanceCard hasAsideContent={false} title="Host">
-      <InstanceCardContent>
+    <Card title="Host">
+      <CardContentBox>
         <BarChart data={hostData} />
-      </InstanceCardContent>
-    </InstanceCard>
+      </CardContentBox>
+    </Card>
   );
 };

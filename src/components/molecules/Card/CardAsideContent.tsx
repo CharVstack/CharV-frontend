@@ -1,7 +1,7 @@
 import { Box, CardMedia, useTheme } from '@mui/material';
 import { ReactNode } from 'react';
 
-export const InstanceCardAsideContent = ({ children, bgImg }: { children: ReactNode; bgImg?: string }) => {
+export const CardAsideContentBox = ({ children, bgImg }: { children: ReactNode; bgImg?: string }) => {
   const theme = useTheme();
   const textColor: string = theme.palette.common.white;
 
