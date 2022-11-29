@@ -1,1 +1,0 @@
-import{d as o}from"./Headings.caba17b5.js";import"./jsx-runtime.a643f359.js";import"./iframe.63609953.js";import"./Typography.e055d30b.js";import"./useThemeProps.07487412.js";const s={component:o},a={args:{children:"Heading5"}},d=["Heading5"];export{a as Heading5,d as __namedExportsOrder,s as default};
