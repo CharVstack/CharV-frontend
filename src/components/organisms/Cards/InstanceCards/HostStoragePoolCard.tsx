@@ -2,11 +2,14 @@ import { Box, Stack, Typography } from '@mui/material';
 
 import { StoragePool } from '@api-hooks/v1/@types';
 import bgImg from '@assets/images/pool-image.jpg';
-import { InstanceCard, InstanceCardContent, InstanceCardAsideContent } from '@components/molecules/Cards';
+import { Card, CardContentBox, CardAsideContentBox } from '@components/molecules/Card';
 import { calcUnitSize } from '@utils/CalcUnitSize';
 
-const AsideContent = (props: Pick<StoragePool, 'total_size' | 'name' | 'status'>) => {
-  const { total_size: totalPoolSize, name: poolName, status: poolStatus } = props;
+const AsideContent = ({
+  total_size: totalPoolSize,
+  name: poolName,
+  status: poolStatus,
+}: Pick<StoragePool, 'total_size' | 'name' | 'status'>) => {
   const [unit, poolSize] = calcUnitSize(totalPoolSize);
 
   return (
@@ -30,8 +33,11 @@ const AsideContent = (props: Pick<StoragePool, 'total_size' | 'name' | 'status'>
   );
 };
 
-const CardContent = (props: Pick<StoragePool, 'total_size' | 'used_size' | 'path'>) => {
-  const { total_size: totalPoolSize, used_size: usedPoolSize, path: poolLocationPath } = props;
+const CardContent = ({
+  total_size: totalPoolSize,
+  used_size: usedPoolSize,
+  path: poolLocationPath,
+}: Pick<StoragePool, 'total_size' | 'used_size' | 'path'>) => {
   const [unit, poolSize] = calcUnitSize(totalPoolSize - usedPoolSize);
 
   return (
@@ -46,16 +52,13 @@ const CardContent = (props: Pick<StoragePool, 'total_size' | 'used_size' | 'path
   );
 };
 
-export const HostStoragePoolCard = (props: StoragePool) => {
-  const storageData: StoragePool = props;
-  return (
-    <InstanceCard hasAsideContent title="Pool">
-      <InstanceCardAsideContent bgImg={bgImg}>
-        <AsideContent total_size={storageData.total_size} name={storageData.name} status={storageData.status} />
-      </InstanceCardAsideContent>
-      <InstanceCardContent>
-        <CardContent total_size={storageData.total_size} used_size={storageData.used_size} path={storageData.path} />
-      </InstanceCardContent>
-    </InstanceCard>
-  );
-};
+export const HostStoragePoolCard = (storagePool: StoragePool) => (
+  <Card hasAsideContent title="Pool">
+    <CardAsideContentBox bgImg={bgImg}>
+      <AsideContent {...storagePool} />
+    </CardAsideContentBox>
+    <CardContentBox>
+      <CardContent {...storagePool} />
+    </CardContentBox>
+  </Card>
+);
