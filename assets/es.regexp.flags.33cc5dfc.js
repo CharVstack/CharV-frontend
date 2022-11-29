@@ -1,0 +1,1 @@
+import{s as e,bp as t,bq as s,F as a}from"./iframe.ba0abcc7.js";var o=e,i=t,l=s,g=a,r=RegExp.prototype,p=o&&g(function(){return Object.getOwnPropertyDescriptor(r,"flags").get.call({dotAll:!0,sticky:!0})!=="sy"});p&&i(r,"flags",{configurable:!0,get:l});
