@@ -6,9 +6,9 @@ import { mswDecorator, initialize } from 'msw-storybook-addon'
 const prefix = import.meta.env.VITE_STORYBOOK_PREFIX
 
 initialize({
-  serviceWorker: {
-    url: prefix ? `/${prefix}mockServiceWorker.js` : undefined
-  }
+  serviceWorker: prefix !== undefined ? {
+    url: `/${prefix}mockServiceWorker.js`
+  } : {}
 })
 
 export const decorators = [
