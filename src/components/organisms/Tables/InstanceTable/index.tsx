@@ -4,6 +4,8 @@ import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { useState } from 'react';
 
 import { Vm } from '@api-hooks/v1/@types';
+import { DashBoardLayout } from '@components/layouts';
+import { LoadingSpinner } from '@components/molecules/Progress';
 import { StatusColumn } from '@components/organisms/Columns';
 import { apiClient } from '@lib/apiClient';
 
@@ -26,6 +28,14 @@ export const InstanceTable = () => {
       grey: { '900': bgColor },
     },
   } = useTheme();
+
+  if (data === undefined) {
+    return (
+      <DashBoardLayout>
+        <LoadingSpinner open />
+      </DashBoardLayout>
+    );
+  }
 
   return (
     <DataGrid
