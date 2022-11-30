@@ -46,7 +46,7 @@
     "zod": "3.19.1"
   },
   "devDependencies": {
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@openapitools/openapi-generator-cli": "2.5.2",
     "@stoplight/prism-cli": "4.10.5",
     "@storybook/addon-actions": "6.5.13",
