@@ -1,1 +1,0 @@
-var o=Object.defineProperty;var t=(e,m)=>o(e,"name",{value:m,configurable:!0});import"./jsx-runtime.746f98b6.js";import{a as r,d as s}from"./useThemeProps.9442f15b.js";function n(){return r(s)}t(n,"useTheme");export{n as u};

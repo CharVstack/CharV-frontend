@@ -1,1 +1,0 @@
-import{H as o}from"./Headings.ce4dac70.js";import"./jsx-runtime.746f98b6.js";import"./iframe.7e7793fd.js";import"./Typography.7d7c451a.js";import"./useThemeProps.9442f15b.js";import"./styled.f0f80617.js";import"./extendSxProp.965797ad.js";const s={component:o},a={args:{children:"Heading1"}},d=["Heading1"];export{a as Heading1,d as __namedExportsOrder,s as default};
