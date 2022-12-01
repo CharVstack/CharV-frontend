@@ -18,8 +18,10 @@ export default defineConfig({
       all: true,
       include: ["src/**/*.{ts,tsx}"],
       exclude: [
-        "src/**/index.ts"
+        "src/**/index.ts",
+        "src/**/**.stories.{ts,tsx}"
       ]
-    }
+    },
+    setupFiles: ['./vitest.setup.ts']
   },
 })

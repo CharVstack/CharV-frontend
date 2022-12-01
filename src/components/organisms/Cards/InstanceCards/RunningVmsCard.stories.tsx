@@ -10,7 +10,7 @@ export default { args: { allVms: 10, runningVms: 5 }, component: RunningVmsCard 
   typeof RunningVmsCard
 >;
 
-export const RunningVms: ComponentStoryFn<typeof RunningVmsCard> = (props: RunningVmsCardProps) => {
+export const Default: ComponentStoryFn<typeof RunningVmsCard> = (props: RunningVmsCardProps) => {
   const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
 
   if (hostData === undefined) {

@@ -1,4 +1,5 @@
 import { ThemeProvider, CssBaseline } from '@mui/material'
+import { MemoryRouter } from 'react-router-dom'
 import { darkTheme } from '../src/utils/theme'
 import { HANDLERS } from '../src/lib/msw/handlers'
 import { mswDecorator, initialize } from 'msw-storybook-addon'
@@ -14,10 +15,12 @@ initialize({
 export const decorators = [
   (Story) => {
     return (
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <Story />
-      </ThemeProvider>
+      <MemoryRouter>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <Story />
+        </ThemeProvider>
+      </MemoryRouter>
     );
   },
   mswDecorator

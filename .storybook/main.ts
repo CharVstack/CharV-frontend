@@ -13,14 +13,15 @@ interface CustomizedStorybookConfig extends Weaken<StorybookConfig, 'core'> {
 
 const config: CustomizedStorybookConfig = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions", "@storybook/addon-knobs"],
+  addons: ["@storybook/addon-controls", "@storybook/addon-actions", "@storybook/addon-links", "@storybook/addon-essentials", "@storybook/addon-interactions", "@storybook/addon-docs"],
   framework: "@storybook/react",
   core: {
     builder: "@storybook/builder-vite"
   },
   features: {
     storyStoreV7: true,
-    emotionAlias: false
+    emotionAlias: false,
+    interactionsDebugger: true,
   },
   staticDirs: ['./public'],
   viteFinal: (config) => {
