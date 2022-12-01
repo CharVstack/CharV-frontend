@@ -8,7 +8,7 @@ import { HostStatusCard } from './HostStatusCard';
 
 export default { component: HostStatusCard } as ComponentMeta<typeof HostStatusCard>;
 
-export const HostStatus: ComponentStoryFn<typeof HostStatusCard> = () => {
+export const Default: ComponentStoryFn<typeof HostStatusCard> = () => {
   const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
 
   if (hostData === undefined) {

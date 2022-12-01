@@ -1,9 +1,11 @@
 import useAspidaSWR from '@aspida/swr';
 import { Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { useSnackbar } from 'notistack';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState, useContext } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+import { TabsContext, TabsDispatchContext } from '@components/atoms/Tabs';
+import { CreateVmFormDispatchContext } from '@components/organisms/Buttons/CreateNewVmButton';
 import { CommonForm } from '@components/organisms/Forms';
 import { InstanceTabs } from '@components/organisms/Tabs';
 import { apiClient } from '@lib/apiClient';
@@ -11,13 +13,15 @@ import { CommonFormInputs } from '@pages';
 
 type Props = {
   isOpen: boolean;
-  onClick(): void;
-  currentTab: number;
-  setCurrentTab: Dispatch<SetStateAction<number>>;
+  handleClose(): void;
 };
 
-export const CreateVmDialog = ({ isOpen, onClick, currentTab, setCurrentTab }: Props) => {
+export const CreateVmDialog = ({ isOpen, handleClose }: Props) => {
   const { enqueueSnackbar } = useSnackbar();
+
+  const setCurrentTab = useContext(TabsDispatchContext);
+  const currentTab = useContext(TabsContext);
+  const setIsConfirm = useContext(CreateVmFormDispatchContext);
 
   const {
     getValues,
@@ -35,25 +39,24 @@ export const CreateVmDialog = ({ isOpen, onClick, currentTab, setCurrentTab }: P
     onSuccess: () => {
       enqueueSnackbar('新規仮想マシンの作成に成功しました!', { variant: 'success' });
       setIsPostEnabled(false);
-      onClick();
+      handleClose();
     },
     onError: () => {
       enqueueSnackbar('新規仮想マシンの作成に失敗しました!', { variant: 'error' });
       setIsPostEnabled(false);
-      onClick();
+      handleClose();
     },
   });
-
-  // form & tab field
-  const tab = CommonForm;
 
   // Dialog Actions
   const next = () => {
     setCurrentTab((prev) => prev + 1);
+    setIsConfirm(true);
   };
 
   const back = () => {
     setCurrentTab((prev) => prev - 1);
+    setIsConfirm(false);
   };
 
   const finish = () => {
@@ -61,9 +64,11 @@ export const CreateVmDialog = ({ isOpen, onClick, currentTab, setCurrentTab }: P
   };
 
   return (
-    <Dialog open={isOpen} onClose={onClick}>
+    <Dialog open={isOpen} onClose={handleClose}>
       <DialogTitle>新規仮想マシンの作成</DialogTitle>
-      <InstanceTabs tab={tab} currentTab={currentTab} setCurrentTab={setCurrentTab} />
+      <InstanceTabs>
+        <CommonForm />
+      </InstanceTabs>
       <DialogActions>
         <Button onClick={back} disabled={currentTab === 0}>
           BACK
@@ -74,7 +79,7 @@ export const CreateVmDialog = ({ isOpen, onClick, currentTab, setCurrentTab }: P
         <Button onClick={handleSubmit(finish)} disabled={currentTab !== 1}>
           FINISH
         </Button>
-        <Button onClick={onClick}>CANCEL</Button>
+        <Button onClick={handleClose}>CANCEL</Button>
       </DialogActions>
     </Dialog>
   );

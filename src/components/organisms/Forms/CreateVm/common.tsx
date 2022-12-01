@@ -1,7 +1,12 @@
 import { InputAdornment, Stack, TextField } from '@mui/material';
+import { useContext } from 'react';
 import { useFormContext, Controller } from 'react-hook-form';
 
-export const CommonForm = (isConfirm: boolean) => {
+import { CreateVmFormContext } from '@components/organisms/Buttons/CreateNewVmButton';
+
+export const CommonForm = () => {
+  const isConfirm = useContext(CreateVmFormContext);
+
   const {
     control,
     formState: { errors },

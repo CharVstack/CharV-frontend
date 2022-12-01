@@ -5,7 +5,12 @@ import { Bar } from 'react-chartjs-2';
 
 import { Charts } from '../types/types';
 
-export const BarChart = ({ data }: { data: Charts }) => {
+export type BarChartProps = {
+  data: Charts;
+  options?: ChartOptions<'bar'>;
+};
+
+export const BarChart = ({ data, options }: BarChartProps) => {
   const theme = useTheme();
   const defaultColor: string = theme.palette.success.main;
 
@@ -21,7 +26,7 @@ export const BarChart = ({ data }: { data: Charts }) => {
     ],
   };
 
-  const chartOptions: ChartOptions<'bar'> = {
+  const defaultOptions: ChartOptions<'bar'> = {
     indexAxis: 'y',
     scales: {
       xAxes: {
@@ -30,7 +35,7 @@ export const BarChart = ({ data }: { data: Charts }) => {
         min: 0,
       },
       yAxes: {
-        display: true,
+        display: false,
         ticks: {
           font: {
             size: theme.typography.fontSize,
@@ -47,5 +52,5 @@ export const BarChart = ({ data }: { data: Charts }) => {
     },
   };
 
-  return <Bar data={chartData} options={chartOptions} />;
+  return <Bar data={chartData} options={options ?? defaultOptions} />;
 };
