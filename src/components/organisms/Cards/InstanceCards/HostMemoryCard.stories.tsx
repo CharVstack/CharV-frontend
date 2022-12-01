@@ -8,7 +8,7 @@ import { HostMemoryCard } from './HostMemoryCard';
 
 export default { component: HostMemoryCard } as ComponentMeta<typeof HostMemoryCard>;
 
-export const HostMemory: ComponentStoryFn<typeof HostMemoryCard> = () => {
+export const Default: ComponentStoryFn<typeof HostMemoryCard> = () => {
   const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
 
   if (hostData === undefined) {

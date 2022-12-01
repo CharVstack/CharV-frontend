@@ -5,7 +5,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { DrawerLinkItem } from '@components/molecules/ListItems';
 
-export const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: Dispatch<SetStateAction<boolean>> }) => (
+export const SideBar = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: Dispatch<SetStateAction<boolean>> }) => (
   <Drawer open={isOpen} onClose={setIsOpen}>
     <Box width={198}>
       <List>

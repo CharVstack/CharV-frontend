@@ -2,7 +2,13 @@ import { ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
-export const DrawerLinkItem = ({ path, name, icon }: { path: string; name: string; icon: ReactNode }) => {
+export type DrawerLinksProps = {
+  path: string;
+  name: string;
+  icon: ReactNode;
+};
+
+export const DrawerLinkItem = ({ path, name, icon }: DrawerLinksProps) => {
   const theme = useTheme();
   const textColor = theme.palette.text.primary;
   return (

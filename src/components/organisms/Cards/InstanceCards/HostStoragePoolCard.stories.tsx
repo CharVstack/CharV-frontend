@@ -8,7 +8,7 @@ import { HostStoragePoolCard } from './HostStoragePoolCard';
 
 export default { component: HostStoragePoolCard } as ComponentMeta<typeof HostStoragePoolCard>;
 
-export const HostStoragePool: ComponentStoryFn<typeof HostStoragePoolCard> = () => {
+export const Default: ComponentStoryFn<typeof HostStoragePoolCard> = () => {
   const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
 
   if (hostData === undefined) {

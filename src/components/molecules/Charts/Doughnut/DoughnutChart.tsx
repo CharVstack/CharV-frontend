@@ -5,7 +5,12 @@ import { Doughnut } from 'react-chartjs-2';
 
 import { Charts } from '../types/types';
 
-export const DoughnutChart = ({ data }: { data: Charts }) => {
+export type DoughnutChartProps = {
+  data: Charts;
+  options?: ChartOptions<'doughnut'>;
+};
+
+export const DoughnutChart = ({ data, options }: DoughnutChartProps) => {
   const theme = useTheme();
   const defaultColor: string = theme.palette.success.main;
 
@@ -20,7 +25,7 @@ export const DoughnutChart = ({ data }: { data: Charts }) => {
     ],
   };
 
-  const chartOptions: ChartOptions<'doughnut'> = {
+  const defaultOptions: ChartOptions<'doughnut'> = {
     plugins: {
       legend: {
         display: true,
@@ -29,5 +34,5 @@ export const DoughnutChart = ({ data }: { data: Charts }) => {
     },
   };
 
-  return <Doughnut data={chartData} options={chartOptions} />;
+  return <Doughnut data={chartData} options={options ?? defaultOptions} />;
 };

@@ -79,7 +79,8 @@ module.exports = {
       {
         "devDependencies": [
           "**/*.stories.*",
-          "**/.storybook/**/*.*"
+          "**/.storybook/**/*.*",
+          "**/*.spec.*"
         ],
         "peerDependencies": true
       }

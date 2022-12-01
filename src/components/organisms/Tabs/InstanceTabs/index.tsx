@@ -1,40 +1,40 @@
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import CreateIcon from '@mui/icons-material/Create';
-import { Container, Stack, Tab, Tabs } from '@mui/material';
-import { Dispatch, SetStateAction, SyntheticEvent } from 'react';
+import { useContext } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { TabPanel } from '@components/molecules/Tabs';
+import { Tabs, TabProps } from '@components/atoms/Tabs';
+import { CreateVmFormDispatchContext } from '@components/organisms/Buttons/CreateNewVmButton';
 
 type Props = {
-  tab: (isConfirm: boolean) => JSX.Element;
-  currentTab: number;
-  setCurrentTab: Dispatch<SetStateAction<number>>;
+  children: JSX.Element;
 };
 
-export const InstanceTabs = ({ tab, currentTab, setCurrentTab }: Props) => {
+export const InstanceTabs = ({ children }: Props) => {
+  const setIsConfirm = useContext(CreateVmFormDispatchContext);
+
   const {
     formState: { isValid, isDirty },
   } = useFormContext();
 
-  const handleChange = (event: SyntheticEvent, newValue: number) => {
-    setCurrentTab(newValue);
-  };
-
+  const tabs: TabProps[] = [
+    {
+      icon: <CreateIcon />,
+      label: '作成',
+      value: 0,
+      onClick: () => setIsConfirm(false),
+    },
+    {
+      icon: <AddTaskIcon />,
+      label: '確認',
+      value: 1,
+      disabled: !isValid || !isDirty,
+      onClick: () => setIsConfirm(true),
+    },
+  ];
   return (
-    <Stack direction="row">
-      <Tabs onChange={handleChange} value={currentTab} orientation="vertical">
-        <Tab icon={<CreateIcon />} label="作成" value={0} />
-        <Tab icon={<AddTaskIcon />} label="確認" value={1} disabled={!isValid || !isDirty} />
-      </Tabs>
-      <Container>
-        <TabPanel index={0} value={currentTab}>
-          {tab(false)}
-        </TabPanel>
-        <TabPanel index={1} value={currentTab}>
-          {tab(true)}
-        </TabPanel>
-      </Container>
-    </Stack>
+    <Tabs orientation="vertical" tabs={tabs}>
+      {children}
+    </Tabs>
   );
 };

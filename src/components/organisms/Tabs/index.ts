@@ -1,1 +1,1 @@
-export { InstanceTabs } from './InstanceTabs';
+export * from './InstanceTabs';
