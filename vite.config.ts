@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
-import { defineConfig } from 'vitest/config'
-import tsConfigPaths from 'vite-tsconfig-paths'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vitest/config';
+import tsConfigPaths from 'vite-tsconfig-paths';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react(), tsConfigPaths()],
@@ -13,15 +13,12 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'happy-dom',
+    environment: 'jsdom',
     coverage: {
       all: true,
-      include: ["src/**/*.{ts,tsx}"],
-      exclude: [
-        "src/**/index.ts",
-        "src/**/**.stories.{ts,tsx}"
-      ]
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: ['src/**/index.ts', 'src/**/**.stories.{ts,tsx}', 'src/**/*.d.ts'],
     },
-    setupFiles: ['./vitest.setup.ts']
+    setupFiles: ['./vitest.setup.ts'],
   },
-})
+});

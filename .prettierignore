@@ -3,7 +3,7 @@ public/
 **/node_modules/
 *.config.js
 .*lintrc.js
-/*.*
+*.md
 coverage/*
 storybook-static/
 dist/
