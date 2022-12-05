@@ -1,1 +1,2 @@
-export { CreateVmDialog } from './CreateVm';
+export * from './CreateVmDialog';
+export * from './DialogWithAtoms';

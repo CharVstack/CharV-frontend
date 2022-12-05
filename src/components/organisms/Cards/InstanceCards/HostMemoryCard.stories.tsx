@@ -1,19 +1,17 @@
-import useAspidaSWR from '@aspida/swr';
-import { ComponentMeta, ComponentStoryFn } from '@storybook/react';
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
-import { LoadingSpinner } from '@components/molecules/Progress';
-import { apiClient } from '@lib/apiClient';
+import schema from '@openapi-spec/v1.json';
 
 import { HostMemoryCard } from './HostMemoryCard';
 
 export default { component: HostMemoryCard } as ComponentMeta<typeof HostMemoryCard>;
 
-export const Default: ComponentStoryFn<typeof HostMemoryCard> = () => {
-  const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
-
-  if (hostData === undefined) {
-    return <LoadingSpinner open />;
-  }
-
-  return <HostMemoryCard total={hostData.host.memory.total} used={hostData.host.memory.used} />;
+export const Default: ComponentStoryObj<typeof HostMemoryCard> = {
+  args: {
+    total:
+      schema.components.responses.GetHost200Response.content['application/json'].examples['example-1'].value.host.memory
+        .total,
+    used: schema.components.responses.GetHost200Response.content['application/json'].examples['example-1'].value.host
+      .memory.used,
+  },
 };

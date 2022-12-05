@@ -1,24 +1,19 @@
 import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 import { userEvent, within, waitFor } from '@storybook/testing-library';
-import { useState } from 'react';
+import { atom } from 'jotai';
 
 import { TabPanel } from './TabPanel';
-import { TabsContext, TabsDispatchContext, Tabs, TabProps } from './Tabs';
+import { TabsWithAtoms as Tabs, TabProps } from './Tabs';
+
+const baseAtom = atom(0);
+
+const tabAtom = atom<number, number>(
+  (get) => get(baseAtom),
+  (_get, set, newValue) => set(baseAtom, newValue)
+);
 
 export default {
-  decorators: [
-    (Story) => {
-      const [currentTab, setCurrentTab] = useState(0);
-      return (
-        <TabsContext.Provider value={currentTab}>
-          <TabsDispatchContext.Provider value={setCurrentTab}>
-            <Story />
-          </TabsDispatchContext.Provider>
-        </TabsContext.Provider>
-      );
-    },
-  ],
   component: Tabs,
 } as ComponentMeta<typeof Tabs>;
 
@@ -37,10 +32,11 @@ export const Default: ComponentStoryObj<typeof Tabs> = {
   args: {
     tabs,
     children: tabs.map((tab) => (
-      <TabPanel key={tab.value} value={tab.value}>
+      <TabPanel currentTabAtom={tabAtom} key={tab.value} value={tab.value}>
         {tab.label}
       </TabPanel>
     )),
+    currentTabAtom: tabAtom,
     orientation: 'vertical',
   },
   play: async ({ canvasElement }) => {

@@ -1,29 +1,16 @@
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { Container } from '@mui/material';
-import { useForm, FormProvider } from 'react-hook-form';
-import { z } from 'zod';
 
-import { DashBoardLayout } from '@components/layouts';
-import { CreateNewVmButton } from '@components/organisms/Buttons/CreateNewVmButton';
-import { commonFormSchema } from '@components/organisms/Forms';
+import { CreateNewVmButton } from '@components/organisms/Buttons';
+import { CreateVmDialog } from '@components/organisms/Dialogs';
 import { InstanceTable } from '@components/organisms/Tables';
+import { DashBoard } from '@templates/DashBoard';
 
-export type CommonFormInputs = z.infer<typeof commonFormSchema>;
-
-export const VMs = () => {
-  const methods = useForm<CommonFormInputs>({
-    mode: 'all',
-    resolver: zodResolver(commonFormSchema),
-  });
-
-  return (
-    <DashBoardLayout>
-      <FormProvider {...methods}>
-        <CreateNewVmButton />
-        <Container>
-          <InstanceTable />
-        </Container>
-      </FormProvider>
-    </DashBoardLayout>
-  );
-};
+export const VMs = () => (
+  <DashBoard>
+    <CreateNewVmButton />
+    <Container>
+      <InstanceTable />
+    </Container>
+    <CreateVmDialog />
+  </DashBoard>
+);

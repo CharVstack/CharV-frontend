@@ -1,18 +1,30 @@
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import CreateIcon from '@mui/icons-material/Create';
-import { useContext } from 'react';
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useFormContext } from 'react-hook-form';
 
-import { Tabs, TabProps } from '@components/atoms/Tabs';
-import { CreateVmFormDispatchContext } from '@components/organisms/Buttons/CreateNewVmButton';
+import { TabsWithAtoms as Tabs, TabProps } from '../TabsWithAtoms';
 
 type Props = {
   children: JSX.Element;
+  setIsConfirm: (update: boolean) => void;
 };
 
-export const InstanceTabs = ({ children }: Props) => {
-  const setIsConfirm = useContext(CreateVmFormDispatchContext);
+const baseAtom = atom(0);
 
+const instanceTabsAtom = atom<number, number>(
+  (get) => get(baseAtom),
+  (_get, set, newValue) => set(baseAtom, newValue)
+);
+const incInstanceTabsAtom = atom(null, (_get, set) => set(baseAtom, (prev) => prev + 1));
+const decInstanceTabsAtom = atom(null, (_get, set) => set(baseAtom, (prev) => prev - 1));
+
+export const useWritableInstanceTabs = () => useAtom(instanceTabsAtom);
+export const useReadOnlyInstanceTabs = () => useAtomValue(instanceTabsAtom);
+export const useIncInstanceTabs = () => useSetAtom(incInstanceTabsAtom);
+export const useDecInstanceTabs = () => useSetAtom(decInstanceTabsAtom);
+
+export const InstanceTabs = ({ children, setIsConfirm }: Props) => {
   const {
     formState: { isValid, isDirty },
   } = useFormContext();
@@ -33,7 +45,7 @@ export const InstanceTabs = ({ children }: Props) => {
     },
   ];
   return (
-    <Tabs orientation="vertical" tabs={tabs}>
+    <Tabs currentTabAtom={instanceTabsAtom} orientation="vertical" tabs={tabs}>
       {children}
     </Tabs>
   );

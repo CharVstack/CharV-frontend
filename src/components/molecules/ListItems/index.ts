@@ -1,1 +1,1 @@
-export * from './Link/DrawerLink';
+export * from './Link';

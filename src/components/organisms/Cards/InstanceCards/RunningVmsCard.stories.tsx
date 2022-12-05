@@ -1,21 +1,14 @@
-import useAspidaSWR from '@aspida/swr';
-import { ComponentMeta, ComponentStoryFn } from '@storybook/react';
+import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
-import { LoadingSpinner } from '@components/molecules/Progress';
-import { apiClient } from '@lib/apiClient';
-
-import { RunningVmsCard, RunningVmsCardProps } from './RunningVmsCard';
+import { RunningVmsCard } from './RunningVmsCard';
 
 export default { args: { allVms: 10, runningVms: 5 }, component: RunningVmsCard } as ComponentMeta<
   typeof RunningVmsCard
 >;
 
-export const Default: ComponentStoryFn<typeof RunningVmsCard> = (props: RunningVmsCardProps) => {
-  const { data: hostData } = useAspidaSWR(apiClient.api.v1.host);
-
-  if (hostData === undefined) {
-    return <LoadingSpinner open />;
-  }
-
-  return <RunningVmsCard {...props} />;
+export const Default: ComponentStoryObj<typeof RunningVmsCard> = {
+  args: {
+    runningVms: 10,
+    allVms: 20,
+  },
 };
