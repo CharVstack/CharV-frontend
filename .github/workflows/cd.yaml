@@ -1,4 +1,4 @@
-name: main action
+name: Deploy Staging Environment
 on:
   push:
     branches:
@@ -7,7 +7,36 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    environment:
+      name: staging
 
     steps:
-      - name: update repo
-        run: ssh development@${{ secret.development_server_ip }} CD/init.sh
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: yarn install
+        run: yarn install --frozen-lockfile
+
+      - name: Build
+        run: yarn build
+
+      - name: Upload files
+        run: rsync -e ssh ./build/ ${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }}:/var/www/html/
+
+      - name: Restart server
+        run : ssh ${{ secrets.DEVELOPMENT_SERVER_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }} systemctl restart charv@frontend.service
