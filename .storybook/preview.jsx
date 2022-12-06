@@ -1,16 +1,19 @@
-import { ThemeProvider, CssBaseline } from '@mui/material'
-import { MemoryRouter } from 'react-router-dom'
-import { darkTheme } from '../src/utils/theme'
-import { HANDLERS } from '../src/lib/msw/handlers'
-import { mswDecorator, initialize } from 'msw-storybook-addon'
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { MemoryRouter } from 'react-router-dom';
+import { darkTheme } from '../src/utils/theme';
+import { HANDLERS } from '../src/lib/msw/handlers';
+import { mswDecorator, initialize } from 'msw-storybook-addon';
 
-const prefix = import.meta.env.VITE_STORYBOOK_PREFIX
+const prefix = import.meta.env.VITE_STORYBOOK_PREFIX;
 
 initialize({
-  serviceWorker: prefix !== undefined ? {
-    url: `/${prefix}mockServiceWorker.js`
-  } : {}
-})
+  serviceWorker:
+    prefix !== undefined
+      ? {
+          url: `/${prefix}mockServiceWorker.js`,
+        }
+      : {},
+});
 
 export const decorators = [
   (Story) => {
@@ -23,11 +26,11 @@ export const decorators = [
       </MemoryRouter>
     );
   },
-  mswDecorator
+  mswDecorator,
 ];
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -35,6 +38,6 @@ export const parameters = {
     },
   },
   msw: {
-    handlers: Object.values(HANDLERS).map((handlers) => handlers.success)
-  }
+    handlers: Object.values(HANDLERS).map((handlers) => handlers.success),
+  },
 };

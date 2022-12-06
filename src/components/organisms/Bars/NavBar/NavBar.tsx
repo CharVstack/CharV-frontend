@@ -1,7 +1,13 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 
-export const NavBar = ({ onClick }: { onClick: () => void }) => (
+import { useToggleSideBarAtom } from '@components/organisms/Drawers';
+
+type Props = {
+  onClick: () => void;
+};
+
+export const BaseNavBar = ({ onClick }: Props) => (
   <AppBar position="sticky">
     <Toolbar>
       <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }} onClick={onClick}>
@@ -13,3 +19,8 @@ export const NavBar = ({ onClick }: { onClick: () => void }) => (
     </Toolbar>
   </AppBar>
 );
+
+export const NavBar = () => {
+  const toggleOpen = useToggleSideBarAtom();
+  return <BaseNavBar onClick={toggleOpen} />;
+};

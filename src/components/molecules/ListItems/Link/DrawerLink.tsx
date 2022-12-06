@@ -1,24 +1,26 @@
-import { ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material';
-import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { useTheme } from '@mui/material';
+import { ReactNode, MouseEventHandler } from 'react';
+
+import { DrawerLinkButton } from '@components/atoms/Buttons';
 
 export type DrawerLinksProps = {
   path: string;
   name: string;
   icon: ReactNode;
+  onClick: MouseEventHandler;
 };
 
-export const DrawerLinkItem = ({ path, name, icon }: DrawerLinksProps) => {
+export const DrawerLinkItem = ({ path, name, icon, onClick }: DrawerLinksProps) => {
   const theme = useTheme();
   const textColor = theme.palette.text.primary;
   return (
-    <Link to={path} style={{ color: textColor, textDecoration: 'none' }}>
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>{icon}</ListItemIcon>
-          <ListItemText primary={name} />
-        </ListItemButton>
-      </ListItem>
-    </Link>
+    <DrawerLinkButton
+      textColor={textColor}
+      onClick={onClick}
+      path={path}
+      textDecoration="none"
+      name={name}
+      icon={icon}
+    />
   );
 };

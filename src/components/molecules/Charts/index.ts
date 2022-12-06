@@ -1,3 +1,3 @@
-export * from './Bar/BarChart';
-export * from './Doughnut/DoughnutChart';
-export * from './types/types';
+export * from './Bar';
+export * from './Doughnut';
+export * from './types';

@@ -1,2 +1,1 @@
-export * from './CreateVm/common';
-export * from './CreateVm/schemas';
+export * from './CreateVm';
