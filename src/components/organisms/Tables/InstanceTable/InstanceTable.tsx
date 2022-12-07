@@ -1,12 +1,23 @@
 import useAspidaSWR from '@aspida/swr';
 import { useTheme } from '@mui/material';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import { atom, useSetAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
 
 import { Vm } from '@api-hooks/v1/@types';
 import { LoadingSpinner } from '@components/molecules/Progress';
 import { StatusColumn } from '@components/organisms/Columns';
 import { apiClient } from '@lib/apiClient';
+
+const baseAtom = atom<string[]>([]);
+
+const selectedVmAtom = atom<string[], string[]>(
+  (get) => get(baseAtom),
+  (_get, set, newValue) => set(baseAtom, newValue)
+);
+
+export const useSelectedVmReadOnlyAtom = () => useAtomValue(selectedVmAtom);
+export const useSelectedVmWriteOnlyAtom = () => useSetAtom(selectedVmAtom);
 
 const columns: GridColDef[] = [
   { field: 'name', headerName: 'VM', minWidth: 288, flex: 1 },
@@ -21,6 +32,7 @@ const columns: GridColDef[] = [
 export const InstanceTable = () => {
   const { data } = useAspidaSWR(apiClient.api.v1.vms);
   const [pageSize, setPageSize] = useState(10);
+  const setSelectedVm = useSelectedVmWriteOnlyAtom();
 
   const {
     palette: {
@@ -43,6 +55,9 @@ export const InstanceTable = () => {
       rowsPerPageOptions={[10, 25, 50]}
       checkboxSelection
       autoHeight
+      onSelectionModelChange={(selected) => {
+        setSelectedVm(selected.map((v) => v.toString()));
+      }}
     />
   );
 };

@@ -20,7 +20,7 @@
       "@*": ["./src/*"]
     },
     "baseUrl": "./",
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals", "vitest/importMeta"]
   },
   "include": ["src", "vitest.setup.ts"]
 }
