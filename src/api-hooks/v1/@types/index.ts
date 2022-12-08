@@ -70,6 +70,10 @@ export type PatchUpdateVMRequest = {
   cpu: number;
 };
 
+export type PostChangeVMsPowerStatusByVMIdRequest = {
+  action: 'start' | 'shutdown' | 'reboot' | 'reset';
+};
+
 export type GetAllVMsList200Response = {
   vms: Vm[];
 };

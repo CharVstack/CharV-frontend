@@ -158,24 +158,18 @@
       ],
       "post": {
         "summary": "Change Power Status",
-        "operationId": "post-api-v1-vms-:vmId-power-:action",
+        "operationId": "post-api-v1-vms-:vmId-power",
         "responses": {
           "204": {
             "description": "No Content"
           }
         },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "enum": ["start", "shutdown", "reboot", "reset"]
-            },
-            "in": "query",
-            "name": "action"
-          }
-        ],
+        "parameters": [],
         "description": "VMの電源状態を操作",
-        "tags": ["vm"]
+        "tags": ["vm"],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/PostChangeVMsPowerStatusByVMIdRequest"
+        }
       },
       "get": {
         "summary": "Get Power State",
@@ -707,6 +701,30 @@
           }
         },
         "description": "VM情報の更新"
+      },
+      "PostChangeVMsPowerStatusByVMIdRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "enum": ["start", "shutdown", "reboot", "reset"]
+                }
+              },
+              "required": ["action"]
+            },
+            "examples": {
+              "Example 1": {
+                "value": {
+                  "action": "start"
+                }
+              }
+            }
+          }
+        },
+        "description": "VMの電源状態を操作"
       }
     }
   },
