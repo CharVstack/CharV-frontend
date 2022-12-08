@@ -39,4 +39,4 @@ jobs:
         run: rsync -ae ssh ./build/ ${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }}:/var/www/html/
 
       - name: Restart server
-        run : ssh ${{ secrets.DEVELOPMENT_SERVER_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }} systemctl restart charv@frontend.service
+        run: ssh ${{ secrets.DEVELOPMENT_SERVER_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }} systemctl restart charv@frontend.service
