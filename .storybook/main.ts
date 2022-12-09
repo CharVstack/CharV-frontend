@@ -1,17 +1,7 @@
 import tsConfigPaths from 'vite-tsconfig-paths';
-import { UserConfig } from 'vitest/config';
-import { StorybookConfig, CoreConfig, Options } from '@storybook/core-common';
-import { Weaken } from 'utilitypes';
+import { StorybookViteConfig } from '@storybook/builder-vite';
 
-interface CustomizedCoreConfig extends Weaken<CoreConfig, 'builder'> {
-  builder: CoreConfig['builder'] | 'storybook-builder-vite';
-}
-interface CustomizedStorybookConfig extends Weaken<StorybookConfig, 'core'> {
-  core: CustomizedCoreConfig;
-  viteFinal?: (config: UserConfig, options: Options) => UserConfig;
-}
-
-const config: CustomizedStorybookConfig = {
+const config: StorybookViteConfig = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-controls',
