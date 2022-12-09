@@ -40,7 +40,17 @@ jobs:
         with:
           authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-      - name: executing remote ssh commands using password
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2.1
+        with:
+          switches: -avzr --delete
+          path: build/
+          remote_path: /var/www/html/
+          remote_host: ${{ secrets.DEPLOYMENT_SERVER }}
+          remote_user: ${{ secrets.DEPLOYMENT_USER }}
+          remote_key: ${{ secrets.DEPLOYMENT_KEY }}
+
+      - name: executing remote ssh commands using ssh
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEPLOYMENT_SERVER }}
@@ -48,5 +58,4 @@ jobs:
           key: ${{ secrets.DEPLOYMENT_KEY }}
           port: ${{ secrets.DEPLOYMENT_PORT }}
           script: |
-            rsync -ae ssh ./build/ ${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }}:/var/www/html/
-            ssh ${{ secrets.DEVELOPMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }} systemctl restart charv@frontend.service
+            systemctl restart charv@frontend.service
