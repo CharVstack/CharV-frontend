@@ -1,3 +1,5 @@
+import { dataToURLString } from 'aspida';
+
 import type { Methods as Methods0 } from './v1/host';
 import type { Methods as Methods1 } from './v1/vms';
 import type { Methods as Methods2 } from './v1/vms/_vmId@string';
@@ -40,9 +42,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             power: {
               /**
                * VMの電源状態を操作
-               * @param option.body - VMの電源状態を操作
                */
-              post: (option: { body: Methods3['post']['reqBody']; config?: T | undefined }) =>
+              post: (option?: { query?: Methods3['post']['query'] | undefined; config?: T | undefined } | undefined) =>
                 fetch<void, BasicHeaders, Methods3['post']['status']>(
                   prefix,
                   `${prefix2}${PATH2}`,
@@ -51,9 +52,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                 ).send(),
               /**
                * VMの電源状態を操作
-               * @param option.body - VMの電源状態を操作
                */
-              $post: (option: { body: Methods3['post']['reqBody']; config?: T | undefined }) =>
+              $post: (option?: { query?: Methods3['post']['query'] | undefined; config?: T | undefined } | undefined) =>
                 fetch<void, BasicHeaders, Methods3['post']['status']>(prefix, `${prefix2}${PATH2}`, POST, option)
                   .send()
                   .then((r) => r.body),
@@ -81,7 +81,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                 )
                   .json()
                   .then((r) => r.body),
-              $path: () => `${prefix}${prefix2}${PATH2}`,
+              $path: (option?: { method: 'post'; query: Methods3['post']['query'] } | undefined) =>
+                `${prefix}${prefix2}${PATH2}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
             },
             /**
              * 個々のVM情報を取得する
