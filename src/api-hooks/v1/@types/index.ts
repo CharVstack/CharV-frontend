@@ -58,6 +58,8 @@ export type VmPowerInfo = {
   state: 'RUNNING' | 'UNKNOWN' | 'SHUTDOWN';
 };
 
+export type VmPowerActions = 'start' | 'shutdown' | 'reboot' | 'reset';
+
 export type PostCreateNewVMRequest = {
   name: string;
   memory: number;
@@ -71,7 +73,7 @@ export type PatchUpdateVMRequest = {
 };
 
 export type PostChangeVMsPowerStatusByVMIdRequest = {
-  action: 'start' | 'shutdown' | 'reboot' | 'reset';
+  action: VmPowerActions;
 };
 
 export type GetAllVMsList200Response = {
