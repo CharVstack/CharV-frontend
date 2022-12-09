@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     environment:
       name: staging
 
@@ -35,8 +35,18 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Upload files
-        run: rsync -ae ssh ./build/ ${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }}:/var/www/html/
+      - name: Tailscale
+        uses: tailscale/github-action@v1
+        with:
+          authkey: ${{ secrets.TAILSCALE_AUTHKEY }}
 
-      - name: Restart server
-        run: ssh ${{ secrets.DEVELOPMENT_SERVER_USER }}@${{ secrets.DEVELOPMENT_SERVER_IP }} systemctl restart charv@frontend.service
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOYMENT_SERVER }}
+          username: ${{ secrets.DEPLOYMENT_USER }}
+          key: ${{ secrets.DEPLOYMENT_KEY }}
+          port: ${{ secrets.DEPLOYMENT_PORT }}
+          script: |
+            rsync -ae ssh ./build/ ${{ secrets.DEPLOYMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }}:/var/www/html/
+            ssh ${{ secrets.DEVELOPMENT_USER }}@${{ secrets.DEPLOYMENT_SERVER }} systemctl restart charv@frontend.service
