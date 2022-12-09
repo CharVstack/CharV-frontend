@@ -100,7 +100,7 @@
   },
   "license": "MIT",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,md,mdx,json}": "yarn run fix:prettier"
+    "*.{js,jsx,ts,tsx,css,md,mdx,json,yaml,yml}": "yarn run fix:prettier"
   },
   "packageManager": "yarn@1.22.19",
   "private": true,
