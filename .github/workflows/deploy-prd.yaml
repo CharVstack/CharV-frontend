@@ -1,14 +1,14 @@
-name: Deploy Staging Environment
+name: Deploy Production Environment
 on:
-  push:
-    branches:
-      - main
+  create:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: staging
+      name: production
 
     steps:
       - uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
           remote_user: ${{ secrets.DEPLOYMENT_USER }}
           remote_key: ${{ secrets.DEPLOYMENT_KEY }}
 
-      - name: executing remote ssh commands using ssh
+      - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEPLOYMENT_SERVER }}
