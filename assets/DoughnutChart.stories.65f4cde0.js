@@ -1,0 +1,1 @@
+import{D as o}from"./DoughnutChart.faf26e1f.js";import"./index.1a79cf7f.js";import"./jsx-runtime.9222852a.js";import"./iframe.f2647276.js";import"./useTheme.41d28743.js";import"./defaultTheme.0ede05cf.js";const p={component:o},s={args:{data:{foo:{value:10,color:"red"},bar:{value:5,color:"green"}}}},u=["Default"];export{s as Default,u as __namedExportsOrder,p as default};
