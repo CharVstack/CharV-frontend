@@ -2,6 +2,7 @@ changelog:
   exclude:
     authors:
       - openapi-generator
+      - renovate
   categories:
     - title: New Features 🎉
       labels:
