@@ -78,7 +78,7 @@ export const BaseVmControlMenu = ({ vms }: BaseVmControlMenuProps) => {
   };
 
   return (
-    <Box sx={{ pb: 1 }}>
+    <Box sx={{ ml: 1, mb: 1 }}>
       <Button
         disabled={vms.length === 0}
         variant="contained"

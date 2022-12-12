@@ -9,10 +9,12 @@ import { DashBoard } from '@templates/DashBoard';
 export const VMs = () => (
   <DashBoard>
     <Container>
-      <Grid container justifyContent="flex-end" spacing={2}>
-        <CreateNewVmButton />
-        <VmControlMenu />
-      </Grid>
+      <Container>
+        <Grid container justifyContent="flex-end" spacing={2}>
+          <CreateNewVmButton />
+          <VmControlMenu />
+        </Grid>
+      </Container>
       <Grid container justifyContent="center" alignItems="center">
         <Container>
           <InstanceTable />
