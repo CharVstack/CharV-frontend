@@ -59,6 +59,7 @@ export const BaseVmControlMenu = ({ vms }: BaseVmControlMenuProps) => {
             .power.$post({ body: { action } })
             .then(async () => {
               await mutate(getSWRDefaultKey(apiClient.api.v1.vms._vmId(vm)));
+              handleClose();
             })
             .catch(() => {
               handleClose();
