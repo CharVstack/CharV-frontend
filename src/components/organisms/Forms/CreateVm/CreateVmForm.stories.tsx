@@ -25,9 +25,9 @@ export const Default: ComponentStoryObj<typeof CreateVmForm> = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const name: HTMLInputElement = canvas.getByLabelText('名前');
-    const cpu: HTMLInputElement = canvas.getByLabelText('CPU');
-    const memory: HTMLInputElement = canvas.getByLabelText('メモリ');
+    const name = canvas.getByLabelText<HTMLInputElement>('名前');
+    const cpu = canvas.getByLabelText<HTMLInputElement>('CPU');
+    const memory = canvas.getByLabelText<HTMLInputElement>('メモリ');
     userEvent.clear(name);
     userEvent.clear(cpu);
     userEvent.clear(memory);
@@ -52,9 +52,9 @@ export const InConfirm: ComponentStoryObj<typeof CreateVmForm> = {
   },
   play: ({ canvasElement }) => {
     const canvas = within(canvasElement);
-    const name: HTMLInputElement = canvas.getByLabelText('名前');
-    const cpu: HTMLInputElement = canvas.getByLabelText('CPU');
-    const memory: HTMLInputElement = canvas.getByLabelText('メモリ');
+    const name = canvas.getByLabelText<HTMLInputElement>('名前');
+    const cpu = canvas.getByLabelText<HTMLInputElement>('CPU');
+    const memory = canvas.getByLabelText<HTMLInputElement>('メモリ');
     userEvent.type(name, 'foo');
     userEvent.type(cpu, '1');
     userEvent.type(memory, '1');
