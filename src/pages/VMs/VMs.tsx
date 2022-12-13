@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Container, Stack } from '@mui/material';
 
 import { CreateNewVmButton } from '@components/organisms/Buttons';
 import { CreateVmDialog } from '@components/organisms/Dialogs';
@@ -9,18 +9,12 @@ import { DashBoard } from '@templates/DashBoard';
 export const VMs = () => (
   <DashBoard>
     <Container>
-      <Container>
-        <Grid container justifyContent="flex-end" spacing={2}>
-          <CreateNewVmButton />
-          <VmControlMenu />
-        </Grid>
-      </Container>
-      <Grid container justifyContent="center" alignItems="center">
-        <Container>
-          <InstanceTable />
-        </Container>
-        <CreateVmDialog />
-      </Grid>
+      <Stack direction="row" spacing={1} justifyContent="end">
+        <CreateNewVmButton />
+        <VmControlMenu />
+      </Stack>
+      <InstanceTable />
     </Container>
+    <CreateVmDialog />
   </DashBoard>
 );
