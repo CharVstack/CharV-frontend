@@ -1,1 +1,1 @@
-export * from './InstanceTable/InstanceTable';
+export * from './InstanceTable';
