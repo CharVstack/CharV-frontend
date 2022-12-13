@@ -5,7 +5,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import * as React from 'react';
 import { useState } from 'react';
 
 const CustomizedDialog = styled(Dialog)(({ theme }) => ({
