@@ -1,6 +1,6 @@
 import { Box, Stack, useTheme } from '@mui/material';
 
-export const IconColumn = (icon: JSX.Element, text: string) => {
+export const IconColumn = ({ icon, text }: { icon: JSX.Element; text: string }) => {
   const { spacing } = useTheme();
 
   return (

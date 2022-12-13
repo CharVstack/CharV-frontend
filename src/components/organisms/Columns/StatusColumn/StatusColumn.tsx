@@ -8,7 +8,7 @@ import { GridRowId } from '@mui/x-data-grid/models/gridRows';
 import { IconColumn } from '@components/molecules/Columns';
 import { apiClient } from '@lib/apiClient';
 
-export const StatusColumn = (rowId: GridRowId) => {
+export const StatusColumn = ({ rowId }: { rowId: GridRowId }) => {
   const { data } = useAspidaSWR(apiClient.api.v1.vms._vmId(rowId as string).power);
   const status = data?.vm_power.state ?? 'UNKNOWN';
 
@@ -26,5 +26,5 @@ export const StatusColumn = (rowId: GridRowId) => {
     }
   })();
 
-  return IconColumn(icon, status);
+  return <IconColumn icon={icon} text={status} />;
 };

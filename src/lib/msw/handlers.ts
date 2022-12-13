@@ -36,27 +36,59 @@ export const HANDLERS = {
     }),
   },
   GetVMByVMId: {
-    success: restGet(apiClient.api.v1.vms._vmId('2a4316ce-7351-4d4f-9f2d-b5f523e688ab'), (_, res, ctx) => {
-      const example = schema.components.responses.GetVMByVMId200Response.content['application/json'].examples[
-        'example-1'
-      ].value as GetVMByVMId200Response;
-      return res(ctx.json(example));
-    }),
+    success: restGet(
+      apiClient.api.v1.vms._vmId(
+        schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
+          .vms[0].metadata.id
+      ),
+      (_, res, ctx) => {
+        const example = schema.components.responses.GetVMByVMId200Response.content['application/json'].examples[
+          'example-1'
+        ].value as GetVMByVMId200Response;
+        return res(ctx.json(example));
+      }
+    ),
   },
-  GetVMPowerByVMId: {
-    success: restGet(apiClient.api.v1.vms._vmId('2a4316ce-7351-4d4f-9f2d-b5f523e688ab').power, (_, res, ctx) => {
-      const example = schema.components.responses.GetVMPowerByVMId200Response.content['application/json'].examples[
-        'example-1'
-      ].value as GetVMPowerByVMId200Response;
-      return res(ctx.json(example));
-    }),
+  GetVMPowerByVMId1: {
+    success: restGet(
+      apiClient.api.v1.vms._vmId(
+        schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
+          .vms[0].metadata.id
+      ).power,
+      (_, res, ctx) => {
+        const example = schema.components.responses.GetVMPowerByVMId200Response.content['application/json'].examples[
+          'example-1'
+        ].value as GetVMPowerByVMId200Response;
+        return res(ctx.json(example));
+      }
+    ),
+  },
+  GetVMPowerByVMId2: {
+    success: restGet(
+      apiClient.api.v1.vms._vmId(
+        schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
+          .vms[1].metadata.id
+      ).power,
+      (_, res, ctx) => {
+        const example = schema.components.responses.GetVMPowerByVMId200Response.content['application/json'].examples[
+          'example-1'
+        ].value as GetVMPowerByVMId200Response;
+        return res(ctx.json(example));
+      }
+    ),
   },
   PatchUpdateVMByVMId200Response: {
-    success: restPatch(apiClient.api.v1.vms._vmId('2a4316ce-7351-4d4f-9f2d-b5f523e688ab'), (_, res, ctx) => {
-      const example = schema.components.responses.PatchUpdateVMByVMId200Response.content['application/json'].examples[
-        'example-1'
-      ].value as PatchUpdateVMByVMId200Response;
-      return res(ctx.json(example));
-    }),
+    success: restPatch(
+      apiClient.api.v1.vms._vmId(
+        schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
+          .vms[0].metadata.id
+      ),
+      (_, res, ctx) => {
+        const example = schema.components.responses.PatchUpdateVMByVMId200Response.content['application/json'].examples[
+          'example-1'
+        ].value as PatchUpdateVMByVMId200Response;
+        return res(ctx.json(example));
+      }
+    ),
   },
 };

@@ -15,7 +15,7 @@ const columns: GridColDef[] = [
     field: 'status',
     headerName: 'Status',
     width: 192,
-    renderCell: (params: GridCellParams<string, Vm>) => StatusColumn(params.id),
+    renderCell: (params: GridCellParams<string, Vm>) => <StatusColumn rowId={params.id} />,
   },
 ];
 
