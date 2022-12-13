@@ -6,6 +6,7 @@ import { Vm } from '@api-hooks/v1/@types';
 import { LoadingSpinner } from '@components/molecules/Progress';
 import { CreateNewVmButton } from '@components/organisms/Buttons';
 import { CreateVmDialog } from '@components/organisms/Dialogs';
+import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
 import { HookErrorDialog } from '@components/organisms/Dialogs/HookError/HookErrorDialog';
 import { InstanceTable } from '@components/organisms/Tables';
 import { apiClient } from '@lib/apiClient';
@@ -28,8 +29,11 @@ export const VMs = () => {
 
   return (
     <DashBoard>
-      <CreateNewVmButton />
       <Container>
+        <Stack direction="row" spacing={1} justifyContent="end">
+          <CreateNewVmButton />
+          <VmControlMenu />
+        </Stack>
         <InstanceTable vms={data.vms} />
       </Container>
       <CreateVmDialog />
