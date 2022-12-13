@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.5",
-    "@hookform/devtools": "4.2.3",
+    "@hookform/devtools": "4.3.0",
     "@openapitools/openapi-generator-cli": "2.5.2",
     "@stoplight/prism-cli": "4.10.5",
     "@storybook/addon-a11y": "6.5.14",
