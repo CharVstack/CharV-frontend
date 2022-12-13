@@ -1,1 +1,0 @@
-import{B as r}from"./BarChart.fcd47c31.js";import"./index.b2f1dc6a.js";import"./jsx-runtime.83d46706.js";import"./iframe.d644ee97.js";import"./useTheme.b67f9481.js";import"./defaultTheme.8e68d4c3.js";const s={component:r},i={args:{data:{foo:{value:10,color:"red"},bar:{value:5,color:"green"}}}},l=["Default"];export{i as Default,l as __namedExportsOrder,s as default};
