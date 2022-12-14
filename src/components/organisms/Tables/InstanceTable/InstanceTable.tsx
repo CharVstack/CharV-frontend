@@ -1,5 +1,5 @@
 import useAspidaSWR from '@aspida/swr';
-import { useTheme } from '@mui/material';
+import { Stack, useTheme } from '@mui/material';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { atom, useSetAtom, useAtomValue } from 'jotai';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Vm } from '@api-hooks/v1/@types';
 import { LoadingSpinner } from '@components/molecules/Progress';
 import { StatusColumn } from '@components/organisms/Columns';
+import { HookErrorDialog } from '@components/organisms/Dialogs';
 import { apiClient } from '@lib/apiClient';
 
 const baseAtom = atom<string[]>([]);
@@ -25,12 +26,13 @@ const columns: GridColDef[] = [
     field: 'status',
     headerName: 'Status',
     width: 192,
-    renderCell: (params: GridCellParams<string, Vm>) => StatusColumn(params.id),
+    renderCell: (params: GridCellParams<string, Vm>) => <StatusColumn rowId={params.id} />,
   },
 ];
 
 export const InstanceTable = () => {
-  const { data } = useAspidaSWR(apiClient.api.v1.vms);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const { data, error } = useAspidaSWR(apiClient.api.v1.vms);
   const [pageSize, setPageSize] = useState(10);
   const setSelectedVm = useSelectedVmWriteOnlyAtom();
 
@@ -41,6 +43,14 @@ export const InstanceTable = () => {
   } = useTheme();
 
   if (data === undefined) {
+    if (error) {
+      return (
+        <Stack>
+          <HookErrorDialog message="Could not retrieve VM information" />
+          <LoadingSpinner open />
+        </Stack>
+      );
+    }
     return <LoadingSpinner open />;
   }
 
@@ -48,7 +58,7 @@ export const InstanceTable = () => {
     <DataGrid
       sx={{ backgroundColor: bgColor, boxShadow: 1 }}
       columns={columns}
-      rows={data?.vms ?? []}
+      rows={data.vms}
       getRowId={(row: Vm) => row.metadata.id}
       pageSize={pageSize}
       onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}

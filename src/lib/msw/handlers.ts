@@ -49,11 +49,25 @@ export const HANDLERS = {
       }
     ),
   },
-  GetVMPowerByVMId: {
+  GetVMPowerByVMId1: {
     success: restGet(
       apiClient.api.v1.vms._vmId(
         schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
           .vms[0].metadata.id
+      ).power,
+      (_, res, ctx) => {
+        const example = schema.components.responses.GetVMPowerByVMId200Response.content['application/json'].examples[
+          'example-1'
+        ].value as GetVMPowerByVMId200Response;
+        return res(ctx.json(example));
+      }
+    ),
+  },
+  GetVMPowerByVMId2: {
+    success: restGet(
+      apiClient.api.v1.vms._vmId(
+        schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
+          .vms[1].metadata.id
       ).power,
       (_, res, ctx) => {
         const example = schema.components.responses.GetVMPowerByVMId200Response.content['application/json'].examples[
