@@ -9,6 +9,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH1 = '/power';
   const GET = 'GET';
   const POST = 'POST';
+  const DELETE = 'DELETE';
   const PATCH = 'PATCH';
 
   return {
@@ -78,6 +79,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             .then((r) => r.body),
         /**
          * VM情報を更新する
+         * @param option.body - VM情報の更新
          * @returns 更新されたVM情報
          */
         patch: (option: { body: Methods1['patch']['reqBody']; config?: T | undefined }) =>
@@ -89,23 +91,38 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           ).json(),
         /**
          * VM情報を更新する
+         * @param option.body - VM情報の更新
          * @returns 更新されたVM情報
          */
         $patch: (option: { body: Methods1['patch']['reqBody']; config?: T | undefined }) =>
           fetch<Methods1['patch']['resBody'], BasicHeaders, Methods1['patch']['status']>(prefix, prefix0, PATCH, option)
             .json()
             .then((r) => r.body),
+        /**
+         * VMを削除する
+         */
+        delete: (option?: { config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods1['delete']['status']>(prefix, prefix0, DELETE, option).send(),
+        /**
+         * VMを削除する
+         */
+        $delete: (option?: { config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods1['delete']['status']>(prefix, prefix0, DELETE, option)
+            .send()
+            .then((r) => r.body),
         $path: () => `${prefix}${prefix0}`,
       };
     },
     /**
      * VMを作成する
+     * @param option.body - VMの作成
      * @returns 新規作成されたVM情報
      */
     post: (option: { body: Methods0['post']['reqBody']; config?: T | undefined }) =>
       fetch<Methods0['post']['resBody'], BasicHeaders, Methods0['post']['status']>(prefix, PATH0, POST, option).json(),
     /**
      * VMを作成する
+     * @param option.body - VMの作成
      * @returns 新規作成されたVM情報
      */
     $post: (option: { body: Methods0['post']['reqBody']; config?: T | undefined }) =>
