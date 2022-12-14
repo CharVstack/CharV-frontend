@@ -21,35 +21,7 @@
           }
         },
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "memory": {
-                    "type": "integer",
-                    "format": "uint64"
-                  },
-                  "cpu": {
-                    "type": "integer"
-                  }
-                },
-                "required": ["name", "memory", "cpu"]
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "name": "ubuntu20.04",
-                    "memory": 4096,
-                    "cpu": 12
-                  }
-                }
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/PostCreateNewVMRequest"
         }
       },
       "get": {
@@ -99,35 +71,18 @@
         "tags": ["vm"],
         "description": "VM情報を更新する",
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "memory": {
-                    "type": "integer",
-                    "format": "uint64"
-                  },
-                  "cpu": {
-                    "type": "integer"
-                  }
-                }
-              },
-              "examples": {
-                "example-1": {
-                  "value": {
-                    "name": "ubuntu20.04",
-                    "memory": 4096,
-                    "cpu": 12
-                  }
-                }
-              }
-            }
-          }
+          "$ref": "#/components/requestBodies/PatchUpdateVMRequest"
         }
+      },
+      "delete": {
+        "summary": "",
+        "operationId": "delete-api-v1-vms-:vmId",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "VMを削除する"
       }
     },
     "/api/v1/host": {

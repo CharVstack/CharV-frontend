@@ -11,11 +11,8 @@ export type Methods = {
       vm: Types.Vm;
     };
 
-    reqBody: {
-      name: string;
-      memory: number;
-      cpu: number;
-    };
+    /** VMの作成 */
+    reqBody: Types.PostCreateNewVMRequest;
   };
 
   /** 全てのVM一覧を取得する */

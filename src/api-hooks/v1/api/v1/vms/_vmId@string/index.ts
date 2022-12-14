@@ -21,10 +21,12 @@ export type Methods = {
       vm: Types.Vm;
     };
 
-    reqBody: {
-      name: string;
-      memory: number;
-      cpu: number;
-    };
+    /** VM情報の更新 */
+    reqBody: Types.PatchUpdateVMRequest;
+  };
+
+  /** VMを削除する */
+  delete: {
+    status: 204;
   };
 };
