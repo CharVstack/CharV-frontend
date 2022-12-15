@@ -67,8 +67,8 @@ export const BaseVmControlMenu = ({ vms }: BaseVmControlMenuProps) => {
         onClick={handleClick}
         color="success"
         endIcon={<KeyboardArrowDownIcon />}
+        startIcon={<PowerSettingsNewIcon />}
       >
-        <PowerSettingsNewIcon />
         Actions
       </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
