@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
-import { BaseNavBar } from './NavBar';
+import { BaseNavBar as NavBar } from './NavBar';
 
-export default { component: BaseNavBar } as ComponentMeta<typeof BaseNavBar>;
+export default { component: NavBar } as ComponentMeta<typeof NavBar>;
 
-export const Default: ComponentStoryObj<typeof BaseNavBar> = {};
+export const Default: ComponentStoryObj<typeof NavBar> = {};

@@ -7,7 +7,7 @@ import { TextField } from '@components/organisms/FormParts';
 
 import { createVmFormSchema } from './schemas';
 
-export type BaseCreateVmFormProps = {
+type BaseCreateVmFormProps = {
   isConfirm: boolean;
 };
 

@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
-import { BaseSideBar } from './SideBar';
+import { BaseSideBar as SideBar } from './SideBar';
 
-export default { component: BaseSideBar } as ComponentMeta<typeof BaseSideBar>;
+export default { component: SideBar } as ComponentMeta<typeof SideBar>;
 
-export const Default: ComponentStoryObj<typeof BaseSideBar> = {
+export const Default: ComponentStoryObj<typeof SideBar> = {
   args: {
     open: false,
   },
