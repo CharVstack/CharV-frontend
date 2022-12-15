@@ -1,1 +1,6 @@
-export * from './CreateVmDialog';
+export {
+  CreateVmDialog,
+  useReadOnlyCreateVmDialog,
+  useWritableCreateVmDialog,
+  useWriteOnlyCreateVmDialog,
+} from './CreateVmDialog';

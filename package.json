@@ -35,6 +35,7 @@
     "axios": "0.27.2",
     "chart.js": "4.0.1",
     "jotai": "1.11.2",
+    "memoize-one": "^6.0.0",
     "msw": "0.49.2",
     "notistack": "2.0.8",
     "react": "18.2.0",

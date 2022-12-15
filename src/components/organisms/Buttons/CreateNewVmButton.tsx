@@ -9,7 +9,7 @@ export const CreateNewVmButton = () => {
   };
 
   return (
-    <Button variant="contained" sx={{ ml: 1, mb: 1 }} onClick={handleClickOpen}>
+    <Button variant="contained" onClick={handleClickOpen}>
       新規仮想マシンの作成
     </Button>
   );
