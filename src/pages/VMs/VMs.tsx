@@ -1,6 +1,6 @@
 import { Container, Stack } from '@mui/material';
 
-import { VmDeleteButton } from '@components/molecules/Buttons';
+import { DeleteVmButton } from '@components/molecules/Buttons';
 import { CreateNewVmButton } from '@components/organisms/Buttons';
 import { CreateVmDialog } from '@components/organisms/Dialogs';
 import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
@@ -13,7 +13,7 @@ export const VMs = () => (
       <Stack sx={{ mb: 1 }} direction="row" spacing={1} justifyContent="end">
         <CreateNewVmButton />
         <VmControlMenu />
-        <VmDeleteButton />
+        <DeleteVmButton />
       </Stack>
       <InstanceTable />
     </Container>

@@ -23,12 +23,12 @@ const useDeleteHandler = (vms: string[]) => {
   return deleteHandler;
 };
 
-export const VmDeleteButton = () => {
+export const DeleteVmButton = () => {
   const vms = useSelectedVmReadOnlyAtom();
-  return <BaseVmDeleteButton vms={vms} />;
+  return <BaseDeleteVmButton vms={vms} />;
 };
 
-export const BaseVmDeleteButton = ({ vms }: { vms: string[] }) => {
+export const BaseDeleteVmButton = ({ vms }: { vms: string[] }) => {
   const handleDelete = useDeleteHandler(vms);
   return (
     <Button

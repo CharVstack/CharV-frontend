@@ -1,1 +1,0 @@
-export { VmDeleteButton } from './VmDeleteButton';

@@ -2,9 +2,9 @@ import { within } from '@storybook/testing-library';
 import { composeStories } from '@storybook/testing-react';
 import { render } from '@testing-library/react';
 
-import * as stories from './VmDeleteButton.stories';
+import * as stories from './DeleteVmButton.stories';
 
-describe('VmControlMenu', () => {
+describe('DeleteVmButton', () => {
   describe('Static', () => {
     const { Default, Disabled } = composeStories(stories);
 

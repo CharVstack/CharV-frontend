@@ -1,1 +1,1 @@
-export * from './VmDeleteButton';
+export * from './DeleteVmButton';
