@@ -1,5 +1,6 @@
 import tsConfigPaths from 'vite-tsconfig-paths';
 import { StorybookViteConfig } from '@storybook/builder-vite';
+import { mergeConfig, UserConfig } from 'vite';
 
 const config: StorybookViteConfig = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -22,15 +23,17 @@ const config: StorybookViteConfig = {
     interactionsDebugger: true,
   },
   staticDirs: ['./public'],
-  viteFinal: (config) => {
-    config.plugins = [config.plugins, tsConfigPaths()];
-    if (process.env.NODE_ENV === 'production') {
-      config.build = {
+  viteFinal: (config, { configType }) => {
+    const overrideConfig: UserConfig = {
+      plugins: [tsConfigPaths()],
+    };
+    if (configType === 'PRODUCTION') {
+      overrideConfig.build = {
         chunkSizeWarningLimit: 1200,
       };
-      config.base = './';
+      overrideConfig.base = './';
     }
-    return config;
+    return mergeConfig(config, overrideConfig);
   },
 };
 
