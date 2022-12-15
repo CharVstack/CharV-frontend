@@ -4,10 +4,11 @@ import { Button, DialogActions, DialogTitle } from '@mui/material';
 import { atom, useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useSnackbar } from 'notistack';
 import { useState, useCallback } from 'react';
-import { FormProvider, useFormContext } from 'react-hook-form';
-import { useSWRConfig } from 'swr';
+import { FormProvider } from 'react-hook-form';
+import useSWRMutation from 'swr/mutation';
 
-import { CreateVmForm, useCreateVmForm, CreateVmFormInputs } from '@components/organisms/Forms';
+import { PostCreateNewVMRequest } from '@api-hooks/v1/@types';
+import { CreateVmForm, useCreateVmForm, useCreateVmFormContext } from '@components/organisms/Forms';
 import {
   InstanceTabs,
   useIncInstanceTabs,
@@ -48,10 +49,26 @@ export const CreateVmDialog = () => {
 export const BaseCreateVmDialog = () => {
   const {
     reset,
-    getValues,
     handleSubmit,
     formState: { isDirty, isValid },
-  } = useFormContext<CreateVmFormInputs>();
+  } = useCreateVmFormContext();
+
+  const { trigger } = useSWRMutation<void, Error, string[], PostCreateNewVMRequest>(
+    getSWRDefaultKey(apiClient.api.v1.vms),
+    (_, { arg }) =>
+      apiClient.api.v1.vms
+        .$post({ body: arg })
+        .then(() => {
+          enqueueSnackbar('新規仮想マシンの作成に成功しました!', { variant: 'success' });
+          handleClose();
+          setOpen(false);
+        })
+        .catch(() => {
+          enqueueSnackbar('新規仮想マシンの作成に失敗しました!', { variant: 'error' });
+          handleClose();
+          setOpen(false);
+        })
+  );
 
   const [currentTab, setCurrentTab] = useWritableInstanceTabs();
 
@@ -62,8 +79,6 @@ export const BaseCreateVmDialog = () => {
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const { mutate } = useSWRConfig();
-
   const [isConfirm, setIsConfirm] = useState(false);
 
   const handleClose = useCallback(() => {
@@ -73,21 +88,7 @@ export const BaseCreateVmDialog = () => {
   }, [reset, setCurrentTab]);
 
   // POST Req
-  const finish = async () => {
-    await apiClient.api.v1.vms
-      .$post({ body: getValues() })
-      .then(async () => {
-        enqueueSnackbar('新規仮想マシンの作成に成功しました!', { variant: 'success' });
-        await mutate(getSWRDefaultKey(apiClient.api.v1.vms));
-        handleClose();
-        setOpen(false);
-      })
-      .catch(() => {
-        enqueueSnackbar('新規仮想マシンの作成に失敗しました!', { variant: 'error' });
-        handleClose();
-        setOpen(false);
-      });
-  };
+  const finish = (body: PostCreateNewVMRequest) => trigger(body);
 
   // Dialog Actions
   const next = useCallback(() => {

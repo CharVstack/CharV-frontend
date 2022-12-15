@@ -1,6 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
 import { InputAdornment, Stack } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { useForm, useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 
 import { TextField } from '@components/organisms/FormParts';
@@ -23,6 +23,8 @@ export const useCreateVmForm = () =>
       memory: 0,
     },
   });
+
+export const useCreateVmFormContext = () => useFormContext<CreateVmFormInputs>();
 
 export const CreateVmForm = ({ isConfirm }: BaseCreateVmFormProps) => (
   <Stack spacing={2}>
