@@ -1,9 +1,10 @@
-import 'chart.js/auto';
 import { useTheme } from '@mui/material';
-import { ChartOptions, ChartData } from 'chart.js';
+import { ChartOptions, ChartData, BarElement, Chart, Tooltip, Legend, CategoryScale } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
 import { Charts } from '../types/types';
+
+Chart.register(BarElement, Tooltip, Legend, CategoryScale);
 
 export type BarChartProps = {
   data: Charts;

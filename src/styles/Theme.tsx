@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider, CssBaseline } from '@mui/material';
+import { CssBaseline, createTheme, ThemeProvider } from '@mui/material';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { ReactNode } from 'react';
 

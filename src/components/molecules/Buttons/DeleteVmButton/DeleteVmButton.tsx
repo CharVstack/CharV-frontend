@@ -1,5 +1,5 @@
 import { getSWRDefaultKey } from '@aspida/swr';
-import { Dangerous } from '@mui/icons-material';
+import Dangerous from '@mui/icons-material/Dangerous';
 import { Button } from '@mui/material';
 import { useCallback } from 'react';
 import { mutate } from 'swr';
