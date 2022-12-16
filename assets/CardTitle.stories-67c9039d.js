@@ -1,0 +1,2 @@
+import{C as t}from"./CardTitle-9ffdbc59.js";import"./jsx-runtime-b19c866b.js";import"./index-f47a0ae4.js";import"./es.object.get-own-property-descriptor-c4a71770.js";import"./Box-8c430381.js";import"./defaultTheme-968d66a4.js";import"./styled-e2b1244e.js";import"./useThemeProps-6d10ab63.js";import"./extendSxProp-8eacf561.js";import"./Typography-97d54ba1.js";const d={component:t},c={args:{title:"タイトル"}},T=["Title"];export{c as Title,T as __namedExportsOrder,d as default};
+//# sourceMappingURL=CardTitle.stories-67c9039d.js.map

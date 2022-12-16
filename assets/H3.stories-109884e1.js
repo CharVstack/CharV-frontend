@@ -1,0 +1,2 @@
+import{b as t}from"./Headings-78ff4d4d.js";import"./jsx-runtime-b19c866b.js";import"./index-f47a0ae4.js";import"./es.object.get-own-property-descriptor-c4a71770.js";import"./Typography-97d54ba1.js";import"./defaultTheme-968d66a4.js";import"./styled-e2b1244e.js";import"./useThemeProps-6d10ab63.js";import"./extendSxProp-8eacf561.js";const c={component:t},d={args:{children:"Heading3"}},f=["Default"];export{d as Default,f as __namedExportsOrder,c as default};
+//# sourceMappingURL=H3.stories-109884e1.js.map
