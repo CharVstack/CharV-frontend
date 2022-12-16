@@ -30,29 +30,27 @@ export const Home = () => {
   );
 
   return (
-    <DashBoard>
-      <Container>
-        <Grid container justifyContent="center" alignItems="center" spacing={4}>
-          <Grid item xs={12} sm={8} md={6}>
-            {/* APIができていないため仮の値を指定 */}
-            {/* ToDo: API叩いてデータ受け取るように */}
-            <RunningVmsCard allVms={20} runningVms={16} />
-          </Grid>
-          <Grid item xs={12} sm={8} md={6}>
-            <HostStatusCard
-              cpuUsageRate={cpuUsageRate}
-              memoryUsageRate={memoryUsageRate}
-              storageUsageRate={storageUsageRate}
-            />
-          </Grid>
-          <Grid item xs={12} sm={8} md={6}>
-            <HostMemoryCard total={hostData.host.memory.total} used={hostData.host.memory.used} />
-          </Grid>
-          <Grid item xs={12} sm={8} md={6}>
-            <HostStoragePoolCard {...hostData.host.storage_pools?.[0]} />
-          </Grid>
+    <Container>
+      <Grid container justifyContent="center" alignItems="center" spacing={4}>
+        <Grid item xs={12} sm={8} md={6}>
+          {/* APIができていないため仮の値を指定 */}
+          {/* ToDo: API叩いてデータ受け取るように */}
+          <RunningVmsCard allVms={20} runningVms={16} />
         </Grid>
-      </Container>
-    </DashBoard>
+        <Grid item xs={12} sm={8} md={6}>
+          <HostStatusCard
+            cpuUsageRate={cpuUsageRate}
+            memoryUsageRate={memoryUsageRate}
+            storageUsageRate={storageUsageRate}
+          />
+        </Grid>
+        <Grid item xs={12} sm={8} md={6}>
+          <HostMemoryCard total={hostData.host.memory.total} used={hostData.host.memory.used} />
+        </Grid>
+        <Grid item xs={12} sm={8} md={6}>
+          <HostStoragePoolCard {...hostData.host.storage_pools?.[0]} />
+        </Grid>
+      </Grid>
+    </Container>
   );
 };

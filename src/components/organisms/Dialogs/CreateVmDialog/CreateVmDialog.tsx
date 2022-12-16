@@ -1,9 +1,8 @@
 import { getSWRDefaultKey } from '@aspida/swr';
-import { DevTool } from '@hookform/devtools'; // eslint-disable-line import/no-extraneous-dependencies
 import { Button, DialogActions, DialogTitle } from '@mui/material';
 import { atom, useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useSnackbar } from 'notistack';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Suspense, lazy } from 'react';
 import { FormProvider } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 
@@ -17,6 +16,7 @@ import {
 } from '@components/organisms/Tabs';
 import { apiClient } from '@lib/apiClient';
 import { useIsProduction } from '@lib/isProduction';
+import { DevToolType } from '@utils/devtools/HookForm';
 
 import { DialogWithAtoms as Dialog } from '../DialogWithAtoms';
 
@@ -34,6 +34,7 @@ export const useWriteOnlyCreateVmDialog = () => useSetAtom(createVmDialogAtom);
 export const CreateVmDialog = () => {
   const methods = useCreateVmForm();
   const isProduction = useIsProduction();
+  const DevTool = lazy(() => import('@utils/devtools/HookForm')) as DevToolType;
 
   return (
     <>
@@ -41,7 +42,11 @@ export const CreateVmDialog = () => {
         <BaseCreateVmDialog />
       </FormProvider>
 
-      {!isProduction && <DevTool control={methods.control} />}
+      {!isProduction && (
+        <Suspense>
+          <DevTool control={methods.control} />
+        </Suspense>
+      )}
     </>
   );
 };
