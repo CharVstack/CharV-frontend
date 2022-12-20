@@ -49,8 +49,7 @@ export const InstanceTable = () => {
     if (error) {
       return (
         <Stack>
-          <HookErrorDialog message="Could not retrieve VM information" />
-          <LoadingSpinner open />
+          <HookErrorDialog title="Error" message="Could not retrieve VM information" />
         </Stack>
       );
     }
