@@ -1,6 +1,6 @@
 import { Stack, useTheme } from '@mui/material';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
-import { atom, useSetAtom, useAtomValue } from 'jotai';
+import { atom, useSetAtom, useAtomValue, useAtom } from 'jotai';
 import { useState } from 'react';
 
 import { Vm } from '@api-hooks/v1/@types';
@@ -16,8 +16,12 @@ const selectedVmAtom = atom<string[], string[]>(
   (_get, set, newValue) => set(baseAtom, newValue)
 );
 
+const resetSelectedVmAtom = atom(null, (_get, set) => set(baseAtom, []));
+
+export const useSelectedVmWritableAtom = () => useAtom(selectedVmAtom);
 export const useSelectedVmReadOnlyAtom = () => useAtomValue(selectedVmAtom);
 export const useSelectedVmWriteOnlyAtom = () => useSetAtom(selectedVmAtom);
+export const useResetSelectedVmAtom = () => useSetAtom(resetSelectedVmAtom);
 
 const columns: GridColDef[] = [
   { field: 'name', headerName: 'VM', minWidth: 288, flex: 1 },
@@ -33,7 +37,7 @@ export const InstanceTable = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data, error } = useAllVms();
   const [pageSize, setPageSize] = useState(10);
-  const setSelectedVm = useSelectedVmWriteOnlyAtom();
+  const [selectedVm, setSelectedVm] = useSelectedVmWritableAtom();
 
   const {
     palette: {
@@ -67,6 +71,7 @@ export const InstanceTable = () => {
       onSelectionModelChange={(selected) => {
         setSelectedVm(selected.map((v) => v.toString()));
       }}
+      selectionModel={selectedVm}
     />
   );
 };
