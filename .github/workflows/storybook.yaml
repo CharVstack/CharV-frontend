@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  pull_request:
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: main
+          fetch-depth: 0
 
       - name: Setup node
         uses: actions/setup-node@v3
@@ -23,10 +23,48 @@ jobs:
 
       - run: yarn install --frozen-lockfile --prefer-offline
 
-      - run: yarn build-storybook
+      - name: Build Storybook
+        run: yarn build-storybook
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
 
-      - name: pages deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        id: chromatic
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          exitZeroOnChanges: true
+          storybookBuildDir: storybook-static
+
+      - name: Remove unnecessary path for Chromatic link
+        id: storybook-url
+        run: echo "value=${STORYBOOK_URL//\/iframe.html/}" >> $GITHUB_OUTPUT
+        env:
+          STORYBOOK_URL: ${{ steps.chromatic.outputs.storybookUrl }}
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: github-user-id
+          body-includes: ':books: Storybook :books:'
+
+      - name: Get datetime for now
+        id: datetime
+        run: echo "value=$(date)" >> $GITHUB_OUTPUT
+        env:
+          TZ: Asia/Tokyo
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Visit the :books: **Storybook** :books: for this PR (updated for commit ${{ github.event.pull_request.head.sha }}):
+            <${{ steps.storybook-url.outputs.value }}>
+            <sub>Build URL: ${{ steps.chromatic.outputs.buildUrl }}</sub>
+            <sub>(:fire: updated at ${{ steps.datetime.outputs.value }})</sub>
+          edit-mode: replace
