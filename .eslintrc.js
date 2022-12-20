@@ -19,7 +19,7 @@ module.exports = {
     project: ["./tsconfig.json"]
   },
   plugins: ["react", "@typescript-eslint", "unused-imports", "jest-dom", "testing-library"],
-  ignorePatterns: [".eslintrc.js", "vite.config.ts", "vitest.setup.ts"],
+  ignorePatterns: [".eslintrc.js", "vite.config.ts", "vitest.setup.ts", "squoosh.ts"],
   rules: {
     "no-use-before-define": "off",
     "no-unused-vars": "off",
