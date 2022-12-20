@@ -1,4 +1,3 @@
-import useAspidaSWR from '@aspida/swr';
 import { Stack, useTheme } from '@mui/material';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { atom, useSetAtom, useAtomValue } from 'jotai';
@@ -8,7 +7,7 @@ import { Vm } from '@api-hooks/v1/@types';
 import { LoadingSpinner } from '@components/molecules/Progress';
 import { StatusColumn } from '@components/organisms/Columns';
 import { HookErrorDialog } from '@components/organisms/Dialogs';
-import { apiClient } from '@lib/apiClient';
+import { useAllVms } from '@hooks/api/v1';
 
 const baseAtom = atom<string[]>([]);
 
@@ -32,7 +31,7 @@ const columns: GridColDef[] = [
 
 export const InstanceTable = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { data, error } = useAspidaSWR(apiClient.api.v1.vms);
+  const { data, error } = useAllVms();
   const [pageSize, setPageSize] = useState(10);
   const setSelectedVm = useSelectedVmWriteOnlyAtom();
 

@@ -3,16 +3,28 @@ import { ChartOptions } from 'chart.js';
 
 import { Card, CardContentBox } from '@components/molecules/Card';
 import { BarChart, Charts } from '@components/molecules/Charts';
+import { LoadingSpinner } from '@components/molecules/Progress';
+import { useHost } from '@hooks/api/v1';
 
-type Props = {
-  cpuUsageRate: number;
-  memoryUsageRate: number;
-  storageUsageRate: number;
-};
-
-export const HostStatusCard = ({ cpuUsageRate, memoryUsageRate, storageUsageRate }: Props) => {
+export const HostStatusCard = () => {
+  const { data } = useHost();
   const theme = useTheme();
-  const hostData: Charts = {
+  if (data === undefined) {
+    return <LoadingSpinner open />;
+  }
+  const { host } = data;
+
+  const cpuUsageRate = Math.ceil(host.cpu.percent);
+  const memoryUsageRate = Math.ceil(host.memory.percent);
+  const storageUsageRate = Math.ceil(
+    host.storage_pools.reduce((sum, current) => ({ ...sum, used_size: sum.used_size + current.used_size })).used_size /
+      host.storage_pools.reduce((sum, current) => ({
+        ...sum,
+        total_size: sum.total_size + current.total_size,
+      })).total_size
+  );
+
+  const chartData: Charts = {
     CPU: { value: cpuUsageRate },
     Memory: { value: memoryUsageRate },
     Storage: { value: storageUsageRate },
@@ -52,7 +64,7 @@ export const HostStatusCard = ({ cpuUsageRate, memoryUsageRate, storageUsageRate
   return (
     <Card title="Host">
       <CardContentBox>
-        <BarChart options={options} data={hostData} />
+        <BarChart options={options} data={chartData} />
       </CardContentBox>
     </Card>
   );
