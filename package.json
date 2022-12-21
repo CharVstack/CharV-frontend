@@ -97,7 +97,7 @@
     "simple-git-hooks": "2.8.1",
     "squoosh": "github:GoogleChromeLabs/squoosh#42594277fd3d1f31b60103eb05cc8df62a82fb86",
     "storycap": "^3.1.9",
-    "vite": "4.0.1",
+    "vite": "4.0.2",
     "vite-tsconfig-paths": "4.0.3",
     "vitest": "0.25.8"
   },
