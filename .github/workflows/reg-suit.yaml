@@ -1,0 +1,46 @@
+name: VRT via reg-suit
+
+on:
+  push:
+
+jobs:
+  deploy:
+    if: ${{ !github.event.pull_request.draft }}
+    env:
+      REG_NOTICE_CLIENT_ID: ${{ secrets.REG_NOTICE_CLIENT_ID }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+      S3_CUSTOM_DOMAIN: ${{ secrets.S3_CUSTOM_DOMAIN }}
+      S3_PATH_PREFIX: ${{ secrets.S3_PATH_PREFIX }}
+      S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
+      S3_REGION: ${{ secrets.S3_REGION }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'yarn'
+
+      - run: yarn install --frozen-lockfile --prefer-offline
+
+      - name: workaround for detached HEAD
+        run: |
+          git checkout ${GITHUB_REF#refs/heads/} || git checkout -b ${GITHUB_REF#refs/heads/} && git pull
+
+      - name: Build Storybook
+        run: yarn build-storybook
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+
+      - name: Take storycap
+        run: yarn ci:storycap
+
+      - name: Run reg-suit
+        run: yarn ci:vrt

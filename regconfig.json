@@ -1,0 +1,28 @@
+{
+  "core": {
+    "workingDir": ".reg",
+    "actualDir": "directory_contains_actual_images",
+    "thresholdRate": 0,
+    "ximgdiff": {
+      "invocationType": "client"
+    }
+  },
+  "plugins": {
+    "reg-keygen-git-hash-plugin": true,
+    "reg-notify-github-plugin": {
+      "prComment": true,
+      "prCommentBehavior": "default",
+      "clientId": "$REG_NOTICE_CLIENT_ID"
+    },
+    "reg-publish-s3-plugin": {
+      "bucketName": "$S3_BUCKET_NAME",
+      "customDomain": "$S3_CUSTOM_DOMAIN",
+      "sdkOptions": {
+        "endpoint": "$S3_ENDPOINT",
+        "s3ForcePathStyle": true,
+        "signatureVirsion": "v4",
+        "region": "$S3_REGION"
+      }
+    }
+  }
+}
