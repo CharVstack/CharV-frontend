@@ -24,6 +24,9 @@ jobs:
       - name: Build
         run: yarn build
 
+      - name: Rename build/
+        run: mv build html
+
       - name: Tailscale
         uses: tailscale/github-action@v1
         with:
@@ -33,8 +36,8 @@ jobs:
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete
-          path: build/
-          remote_path: /var/www/html/
+          path: html
+          remote_path: /var/www/
           remote_host: ${{ secrets.DEPLOYMENT_SERVER }}
           remote_user: ${{ secrets.DEPLOYMENT_USER }}
           remote_key: ${{ secrets.DEPLOYMENT_KEY }}
