@@ -48,7 +48,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          body-includes: ':books: Storybook :books:'
+          body-includes: ':books: **Storybook** :books:'
 
       - name: Get datetime for now
         id: datetime
