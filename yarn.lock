@@ -7725,10 +7725,10 @@ es6-shim@^0.35.5:
   resolved "https://registry.yarnpkg.com/es6-shim/-/es6-shim-0.35.6.tgz#d10578301a83af2de58b9eadb7c2c9945f7388a0"
   integrity sha512-EmTr31wppcaIAgblChZiuN/l9Y7DPyw8Xtbg7fIVngn6zMW+IEBJDJngeKC3x6wr0V/vcA2wqeFnaw1bFJbDdA==
 
-esbuild-register@3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/esbuild-register/-/esbuild-register-3.4.1.tgz#fe10cd774b56471db47365ce41d607ab5bdeb713"
-  integrity sha512-iCgs88/1wA5dIRx4i65eSjbkgrQQQJGpY6Z1eD2XPlzrSjbgNtfkw2/rfSMzJ4dTtlOD8EZTxrIA3fyYp0FsMA==
+esbuild-register@3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/esbuild-register/-/esbuild-register-3.4.2.tgz#1e39ee0a77e8f320a9790e68c64c3559620b9175"
+  integrity sha512-kG/XyTDyz6+YDuyfB9ZoSIOOmgyFCH+xPRtsCa8W85HLRV5Csp+o3jWVbOSHgSLfyLc5DmP+KFDNwty4mEjC+Q==
   dependencies:
     debug "^4.3.4"
 
