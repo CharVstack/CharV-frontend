@@ -13,7 +13,7 @@ export const Default: ComponentStoryObj<typeof RunningVmsCard> = {
   },
   parameters: {
     chromatic: {
-      delay: 500,
+      delay: 1000,
     },
   },
 };

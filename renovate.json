@@ -4,5 +4,6 @@
   "timezone": "Asia/Tokyo",
   "automerge": true,
   "labels": ["renovate"],
-  "platformAutomerge": true
+  "platformAutomerge": true,
+  "schedule": ["after 9am on monday", "before 12am on monday"]
 }
