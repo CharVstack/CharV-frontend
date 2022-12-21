@@ -17,4 +17,9 @@ export const Default: ComponentStoryObj<typeof BarChart> = {
       },
     },
   },
+  parameters: {
+    chromatic: {
+      delay: 500,
+    },
+  },
 };
