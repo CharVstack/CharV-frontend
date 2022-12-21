@@ -7,7 +7,6 @@ on:
 
 jobs:
   test:
-    if: ${{ !github.event.pull_request.draft }}
     name: Code Test
     runs-on: ubuntu-latest
     steps:
