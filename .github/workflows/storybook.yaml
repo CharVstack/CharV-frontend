@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
-  pull_request:
+  pull_request_review:
+    types:
+      - submitted
 
 jobs:
   deploy:
-    if: ${{ !github.event.pull_request.draft }}
+    if: ${{ github.event_name == 'push' }} || ${{ github.event.review.state == 'approved' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -45,7 +47,7 @@ jobs:
 
       - name: Find Comment
         uses: peter-evans/find-comment@v2
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'review'
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -53,14 +55,14 @@ jobs:
 
       - name: Get datetime for now
         id: datetime
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'review'
         run: echo "value=$(date)" >> $GITHUB_OUTPUT
         env:
           TZ: Asia/Tokyo
 
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v2
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'review'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           comment-id: ${{ steps.fc.outputs.comment-id }}
