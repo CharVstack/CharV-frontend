@@ -14,4 +14,9 @@ export const Default: ComponentStoryObj<typeof HostMemoryCard> = {
     used: schema.components.responses.GetHost200Response.content['application/json'].examples['example-1'].value.host
       .memory.used,
   },
+  parameters: {
+    chromatic: {
+      delay: 500,
+    },
+  },
 };
