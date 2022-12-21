@@ -10,7 +10,7 @@ import { useState, useMemo } from 'react';
 import { mutate } from 'swr';
 
 import { VmPowerActions } from '@api-hooks/v1/@types';
-import { useSelectedVmReadOnlyAtom } from '@components/organisms/Tables';
+import { useSelectedVmReadOnlyAtom, useResetSelectedVmAtom } from '@components/organisms/Tables';
 import { apiClient } from '@lib/apiClient';
 
 type BaseVmControlMenuProps = {
@@ -18,6 +18,7 @@ type BaseVmControlMenuProps = {
 };
 
 const useSubmitHandlerFactory = (vms: string[], handleClose: () => void) => {
+  const reset = useResetSelectedVmAtom();
   const submitHandlerFactory = useMemo(
     () =>
       memoizeOne((action: VmPowerActions) => async () => {
@@ -28,15 +29,17 @@ const useSubmitHandlerFactory = (vms: string[], handleClose: () => void) => {
               .power.$post({ body: { action } })
               .then(async () => {
                 await mutate(getSWRDefaultKey(apiClient.api.v1.vms._vmId(vm)));
+                reset();
                 handleClose();
               })
               .catch(() => {
+                reset();
                 handleClose();
               });
           })
         );
       }),
-    [vms, handleClose]
+    [vms, handleClose, reset]
   );
   return submitHandlerFactory;
 };

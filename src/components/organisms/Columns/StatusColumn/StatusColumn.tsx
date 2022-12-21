@@ -1,4 +1,3 @@
-import useAspidaSWR from '@aspida/swr';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorIcon from '@mui/icons-material/Error';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
@@ -6,10 +5,10 @@ import { useTheme } from '@mui/material';
 import { GridRowId } from '@mui/x-data-grid/models/gridRows';
 
 import { IconColumn } from '@components/molecules/Columns';
-import { apiClient } from '@lib/apiClient';
+import { useVmPowerByVmId } from '@hooks/api/v1';
 
 export const StatusColumn = ({ rowId }: { rowId: GridRowId }) => {
-  const { data } = useAspidaSWR(apiClient.api.v1.vms._vmId(rowId as string).power);
+  const { data } = useVmPowerByVmId(rowId.toString());
 
   const status = data?.vm_power.state ?? 'UNKNOWN';
   const { palette } = useTheme();

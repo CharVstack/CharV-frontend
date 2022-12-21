@@ -3,6 +3,8 @@ import { Box, Stack, Typography } from '@mui/material';
 import { StoragePool } from '@api-hooks/v1/@types';
 import bgImg from '@assets/images/pool-image.jpg';
 import { Card, CardContentBox, CardAsideContentBox } from '@components/molecules/Card';
+import { LoadingSpinner } from '@components/molecules/Progress';
+import { useHost } from '@hooks/api/v1';
 import { calcUnitSize } from '@utils/CalcUnitSize';
 
 const AsideContent = ({
@@ -52,13 +54,22 @@ const CardContent = ({
   );
 };
 
-export const HostStoragePoolCard = (storagePool: StoragePool) => (
-  <Card hasAsideContent title="Pool">
-    <CardAsideContentBox bgImg={bgImg}>
-      <AsideContent {...storagePool} />
-    </CardAsideContentBox>
-    <CardContentBox>
-      <CardContent {...storagePool} />
-    </CardContentBox>
-  </Card>
-);
+export const HostStoragePoolCard = () => {
+  const { data } = useHost();
+  if (data === undefined) {
+    return <LoadingSpinner open />;
+  }
+  const {
+    host: { storage_pools: storagePools },
+  } = data;
+  return (
+    <Card hasAsideContent title="Pool">
+      <CardAsideContentBox bgImg={bgImg}>
+        <AsideContent {...storagePools[0]} />
+      </CardAsideContentBox>
+      <CardContentBox>
+        <CardContent {...storagePools[0]} />
+      </CardContentBox>
+    </Card>
+  );
+};

@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 import jotaiReactRefresh from 'jotai/babel/plugin-react-refresh';
 import jotaiDebugLabel from 'jotai/babel/plugin-debug-label';
 import visualizer from 'rollup-plugin-visualizer';
+import squoosh from './squoosh';
 import { splitVendorChunkPlugin } from 'vite';
 
 export default defineConfig(({ mode }) => ({
@@ -19,6 +20,7 @@ export default defineConfig(({ mode }) => ({
     }),
     tsConfigPaths(),
     splitVendorChunkPlugin(),
+    squoosh(),
   ],
   build: {
     outDir: 'build',

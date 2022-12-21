@@ -1,1 +1,3 @@
-export * from './VMs';
+import { VMs } from './VMs';
+
+export default VMs;

@@ -1,3 +1,5 @@
-export * from './Home';
-export * from './VMs';
-export * from './ErrorPages';
+import NotFound from './ErrorPages';
+import Home from './Home';
+import VMs from './VMs';
+
+export { Home, VMs, NotFound };

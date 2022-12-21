@@ -47,6 +47,7 @@
   "devDependencies": {
     "@babel/core": "7.20.5",
     "@hookform/devtools": "4.3.0",
+    "@squoosh/lib": "^0.4.1",
     "@stoplight/prism-cli": "4.10.5",
     "@storybook/addon-a11y": "6.5.14",
     "@storybook/addon-actions": "6.5.14",
@@ -64,6 +65,7 @@
     "@typescript-eslint/parser": "5.46.1",
     "@vitejs/plugin-react": "3.0.0",
     "@vitest/coverage-c8": "0.25.8",
+    "chromatic": "^6.14.0",
     "cpx": "1.5.0",
     "esbuild-register": "3.4.1",
     "eslint": "8.29.0",
@@ -85,7 +87,9 @@
     "prettier": "2.8.1",
     "rimraf": "3.0.2",
     "rollup-plugin-visualizer": "5.8.3",
+    "roolup": "^1.0.4",
     "simple-git-hooks": "2.8.1",
+    "squoosh": "github:GoogleChromeLabs/squoosh#42594277fd3d1f31b60103eb05cc8df62a82fb86",
     "vite": "4.0.1",
     "vite-tsconfig-paths": "4.0.3",
     "vitest": "0.25.8"
@@ -99,11 +103,15 @@
   },
   "packageManager": "yarn@1.22.19",
   "private": true,
-  "repository": "https://github.com/CharVstack/CharV-frontend.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CharVstack/CharV-frontend.git"
+  },
   "scripts": {
     "build": "vite build",
     "build:analyze": "vite build --mode analyze",
-    "build-storybook": "VITE_STORYBOOK_PREFIX='CharV-frontend/' build-storybook && cpx 'dist/**/*' storybook-static",
+    "build-storybook": "build-storybook",
+    "build-storybook:analyze": "ANALYZE=true build-storybook",
     "fix:eslint": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "fix:prettier": "prettier --write --config ./.prettierrc.js --ignore-path ./.prettierignore .",
     "lint": "npm-run-all lint:*",
@@ -116,12 +124,20 @@
     "storybook": "start-storybook -p 6006",
     "test": "vitest --run",
     "test:ci": "vitest --run --coverage",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "screenshot": "storycap http://localhost:6006",
+    "chromatic": "chromatic --output-dir storybook-static"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint-staged"
   },
   "msw": {
     "workerDirectory": ".storybook/public"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/CharVstack/CharV-frontend/issues"
+  },
+  "readme": "ERROR: No README data found!",
+  "homepage": "https://github.com/CharVstack/CharV-frontend#readme",
+  "_id": "char-v-frontend@0.1.0"
 }

@@ -3,6 +3,7 @@ import { Provider as JotaiProvider } from 'jotai';
 import { SnackbarProvider } from 'notistack';
 import { lazy, Suspense } from 'react';
 
+import { ErrorDialog } from '@components/organisms/Dialogs';
 import { useIsProduction } from '@lib/isProduction';
 import { GlobalStyle, Theme } from '@styles';
 import { Routing } from '@utils/Routing';
@@ -24,6 +25,7 @@ const App = () => {
           <CssBaseline />
           <GlobalStyle />
           <Routing />
+          <ErrorDialog />
         </Theme>
       </SnackbarProvider>
     </JotaiProvider>
