@@ -195,3 +195,6 @@ build/
 .node-version
 
 storybook-static/
+.reg
+
+__screenshots__

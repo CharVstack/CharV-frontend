@@ -85,11 +85,18 @@
     "msw-storybook-addon": "1.6.3",
     "npm-run-all": "4.1.5",
     "prettier": "2.8.1",
+    "puppeteer": "^19.4.1",
+    "reg-keygen-git-hash-plugin": "^0.12.1",
+    "reg-notify-github-plugin": "^0.12.1",
+    "reg-publish-s3-plugin": "^0.12.1",
+    "reg-suit": "^0.12.1",
     "rimraf": "3.0.2",
     "rollup-plugin-visualizer": "5.8.3",
     "roolup": "^1.0.4",
+    "serve": "^14.1.2",
     "simple-git-hooks": "2.8.1",
     "squoosh": "github:GoogleChromeLabs/squoosh#42594277fd3d1f31b60103eb05cc8df62a82fb86",
+    "storycap": "^3.1.9",
     "vite": "4.0.1",
     "vite-tsconfig-paths": "4.0.3",
     "vitest": "0.25.8"
@@ -126,7 +133,9 @@
     "test:ci": "vitest --run --coverage",
     "test:watch": "vitest --watch",
     "screenshot": "storycap http://localhost:6006",
-    "chromatic": "chromatic --output-dir storybook-static"
+    "chromatic": "chromatic --output-dir storybook-static",
+    "ci:vrt": "reg-suit run",
+    "ci:storycap": "storycap --serverTimeout 600000 --captureTimeout 10000 --serverCmd 'npx serve -l 6006 storybook-static' http://localhost:6006"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint-staged"
