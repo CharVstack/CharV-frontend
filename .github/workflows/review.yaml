@@ -4,7 +4,8 @@ on:
   - pull_request
 
 jobs:
-  build:
+  review:
+    if: ${{ !github.event.pull_request.draft }}
     name: Review Code
     runs-on: ubuntu-latest
     steps:
