@@ -6,6 +6,6 @@ export default { component: SideBar } as ComponentMeta<typeof SideBar>;
 
 export const Default: ComponentStoryObj<typeof SideBar> = {
   args: {
-    open: false,
+    open: true,
   },
 };
