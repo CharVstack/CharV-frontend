@@ -13,7 +13,7 @@ export const Default: ComponentStoryObj<typeof RunningVmsCard> = {
   },
   parameters: {
     screenshot: {
-      delay: 3000,
+      delay: 5000,
     },
   },
 };

@@ -31,7 +31,7 @@ export const Default: ComponentStoryObj<typeof HostStatusCard> = {
   },
   parameters: {
     screenshot: {
-      delay: 3000,
+      delay: 5000,
     },
   },
 };

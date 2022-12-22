@@ -16,7 +16,7 @@ export const Default: ComponentStoryObj<typeof HostMemoryCard> = {
   },
   parameters: {
     screenshot: {
-      delay: 3000,
+      delay: 5000,
     },
   },
 };
