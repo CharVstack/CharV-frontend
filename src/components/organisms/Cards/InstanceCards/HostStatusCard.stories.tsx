@@ -29,4 +29,9 @@ export const Default: ComponentStoryObj<typeof HostStatusCard> = {
         })).total_size
     ),
   },
+  parameters: {
+    screenshot: {
+      delay: 3000,
+    },
+  },
 };

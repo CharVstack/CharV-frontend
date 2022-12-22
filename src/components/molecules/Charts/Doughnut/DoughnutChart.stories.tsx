@@ -18,8 +18,8 @@ export const Default: ComponentStoryObj<typeof DoughnutChart> = {
     },
   },
   parameters: {
-    chromatic: {
-      delay: 1000,
+    screenshot: {
+      delay: 3000,
     },
   },
 };

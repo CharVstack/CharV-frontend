@@ -15,8 +15,8 @@ export const Default: ComponentStoryObj<typeof HostMemoryCard> = {
       .memory.used,
   },
   parameters: {
-    chromatic: {
-      delay: 1000,
+    screenshot: {
+      delay: 3000,
     },
   },
 };

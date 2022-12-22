@@ -13,6 +13,7 @@ const config: StorybookViteConfig = {
     '@storybook/addon-interactions',
     '@storybook/addon-docs',
     '@storybook/addon-a11y',
+    'storycap',
   ],
   framework: '@storybook/react',
   core: {

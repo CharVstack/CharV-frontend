@@ -12,8 +12,8 @@ export const Default: ComponentStoryObj<typeof RunningVmsCard> = {
     allVms: 20,
   },
   parameters: {
-    chromatic: {
-      delay: 1000,
+    screenshot: {
+      delay: 3000,
     },
   },
 };
