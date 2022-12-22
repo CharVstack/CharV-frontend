@@ -134,7 +134,7 @@
     "test:watch": "vitest --watch",
     "chromatic": "chromatic --output-dir storybook-static",
     "ci:vrt": "reg-suit run",
-    "ci:storycap": "storycap --serverTimeout 600000 --captureTimeout 10000 --delay 1000 --serverCmd 'npx serve -l 6006 storybook-static' http://localhost:6006"
+    "ci:storycap": "storycap --serverTimeout 600000 --captureTimeout 10000 --delay 2000 --serverCmd 'npx serve -l 6006 storybook-static' http://localhost:6006"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint-staged"
