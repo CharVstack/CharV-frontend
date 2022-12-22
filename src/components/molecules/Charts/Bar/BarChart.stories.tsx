@@ -8,11 +8,11 @@ export const Default: ComponentStoryObj<typeof BarChart> = {
   args: {
     data: {
       foo: {
-        value: 10,
+        value: 15,
         color: 'red',
       },
       bar: {
-        value: 5,
+        value: 10,
         color: 'green',
       },
     },
