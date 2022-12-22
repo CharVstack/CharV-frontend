@@ -91,8 +91,8 @@
     "reg-publish-s3-plugin": "^0.12.1",
     "reg-suit": "^0.12.1",
     "rimraf": "3.0.2",
+    "rollup": "^3.7.5",
     "rollup-plugin-visualizer": "5.8.3",
-    "roolup": "^1.0.4",
     "serve": "^14.1.2",
     "simple-git-hooks": "2.8.1",
     "squoosh": "github:GoogleChromeLabs/squoosh#42594277fd3d1f31b60103eb05cc8df62a82fb86",
@@ -132,10 +132,9 @@
     "test": "vitest --run",
     "test:ci": "vitest --run --coverage",
     "test:watch": "vitest --watch",
-    "screenshot": "storycap http://localhost:6006",
     "chromatic": "chromatic --output-dir storybook-static",
     "ci:vrt": "reg-suit run",
-    "ci:storycap": "storycap --serverTimeout 600000 --captureTimeout 10000 --serverCmd 'npx serve -l 6006 storybook-static' http://localhost:6006"
+    "ci:storycap": "storycap --serverTimeout 600000 --captureTimeout 10000 --delay 1000 --serverCmd 'npx serve -l 6006 storybook-static' http://localhost:6006"
   },
   "simple-git-hooks": {
     "pre-commit": "yarn run lint-staged"
