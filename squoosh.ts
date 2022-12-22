@@ -1,6 +1,6 @@
 import { ImagePool, encoders } from '@squoosh/lib';
 import { Plugin } from 'vite';
-import { OutputAsset } from 'rollup';
+import type { OutputAsset } from 'rollup';
 import { cpus } from 'os';
 
 const imagePool = new ImagePool(cpus().length);

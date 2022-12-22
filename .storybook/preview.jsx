@@ -3,6 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { darkTheme } from '../src/utils/theme';
 import { HANDLERS } from '../src/lib/msw/handlers';
 import { mswDecorator, initialize } from 'msw-storybook-addon';
+import { withScreenshot } from 'storycap';
 
 const prefix = import.meta.env.VITE_STORYBOOK_PREFIX;
 
@@ -29,6 +30,7 @@ export const decorators = [
     );
   },
   mswDecorator,
+  withScreenshot,
 ];
 
 export const parameters = {
