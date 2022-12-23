@@ -2310,7 +2310,7 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.24.51.tgz#645f33fe4e02defe26f2f5c0410e1c094eac7f5f"
   integrity sha512-1P1OROm/rdubP5aFDSZQILU0vrLCJ4fvHt6EoqHEM+2D/G5MK3bIaymUKLit8Js9gbns5UyJnkP/TZROLw4tUA==
 
-"@squoosh/lib@^0.4.1":
+"@squoosh/lib@0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@squoosh/lib/-/lib-0.4.1.tgz#c0e30deb29dbe96728a581d2ace883c560496cc5"
   integrity sha512-qAO4AXEpSnurikGFZwsG7DGi7QHBIaDpbumcDyUvJNOd652ksZSVXmFHwlEikc7hy0RQ9LczIURqfSDo/5oc5Q==
@@ -12601,7 +12601,7 @@ puppeteer-core@^9.0.0:
     unbzip2-stream "^1.3.3"
     ws "^7.2.3"
 
-puppeteer@^19.4.1:
+puppeteer@19.4.1:
   version "19.4.1"
   resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-19.4.1.tgz#cac7d3f0084badebb8ebacbe6f4d7262e7f21818"
   integrity sha512-PCnrR13B8A+VSEDXRmrNXRZbrkF1tfsI1hKSC7vs13eNS6CUD3Y4FA8SF8/VZy+Pm1kg5AggJT2Nu3HLAtGkFg==
@@ -12991,7 +12991,7 @@ reg-gh-app-interface@^1.3.0:
   resolved "https://registry.yarnpkg.com/reg-gh-app-interface/-/reg-gh-app-interface-1.3.0.tgz#903fac5f9b18c098de3368634d2d0f6f6a1e02eb"
   integrity sha512-p3AXRqXTuBUlud8V7WlyrKE408prM7/TAWXLhcer0492Grhj3K1SzI/v7qadd7gtxTochZsvScL46vIaZB2icg==
 
-reg-keygen-git-hash-plugin@^0.12.1:
+reg-keygen-git-hash-plugin@0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/reg-keygen-git-hash-plugin/-/reg-keygen-git-hash-plugin-0.12.1.tgz#7a21b4da32ce88f9097cd6e3892319206c56b30b"
   integrity sha512-+hXQc/fzpA7Eyl6lduaQt58E3QeqQrbamfZXrnyB/w4PE9a2Az2pUJuB4WL8g2CW5n7BbDlqjZW20OtxYAo5xg==
@@ -12999,7 +12999,7 @@ reg-keygen-git-hash-plugin@^0.12.1:
     reg-suit-util "^0.12.1"
     shell-escape "^0.2.0"
 
-reg-notify-github-plugin@^0.12.1:
+reg-notify-github-plugin@0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/reg-notify-github-plugin/-/reg-notify-github-plugin-0.12.1.tgz#a4421867d0211050f5e9015dbe7d5f26df1d6b94"
   integrity sha512-9oct9mgvCXXoP1UVC9IzHmzwC1MqgKs0vKB6jN5U4ULcI2FJzOMas1Rd6TQuzfcGa7hmPJO+he63euPuVF7Npg==
@@ -13011,7 +13011,7 @@ reg-notify-github-plugin@^0.12.1:
     request-promise "^4.2.6"
     tiny-commit-walker "^1.1.2"
 
-reg-publish-s3-plugin@^0.12.1:
+reg-publish-s3-plugin@0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/reg-publish-s3-plugin/-/reg-publish-s3-plugin-0.12.1.tgz#eaf94174d553a97c3cff20be02a52ae511e3dcc5"
   integrity sha512-xy8y/GOLNl/apn0aAsVIzHMfCMeArn0cjT5KFNIZrGh1O5iAlHObcPoz4r8TNVAs2eEJGEnh7l+jsdsedKGJ4Q==
@@ -13050,7 +13050,7 @@ reg-suit-util@^0.12.1:
     mime-types "^2.1.27"
     mkdirp "^1.0.4"
 
-reg-suit@^0.12.1:
+reg-suit@0.12.1:
   version "0.12.1"
   resolved "https://registry.yarnpkg.com/reg-suit/-/reg-suit-0.12.1.tgz#c6897c1e909d932673dc9ed93f0ce544b8c0262f"
   integrity sha512-aXVcRK7fVE582F+iv3VEJEsnJ3g7CfF1pjeSS+WbObCYBN+FucO3eMMq8AvgYDwhH7oc0eTBofW7Nc0Ko2zumg==
@@ -13700,7 +13700,7 @@ serve-static@1.15.0:
     parseurl "~1.3.3"
     send "0.18.0"
 
-serve@^14.1.2:
+serve@14.1.2:
   version "14.1.2"
   resolved "https://registry.yarnpkg.com/serve/-/serve-14.1.2.tgz#65d7a3cec5a0b876c46bb8927fabc27957c2e1e0"
   integrity sha512-luwVfJwbeE7dhCKeRU0vIBpt4bXdbAfzwsWJIQ5eqrIW2e+4nLWXbSlZ0WzelSFHQq+FlueOW6dr90jEewS9zw==
@@ -14109,7 +14109,7 @@ store2@^2.12.0:
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.13.2.tgz#01ad8802ca5b445b9c316b55e72645c13a3cd7e3"
   integrity sha512-CMtO2Uneg3SAz/d6fZ/6qbqqQHi2ynq6/KzMD/26gTkiEShCcpqFfTHgOxsE0egAq6SX3FmN4CeSqn8BzXQkJg==
 
-storycap@^3.1.9:
+storycap@3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/storycap/-/storycap-3.1.9.tgz#ae17604f6ff37f9ab5f831a5a2fa0300c8d1d81d"
   integrity sha512-/o6NbnwFS/afBQkot7xjDWVs/A8TKLyVjwkyhQ1ViEcg9y7sjjYsu5UzE4wUCBAOaqT0xxdOzmjoeaISTgSHzA==
