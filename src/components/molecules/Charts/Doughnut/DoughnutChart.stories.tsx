@@ -19,7 +19,7 @@ export const Default: ComponentStoryObj<typeof DoughnutChart> = {
   },
   parameters: {
     screenshot: {
-      delay: 3000,
+      delay: 5000,
     },
   },
 };
