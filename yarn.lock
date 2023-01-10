@@ -8927,10 +8927,10 @@ handler-agent@0.2.0:
   resolved "https://registry.yarnpkg.com/handler-agent/-/handler-agent-0.2.0.tgz#bb77cd70b60bd7073b5327a7c3dbaec9420165d4"
   integrity sha512-cUduQxa5p3TFtGmb55mrRbkk/3EJCsLSeFrCIuTakQHQlYVWXeW2L9IUQUHyoHLI4UgpBNaN2JrZ0He1jPu+vg==
 
-happy-dom@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-8.1.0.tgz#45b7d16e0e671b297aea90bc6e0c79bbabef34fd"
-  integrity sha512-R9NVb5815gpMFsldZF0wVSHw2uSobx6yitSkCdQPda1kwfAmVw4Ut8ZspxGHXkK6OA93SznldkcvrbhKFr6JcA==
+happy-dom@8.1.3:
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-8.1.3.tgz#e755f43fe249c81ae68d57e0d4d3e2be48143d42"
+  integrity sha512-XC0ZvAmMOfW56X7yw9IrBuVpHKRzVAMDbtoF4MmOHoe17r2zY6yTMhs+lrsz9KLGQUcFyDPianULPAOp1+OnVg==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"
