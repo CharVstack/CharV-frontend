@@ -16,13 +16,17 @@ export const HostStatusCard = () => {
 
   const cpuUsageRate = Math.ceil(host.cpu.percent);
   const memoryUsageRate = Math.ceil(host.memory.percent);
-  const storageUsageRate = Math.ceil(
-    host.storage_pools.reduce((sum, current) => ({ ...sum, used_size: sum.used_size + current.used_size })).used_size /
-      host.storage_pools.reduce((sum, current) => ({
-        ...sum,
-        total_size: sum.total_size + current.total_size,
-      })).total_size
-  );
+  let storageUsageRate = 0;
+  if (host.storage_pools.length !== 0) {
+    storageUsageRate = Math.ceil(
+      host.storage_pools.reduce((sum, current) => ({ ...sum, used_size: sum.used_size + current.used_size }))
+        .used_size /
+        host.storage_pools.reduce((sum, current) => ({
+          ...sum,
+          total_size: sum.total_size + current.total_size,
+        })).total_size
+    );
+  }
 
   const chartData: Charts = {
     CPU: { value: cpuUsageRate },

@@ -25,7 +25,7 @@ export const RunningVmsCard = () => {
     () => vmIds && Promise.all(vmIds.map((vmId) => apiClient.api.v1.vms._vmId(vmId).power.get()))
   );
 
-  const runningVms = vmsPowerData?.filter((vm) => vm.body.vm_power.state === 'RUNNING');
+  const runningVms = vmsPowerData?.filter((vm) => vm.body.vm_power.state === 'RUNNING') ?? [];
 
   return <BaseRunningVmsCard allVms={vmIds?.length} runningVms={runningVms?.length} />;
 };
