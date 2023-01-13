@@ -4,6 +4,7 @@ import { darkTheme } from '../src/utils/theme';
 import { HANDLERS } from '../src/lib/msw/handlers';
 import { mswDecorator, initialize } from 'msw-storybook-addon';
 import { withScreenshot } from 'storycap';
+import 'storycap/register';
 
 const prefix = import.meta.env.VITE_STORYBOOK_PREFIX;
 

@@ -1,7 +1,8 @@
-import { Stack, useTheme } from '@mui/material';
+import { Stack, useTheme, Button } from '@mui/material';
 import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { atom, useSetAtom, useAtomValue, useAtom } from 'jotai';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Vm } from '@api-hooks/v1/@types';
 import { LoadingSpinner } from '@components/molecules/Progress';
@@ -23,21 +24,33 @@ export const useSelectedVmReadOnlyAtom = () => useAtomValue(selectedVmAtom);
 export const useSelectedVmWriteOnlyAtom = () => useSetAtom(selectedVmAtom);
 export const useResetSelectedVmAtom = () => useSetAtom(resetSelectedVmAtom);
 
-const columns: GridColDef[] = [
-  { field: 'name', headerName: 'VM', minWidth: 288, flex: 1 },
-  {
-    field: 'status',
-    headerName: 'Status',
-    width: 192,
-    renderCell: (params: GridCellParams<string, Vm>) => <StatusColumn rowId={params.id} />,
-  },
-];
-
 export const InstanceTable = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data, error } = useAllVms();
   const [pageSize, setPageSize] = useState(10);
   const [selectedVm, setSelectedVm] = useSelectedVmWritableAtom();
+  const navigate = useNavigate();
+
+  const columns: GridColDef[] = useMemo(
+    () => [
+      { field: 'name', headerName: 'VM', minWidth: 288, flex: 1 },
+      {
+        field: 'status',
+        headerName: 'Status',
+        width: 192,
+        renderCell: (params: GridCellParams<string, Vm>) => <StatusColumn rowId={params.id} />,
+      },
+      {
+        field: 'console',
+        headerName: 'Console',
+        width: 56,
+        renderCell: (params: GridCellParams<string, Vm>) => (
+          <Button onClick={() => navigate(`/vnc?vmId=${params.id}`)}>Console</Button>
+        ),
+      },
+    ],
+    [navigate]
+  );
 
   const {
     palette: {
@@ -67,6 +80,7 @@ export const InstanceTable = () => {
       rowsPerPageOptions={[10, 25, 50]}
       checkboxSelection
       autoHeight
+      disableSelectionOnClick
       onSelectionModelChange={(selected) => {
         setSelectedVm(selected.map((v) => v.toString()));
       }}
