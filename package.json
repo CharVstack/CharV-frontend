@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/core": "7.20.12",
     "@hookform/devtools": "4.3.0",
-    "@squoosh/lib": "0.4.1",
+    "@squoosh/lib": "0.5.3",
     "@stoplight/prism-cli": "4.10.5",
     "@storybook/addon-a11y": "6.5.15",
     "@storybook/addon-actions": "6.5.15",
