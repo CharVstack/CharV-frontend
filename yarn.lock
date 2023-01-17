@@ -12979,7 +12979,7 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-vnc@^0.5.7:
+react-vnc@0.5.7:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/react-vnc/-/react-vnc-0.5.7.tgz#2ea303f37371641ee20e44e0a59dc94585824416"
   integrity sha512-RceU/kEbsQgv2wLjsAbW6J2TmXWSYzsxCHoYQckXLtk0NKDp53MjOKBVNLcecl1OYcGrjQRjoz5DRtbfLp22Og==
