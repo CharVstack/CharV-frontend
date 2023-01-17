@@ -14154,11 +14154,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-"squoosh@github:GoogleChromeLabs/squoosh#42594277fd3d1f31b60103eb05cc8df62a82fb86":
+"squoosh@github:GoogleChromeLabs/squoosh#583117697e9f401fa71a89f3f048c9a8566b1a2a":
   version "2.0.0"
-  resolved "https://codeload.github.com/GoogleChromeLabs/squoosh/tar.gz/42594277fd3d1f31b60103eb05cc8df62a82fb86"
-  dependencies:
-    wasm-feature-detect "^1.2.11"
+  uid "583117697e9f401fa71a89f3f048c9a8566b1a2a"
+  resolved "https://codeload.github.com/GoogleChromeLabs/squoosh/tar.gz/583117697e9f401fa71a89f3f048c9a8566b1a2a"
 
 sshpk@^1.7.0:
   version "1.17.0"
