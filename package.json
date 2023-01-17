@@ -38,7 +38,7 @@
     "react": "18.2.0",
     "react-chartjs-2": "5.1.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "7.41.5",
+    "react-hook-form": "7.42.1",
     "react-router-dom": "6.5.0",
     "react-vnc": "0.5.7",
     "swr": "2.0.0",
