@@ -21,8 +21,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Fonts
-        run: sudo apt-get install -y fonts-noto
+      - uses: awalsh128/cache-apt-pkgs-action@v1
+        with:
+          packages: fonts-noto
+          version: 1.0
 
       - name: Setup node
         uses: actions/setup-node@v3
