@@ -1,4 +1,4 @@
-import { useAtomsDevtools } from 'jotai/devtools';
+import { useAtomsDevtools } from 'jotai-devtools';
 
 export default () => {
   useAtomsDevtools('global');

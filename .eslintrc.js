@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ["plugin:react/recommended", "airbnb", "airbnb/hooks", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "prettier", "plugin:storybook/recommended"],
+  extends: ["plugin:react/recommended", "airbnb", "airbnb/hooks", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "prettier", "plugin:storybook/recommended", "plugin:jsx-a11y/recommended"],
   overrides: [{
     files: ['**/__tests__/**/*.+(ts|tsx|js)', '**/?(*.)+(spec|test).+(ts|tsx|js)'],
     extends: ['plugin:jest-dom/recommended', 'plugin:testing-library/react']
@@ -18,7 +18,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"]
   },
-  plugins: ["react", "@typescript-eslint", "unused-imports", "jest-dom", "testing-library"],
+  plugins: ["react", "@typescript-eslint", "unused-imports", "jest-dom", "testing-library", "jsx-a11y", "deprecation"],
   ignorePatterns: [".eslintrc.js", "vite.config.ts", "vitest.setup.ts", "squoosh.ts"],
   rules: {
     "no-use-before-define": "off",

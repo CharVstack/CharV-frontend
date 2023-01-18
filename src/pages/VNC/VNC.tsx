@@ -3,11 +3,14 @@ import { useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { VncScreen } from 'react-vnc';
 
+import { useIsProduction } from '@lib/isProduction';
+
 export const VNC = () => {
   const vncScreenRef = useRef<React.ElementRef<typeof VncScreen>>(null);
   const { search } = useLocation();
   const query2 = new URLSearchParams(search);
   const vmId = query2.get('vmId');
+  const isProduction = useIsProduction();
   if (!vmId) {
     return null;
   }
@@ -19,7 +22,7 @@ export const VNC = () => {
         url={`${backendOrigin}ws/vnc/${vmId}`}
         retryDuration={5000}
         scaleViewport
-        debug
+        debug={!isProduction}
         ref={vncScreenRef}
         style={{
           width: '100vw',
