@@ -1,10 +1,10 @@
 import { getSWRDefaultKey } from '@aspida/swr';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { Box } from '@mui/material';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import {
+  KeyboardArrowUp as KeyboardArrowUpIcon,
+  KeyboardArrowDown as KeyboardArrowDownIcon,
+  PowerSettingsNew as PowerSettingsNewIcon,
+} from '@mui/icons-material';
+import { Box, Button, Menu, MenuItem } from '@mui/material';
 import memoizeOne from 'memoize-one';
 import { useState, useMemo } from 'react';
 import { mutate } from 'swr';
@@ -69,7 +69,7 @@ export const BaseVmControlMenu = ({ vms }: BaseVmControlMenuProps) => {
         variant="contained"
         onClick={handleClick}
         color="success"
-        endIcon={<KeyboardArrowDownIcon />}
+        endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
         startIcon={<PowerSettingsNewIcon />}
       >
         Actions
