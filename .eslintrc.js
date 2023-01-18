@@ -18,7 +18,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ["./tsconfig.json"]
   },
-  plugins: ["react", "@typescript-eslint", "unused-imports", "jest-dom", "testing-library", "jsx-a11y"],
+  plugins: ["react", "@typescript-eslint", "unused-imports", "jest-dom", "testing-library", "jsx-a11y", "deprecation"],
   ignorePatterns: [".eslintrc.js", "vite.config.ts", "vitest.setup.ts", "squoosh.ts"],
   rules: {
     "no-use-before-define": "off",
