@@ -7664,7 +7664,7 @@ eslint-module-utils@^2.7.4:
   dependencies:
     debug "^3.2.7"
 
-eslint-plugin-deprecation@^1.3.3:
+eslint-plugin-deprecation@1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/eslint-plugin-deprecation/-/eslint-plugin-deprecation-1.3.3.tgz#065b5d36ff220afe139f2b19af57454a13464731"
   integrity sha512-Bbkv6ZN2cCthVXz/oZKPwsSY5S/CbgTLRG4Q2s2gpPpgNsT0uJ0dB5oLNiWzFYY8AgKX4ULxXFG1l/rDav9QFA==
@@ -10371,7 +10371,7 @@ joi@^17.6.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jotai-devtools@^0.1.0:
+jotai-devtools@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/jotai-devtools/-/jotai-devtools-0.1.0.tgz#db7c1f26136ed15ed8906bb1bedd92204ec06efc"
   integrity sha512-tHo22cXxl1mljcOJ2k17tOj25/0myvMdVAtAM6jiw3MsD5e9YoHAGNVFbTO3LrZhviDH4rcR/NknsNAI2XH28A==
