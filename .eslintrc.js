@@ -44,7 +44,7 @@ module.exports = {
         "pattern": "@src/**",
         "group": "parent",
         "position": "before"
-      }]
+      }],
     }],
     "react/jsx-filename-extension": ["error", {
       extensions: [".jsx", ".tsx"]
@@ -87,7 +87,8 @@ module.exports = {
     ],
     "no-underscore-dangle": [
       0
-    ]
+    ],
+    "deprecation/deprecation": "error"
   },
   settings: {
     'import/resolver': {
