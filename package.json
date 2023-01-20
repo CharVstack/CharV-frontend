@@ -92,7 +92,7 @@
     "reg-notify-github-plugin": "0.12.1",
     "reg-publish-s3-plugin": "0.12.1",
     "reg-suit": "0.12.1",
-    "rimraf": "4.1.0",
+    "rimraf": "4.1.1",
     "rollup-plugin-visualizer": "5.9.0",
     "serve": "14.1.2",
     "simple-git-hooks": "2.8.1",
