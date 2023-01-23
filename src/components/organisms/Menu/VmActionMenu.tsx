@@ -1,5 +1,5 @@
 import { getSWRDefaultKey } from '@aspida/swr';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { Box } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -13,7 +13,7 @@ import { VmPowerActions } from '@api-hooks/v1/@types';
 import { apiClient } from '@lib/apiClient';
 
 type Props = {
-  vm: string;
+  vmId: string;
 };
 
 export const useSubmitHandlerFactory = (vm: string, handleClose: () => void) => {
@@ -36,7 +36,7 @@ export const useSubmitHandlerFactory = (vm: string, handleClose: () => void) => 
   return submitHandlerFactory;
 };
 
-export const VmActionMenu = ({ vm }: Props) => {
+export const VmActionMenu = ({ vmId }: Props) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -50,7 +50,7 @@ export const VmActionMenu = ({ vm }: Props) => {
 
   const jump = useCallback((to: string) => () => navigate(to), [navigate]);
 
-  const handleSubmitFactory = useSubmitHandlerFactory(vm, handleClose);
+  const handleSubmitFactory = useSubmitHandlerFactory(vmId, handleClose);
 
   return (
     <>
@@ -68,7 +68,7 @@ export const VmActionMenu = ({ vm }: Props) => {
           <MenuItem onClick={handleSubmitFactory('reboot')} disableRipple>
             Restart
           </MenuItem>
-          <MenuItem onClick={jump(`/vnc?vmId=${vm}`)} disableRipple>
+          <MenuItem onClick={jump(`/vnc?vmId=${vmId}`)} disableRipple>
             Console
           </MenuItem>
         </Box>

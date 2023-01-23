@@ -1,5 +1,5 @@
 import { getSWRDefaultKey } from '@aspida/swr';
-import Dangerous from '@mui/icons-material/Dangerous';
+import { Dangerous as DangerousIcon } from '@mui/icons-material';
 import { Button } from '@mui/material';
 import { useCallback } from 'react';
 import { mutate } from 'swr';
@@ -32,7 +32,7 @@ export const BaseDeleteVmButton = ({ vms }: { vms: string[] }) => {
   const handleDelete = useDeleteHandler(vms);
   return (
     <Button
-      startIcon={<Dangerous />}
+      startIcon={<DangerousIcon />}
       disabled={vms.length === 0}
       variant="contained"
       color="error"

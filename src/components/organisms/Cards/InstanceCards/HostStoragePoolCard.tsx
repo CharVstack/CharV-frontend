@@ -1,10 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material';
 
 import { StoragePool } from '@api-hooks/v1/@types';
+import { useHost } from '@aspida/v1';
 import bgImg from '@assets/images/pool-image.jpg';
 import { Card, CardContentBox, CardAsideContentBox } from '@components/molecules/Card';
 import { LoadingSpinner } from '@components/molecules/Progress';
-import { useHost } from '@hooks/api/v1';
 import { calcUnitSize } from '@utils/CalcUnitSize';
 
 const AsideContent = ({

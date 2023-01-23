@@ -1,4 +1,4 @@
-import HomeIcon from '@mui/icons-material/Home';
+import { Home as HomeIcon } from '@mui/icons-material';
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
 
 import { DrawerLinkItem } from './DrawerLink';
@@ -7,8 +7,8 @@ export default { component: DrawerLinkItem } as ComponentMeta<typeof DrawerLinkI
 
 export const Default: ComponentStoryObj<typeof DrawerLinkItem> = {
   args: {
-    path: '/',
-    name: 'home',
+    to: '/',
+    text: 'home',
     icon: <HomeIcon />,
   },
 };

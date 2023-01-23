@@ -1,34 +1,53 @@
 import { Container } from '@mui/material';
-import { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRef, useState, useCallback } from 'react';
 import { VncScreen } from 'react-vnc';
 
+import { Head } from '@components/atoms/Head';
 import { useIsProduction } from '@lib/isProduction';
 
-export const VNC = () => {
+type Props = {
+  vmId: string;
+};
+
+export const VNC = ({ vmId }: Props) => {
   const vncScreenRef = useRef<React.ElementRef<typeof VncScreen>>(null);
-  const { search } = useLocation();
-  const query2 = new URLSearchParams(search);
-  const vmId = query2.get('vmId');
   const isProduction = useIsProduction();
-  if (!vmId) {
-    return null;
-  }
   const backendOrigin = import.meta.env.VITE_BACKEND_BASE_URL.replace(/^http/, 'ws');
+  const [desktopName, setDesktopName] = useState<string | undefined>('');
+
+  const onDesktopName = useCallback((e?: { detail: { name: string } }) => {
+    setDesktopName(e?.detail.name);
+  }, []);
+
+  const [isConnected, setIsConnected] = useState(false);
+
+  const onConnect = useCallback(() => {
+    setIsConnected(true);
+  }, []);
+
+  const onDisConnect = useCallback(() => {
+    setIsConnected(false);
+  }, []);
 
   return (
-    <Container maxWidth={false} disableGutters>
-      <VncScreen
-        url={`${backendOrigin}ws/vnc/${vmId}`}
-        retryDuration={5000}
-        scaleViewport
-        debug={!isProduction}
-        ref={vncScreenRef}
-        style={{
-          width: '100vw',
-          height: '75vh',
-        }}
-      />
-    </Container>
+    <>
+      <Head title={`VNC${desktopName ? `(${desktopName})` : ''} - ${isConnected ? 'connected' : 'disconnected'}`} />
+      <Container maxWidth={false} disableGutters>
+        <VncScreen
+          url={`${backendOrigin}ws/vnc/${vmId}`}
+          retryDuration={5000}
+          scaleViewport
+          debug={!isProduction}
+          ref={vncScreenRef}
+          onDesktopName={onDesktopName}
+          onConnect={onConnect}
+          onDisconnect={onDisConnect}
+          style={{
+            width: '100vw',
+            height: '75vh',
+          }}
+        />
+      </Container>
+    </>
   );
 };

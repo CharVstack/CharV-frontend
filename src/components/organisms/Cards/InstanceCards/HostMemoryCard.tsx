@@ -1,16 +1,16 @@
 import { Grid, Typography, useTheme } from '@mui/material';
 
+import { useHost } from '@aspida/v1';
 import bgImg from '@assets/images/memory-image.jpg';
 import { Card, CardContentBox, CardAsideContentBox } from '@components/molecules/Card';
 import { Charts, DoughnutChart, DoughnutChartProps } from '@components/molecules/Charts';
 import { LoadingSpinner } from '@components/molecules/Progress';
-import { useHost } from '@hooks/api/v1';
 import { calcUnitSize } from '@utils/CalcUnitSize';
 
 export const HostMemoryCard = () => {
   const { data } = useHost();
   const theme = useTheme();
-  const freeVmsColor: string = theme.palette.grey['800'];
+  const usedMemoryColor: string = theme.palette.grey['800'];
   if (data === undefined) {
     return <LoadingSpinner open />;
   }
@@ -26,8 +26,8 @@ export const HostMemoryCard = () => {
   }
 
   const hostMemoryData: Charts = {
-    Used: { value: usedMemorySize },
-    Free: { value: totalMemorySize - usedMemorySize, color: freeVmsColor },
+    Used: { value: usedMemorySize, color: usedMemoryColor },
+    Free: { value: totalMemorySize - usedMemorySize },
   };
 
   const chartOptions: DoughnutChartProps['options'] = {

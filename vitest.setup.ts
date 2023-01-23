@@ -6,14 +6,12 @@ import { server } from './src/lib/msw/server';
 beforeAll(() => {
   // @ts-ignore
   setGlobalConfig(globalStorybookConfig);
-  server.listen();
+  return server.listen();
 });
 
 afterEach(() => {
   server.resetHandlers();
-  vitest.clearAllMocks();
+  return vitest.clearAllMocks();
 });
 
-afterAll(() => {
-  server.close();
-});
+afterAll(() => server.close());
