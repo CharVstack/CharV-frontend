@@ -32,7 +32,7 @@ export const UpdateVmForm = ({ isConfirm }: BaseUpdateVmFormProps) => (
       name="name"
       variant="standard"
       label="名前"
-      inputProps={{
+      InputProps={{
         readOnly: isConfirm,
       }}
       InputLabelProps={{ shrink: true }}
@@ -42,8 +42,8 @@ export const UpdateVmForm = ({ isConfirm }: BaseUpdateVmFormProps) => (
       name="cpu"
       variant="standard"
       label="CPU"
-      inputProps={{
-        endadornment: <InputAdornment position="end">コア</InputAdornment>,
+      InputProps={{
+        endAdornment: <InputAdornment position="end">コア</InputAdornment>,
         readOnly: isConfirm,
         autoComplete: 'off',
       }}
@@ -54,8 +54,8 @@ export const UpdateVmForm = ({ isConfirm }: BaseUpdateVmFormProps) => (
       type="number"
       variant="standard"
       label="メモリ"
-      inputProps={{
-        endadornment: <InputAdornment position="end">MB</InputAdornment>,
+      InputProps={{
+        endAdornment: <InputAdornment position="end">MB</InputAdornment>,
         readOnly: isConfirm,
         autoComplete: 'off',
       }}

@@ -22,12 +22,18 @@ if (import.meta.env.MODE !== 'test') {
 
 export const decorators = [
   (Story) => {
-    return createElement(MemoryRouter, {
-      children: createElement(ThemeProvider, {
-        theme: darkTheme,
-        children: [createElement(CssBaseline), createElement(Story)],
-      }),
-    });
+    return createElement(
+      MemoryRouter,
+      null,
+      createElement(
+        ThemeProvider,
+        {
+          theme: darkTheme,
+        },
+        createElement(CssBaseline),
+        createElement(Story)
+      )
+    );
   },
   mswDecorator,
   withScreenshot,

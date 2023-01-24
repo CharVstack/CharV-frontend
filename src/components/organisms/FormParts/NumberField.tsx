@@ -3,12 +3,12 @@ import { useCallback } from 'react';
 import { useFormContext, UseControllerProps, Controller } from 'react-hook-form';
 
 export type NumberFieldProps = Pick<UseControllerProps, 'name'> &
-  Pick<MUITextFieldProps, 'variant' | 'label' | 'inputProps' | 'InputLabelProps' | 'type'>;
+  Pick<MUITextFieldProps, 'variant' | 'label' | 'InputProps' | 'InputLabelProps' | 'type'>;
 
-export const NumberField = ({ name, inputProps, label, variant, type }: NumberFieldProps) => {
+export const NumberField = ({ name, InputProps, label, variant, type }: NumberFieldProps) => {
   const { control } = useFormContext();
-  const mergedInputProps: MUITextFieldProps['inputProps'] = {
-    ...inputProps,
+  const mergedInputProps: MUITextFieldProps['InputProps'] = {
+    ...InputProps,
     ...{
       inputMode: 'numeric',
       pattern: '[0-9]*',
@@ -26,7 +26,7 @@ export const NumberField = ({ name, inputProps, label, variant, type }: NumberFi
           helperText={fieldState.error?.message}
           variant={variant}
           label={label}
-          inputProps={mergedInputProps}
+          InputProps={mergedInputProps}
           InputLabelProps={{ shrink: true }}
           type={type}
           onChange={(event) => field.onChange(onChange(event.target.value))}
