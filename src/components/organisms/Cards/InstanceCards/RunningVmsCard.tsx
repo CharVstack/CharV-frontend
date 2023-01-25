@@ -3,11 +3,11 @@ import { Grid, Typography, useTheme } from '@mui/material';
 import { useMemo } from 'react';
 import useSWR from 'swr';
 
+import { useAllVms } from '@aspida/v1';
 import bgImg from '@assets/images/host-image.jpg';
 import { Card, CardContentBox, CardAsideContentBox } from '@components/molecules/Card';
 import { Charts, DoughnutChart } from '@components/molecules/Charts';
 import { LoadingSpinner } from '@components/molecules/Progress';
-import { useAllVms } from '@hooks/api/v1';
 import { apiClient } from '@lib/apiClient';
 
 export type RunningVmsCardProps = {

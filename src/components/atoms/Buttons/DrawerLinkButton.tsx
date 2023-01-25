@@ -1,23 +1,27 @@
-import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { ListItem, ListItemButton, ListItemIcon, ListItemText, useTheme } from '@mui/material';
 import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export type DrawerLinksProps = {
-  path: string;
-  name: string;
+  to: string;
+  text: string;
   icon: ReactNode;
-  onClick: React.MouseEventHandler;
-  textColor: string;
   textDecoration: React.CSSProperties['textDecoration'];
 };
 
-export const DrawerLinkButton = ({ path, name, icon, onClick, textColor, textDecoration }: DrawerLinksProps) => (
-  <Link role="link" onClick={onClick} to={path} style={{ color: textColor, textDecoration }}>
-    <ListItem disablePadding>
-      <ListItemButton>
-        <ListItemIcon>{icon}</ListItemIcon>
-        <ListItemText primary={name} />
-      </ListItemButton>
-    </ListItem>
-  </Link>
-);
+export const DrawerLinkButton = ({ to, text, icon, textDecoration }: DrawerLinksProps) => {
+  const theme = useTheme();
+  const textColor = theme.palette.text.primary;
+  const location = useLocation();
+  const reg = new RegExp(`^${to}/?.*`);
+  return (
+    <Link role="link" to={to} style={{ color: textColor, textDecoration }}>
+      <ListItem disablePadding>
+        <ListItemButton selected={reg.test(location.pathname)}>
+          <ListItemIcon>{icon}</ListItemIcon>
+          <ListItemText primary={text} />
+        </ListItemButton>
+      </ListItem>
+    </Link>
+  );
+};

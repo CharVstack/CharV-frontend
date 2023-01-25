@@ -1,4 +1,3 @@
-/// <reference types="vitest" />
 import { defineConfig } from 'vitest/config';
 import tsConfigPaths from 'vite-tsconfig-paths';
 import react from '@vitejs/plugin-react';

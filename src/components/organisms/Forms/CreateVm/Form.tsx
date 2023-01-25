@@ -3,7 +3,7 @@ import { InputAdornment, Stack } from '@mui/material';
 import { useForm, useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 
-import { TextField } from '@components/organisms/FormParts';
+import { NumberField, TextField } from '@components/organisms/FormParts';
 
 import { createVmFormSchema } from './schemas';
 
@@ -38,8 +38,7 @@ export const CreateVmForm = ({ isConfirm }: BaseCreateVmFormProps) => (
       }}
       InputLabelProps={{ shrink: true }}
     />
-    <TextField
-      type="number"
+    <NumberField
       name="cpu"
       variant="standard"
       label="CPU"
@@ -49,11 +48,9 @@ export const CreateVmForm = ({ isConfirm }: BaseCreateVmFormProps) => (
         autoComplete: 'off',
       }}
       InputLabelProps={{ shrink: true }}
-      onChange={(value) => Number(value)}
     />
-    <TextField
+    <NumberField
       name="memory"
-      type="number"
       variant="standard"
       label="メモリ"
       InputProps={{
@@ -62,7 +59,6 @@ export const CreateVmForm = ({ isConfirm }: BaseCreateVmFormProps) => (
         autoComplete: 'off',
       }}
       InputLabelProps={{ shrink: true }}
-      onChange={(value) => Number(value)}
     />
   </Stack>
 );

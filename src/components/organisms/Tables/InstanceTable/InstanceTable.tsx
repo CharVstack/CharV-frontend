@@ -1,15 +1,15 @@
-import { useTheme } from '@mui/material';
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import { Typography } from '@mui/material';
+import { DataGrid, GridCellParams, GridColumns } from '@mui/x-data-grid';
 import { atom, useSetAtom, useAtomValue, useAtom } from 'jotai';
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Vm } from '@api-hooks/v1/@types';
+import { useAllVms } from '@aspida/v1';
 import { LoadingSpinner } from '@components/molecules/Progress';
 import { StatusColumn } from '@components/organisms/Columns';
 import { HookErrorDialog } from '@components/organisms/Dialogs';
 import { VmActionMenu } from '@components/organisms/Menu';
-import { useAllVms } from '@hooks/api/v1';
 
 const baseAtom = atom<string[]>([]);
 
@@ -31,47 +31,42 @@ export const InstanceTable = () => {
   const [pageSize, setPageSize] = useState(10);
   const [selectedVm, setSelectedVm] = useSelectedVmWritableAtom();
 
-  const {
-    palette: {
-      grey: { '900': bgColor },
-      common: { white: fgColor },
-    },
-  } = useTheme();
-
-  const columns: GridColDef[] = useMemo(
+  const columns: GridColumns = useMemo(
     () => [
       {
         field: 'name',
-        headerName: 'VM',
-        minWidth: 288,
-        flex: 1,
+        renderHeader: () => <Typography>VM</Typography>,
         sortable: false,
         hideable: false,
+        flex: 1,
         renderCell: (params: GridCellParams<string, Vm>) => (
-          <Link style={{ textDecoration: 'none', color: fgColor }} to={`/vms/${params.id.toString()}`}>
-            {params.value}
+          <Link style={{ textDecoration: 'none' }} to={`/vms/${params.id.toString()}`}>
+            <Typography sx={{ color: (theme) => theme.palette.text.primary }}>{params.value}</Typography>
           </Link>
         ),
       },
       {
         field: 'status',
-        headerName: 'Status',
-        width: 192,
+        renderHeader: () => <Typography>Status</Typography>,
         filterable: false,
         sortable: false,
         hideable: false,
+        flex: 0.3,
         renderCell: (params: GridCellParams<string, Vm>) => <StatusColumn rowId={params.id} />,
       },
       {
         field: 'actions',
         headerName: 'Actions',
+        headerAlign: 'center',
+        align: 'center',
+        renderHeader: () => <Typography>Actions</Typography>,
         sortable: false,
         hideable: false,
         filterable: false,
-        renderCell: (params: GridCellParams<string, Vm>) => <VmActionMenu vm={params.id.toString()} />,
+        renderCell: (params: GridCellParams<string, Vm>) => <VmActionMenu vmId={params.id.toString()} />,
       },
     ],
-    [fgColor]
+    []
   );
 
   if (data === undefined) {
@@ -82,22 +77,26 @@ export const InstanceTable = () => {
   }
 
   return (
-    <DataGrid
-      sx={{ backgroundColor: bgColor, boxShadow: 1 }}
-      columns={columns}
-      rows={data.vms}
-      getRowId={(row: Vm) => row.metadata.id}
-      pageSize={pageSize}
-      onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-      rowsPerPageOptions={[10, 25, 50]}
-      checkboxSelection
-      autoHeight
-      disableSelectionOnClick
-      hideFooter
-      onSelectionModelChange={(selected) => {
-        setSelectedVm(selected.map((v) => v.toString()));
-      }}
-      selectionModel={selectedVm}
-    />
+    <div style={{ display: 'flex' }}>
+      <div style={{ flexGrow: 1 }}>
+        <DataGrid
+          sx={{ backgroundColor: (theme) => theme.palette.grey[900], boxShadow: 1 }}
+          columns={columns}
+          rows={data.vms}
+          getRowId={(row: Vm) => row.metadata.id}
+          pageSize={pageSize}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          rowsPerPageOptions={[10, 25, 50]}
+          checkboxSelection
+          autoHeight
+          disableSelectionOnClick
+          hideFooter
+          onSelectionModelChange={(selected) => {
+            setSelectedVm(selected.map((v) => v.toString()));
+          }}
+          selectionModel={selectedVm}
+        />
+      </div>
+    </div>
   );
 };

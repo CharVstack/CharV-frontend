@@ -1,6 +1,6 @@
 import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
-import { userEvent, waitFor, screen } from '@storybook/testing-library';
+import { userEvent, waitFor, within } from '@storybook/testing-library';
 
 import schema from '@openapi-spec/v1.json';
 
@@ -26,11 +26,12 @@ export const Open: ComponentStoryObj<typeof VmControlMenu> = {
         .vms[0].metadata.id,
     ],
   },
-  play: async () => {
-    const button = screen.getByRole<HTMLButtonElement>('button');
+  play: async ({ canvasElement }) => {
+    const body = within(canvasElement.ownerDocument.body);
+    const button = body.getByRole<HTMLButtonElement>('button');
     userEvent.click(button);
     await waitFor(() => {
-      const menu = screen.getByRole<HTMLMenuElement>('menu');
+      const menu = body.getByRole<HTMLMenuElement>('menu');
       expect(menu.hidden).toBeFalsy();
     });
   },

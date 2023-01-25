@@ -1,5 +1,4 @@
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import CreateIcon from '@mui/icons-material/Create';
+import { AddTask as AddTaskIcon, Create as CreateIcon } from '@mui/icons-material';
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useFormContext } from 'react-hook-form';
 

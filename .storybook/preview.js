@@ -1,33 +1,29 @@
+import { createElement } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
 import { MemoryRouter } from 'react-router-dom';
-import { darkTheme } from '../src/utils/theme';
+import { darkTheme } from '../src/styles';
 import { HANDLERS } from '../src/lib/msw/handlers';
 import { mswDecorator, initialize } from 'msw-storybook-addon';
 import { withScreenshot } from 'storycap';
 import 'storycap/register';
 
-const prefix = import.meta.env.VITE_STORYBOOK_PREFIX;
-
 if (import.meta.env.MODE !== 'test') {
-  initialize({
-    serviceWorker:
-      prefix !== undefined
-        ? {
-            url: `/${prefix}mockServiceWorker.js`,
-          }
-        : {},
-  });
+  initialize();
 }
 
 export const decorators = [
   (Story) => {
-    return (
-      <MemoryRouter>
-        <ThemeProvider theme={darkTheme}>
-          <CssBaseline />
-          <Story />
-        </ThemeProvider>
-      </MemoryRouter>
+    return createElement(
+      MemoryRouter,
+      null,
+      createElement(
+        ThemeProvider,
+        {
+          theme: darkTheme,
+        },
+        createElement(CssBaseline),
+        createElement(Story)
+      )
     );
   },
   mswDecorator,

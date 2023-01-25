@@ -1,19 +1,20 @@
-import { Container, Stack } from '@mui/material';
+import { Container, Box } from '@mui/material';
 
-import { DeleteVmButton } from '@components/molecules/Buttons';
-import { CreateNewVmButton } from '@components/organisms/Buttons';
+import { Head } from '@components/atoms/Head';
+import { DeleteVmButton, CreateNewVmButton } from '@components/organisms/Buttons';
 import { CreateVmDialog } from '@components/organisms/Dialogs';
 import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
 import { InstanceTable } from '@components/organisms/Tables';
 
 export const VMs = () => (
   <>
+    <Head title="VM一覧" />
     <Container>
-      <Stack sx={{ mb: 1 }} direction="row" spacing={1} justifyContent="end">
+      <Box sx={{ display: 'flex', justifyContent: 'right', gap: '1vw', pb: '1vh' }}>
         <CreateNewVmButton />
         <VmControlMenu />
         <DeleteVmButton />
-      </Stack>
+      </Box>
       <InstanceTable />
     </Container>
     <CreateVmDialog />

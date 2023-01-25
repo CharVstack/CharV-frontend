@@ -1,10 +1,10 @@
 import { useTheme } from '@mui/material';
 import { ChartOptions } from 'chart.js';
 
+import { useHost } from '@aspida/v1';
 import { Card, CardContentBox } from '@components/molecules/Card';
 import { BarChart, Charts } from '@components/molecules/Charts';
 import { LoadingSpinner } from '@components/molecules/Progress';
-import { useHost } from '@hooks/api/v1';
 
 export const HostStatusCard = () => {
   const { data } = useHost();
@@ -56,6 +56,7 @@ export const HostStatusCard = () => {
     plugins: {
       tooltip: {
         callbacks: {
+          title: (context) => context.map((item) => `${item.label} utilization`),
           label: (context) => Intl.NumberFormat([], { style: 'unit', unit: 'percent' }).format(context.parsed.x),
         },
       },

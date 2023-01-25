@@ -1,4 +1,5 @@
-import { CssBaseline, createTheme, ThemeProvider } from '@mui/material';
+import { CssBaseline, createTheme, ThemeProvider, Theme as MUITheme } from '@mui/material';
+import { deepmerge } from '@mui/utils';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { ReactNode } from 'react';
 
@@ -10,17 +11,35 @@ const toggleThemeAtom = atom(null, (get, set) => set(baseAtom, get(baseAtom) ===
 export const useTheme = () => useAtomValue(themeAtom);
 export const useToggleTheme = () => useSetAtom(toggleThemeAtom);
 
-export const lightTheme = createTheme({
-  palette: {
-    mode: 'light',
-  },
-});
+type DeepPartial<T> = T extends object ? { [P in keyof T]?: DeepPartial<T[P]> } : T;
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
+const commonSettings: DeepPartial<MUITheme> = {
+  zIndex: {
+    drawer: 10,
   },
-});
+};
+
+export const lightTheme = createTheme(
+  deepmerge(
+    {
+      palette: {
+        mode: 'light',
+      },
+    },
+    commonSettings
+  )
+);
+
+export const darkTheme = createTheme(
+  deepmerge(
+    {
+      palette: {
+        mode: 'dark',
+      },
+    },
+    commonSettings
+  )
+);
 
 export const Theme = ({ children }: { children: ReactNode }) => {
   const theme = useTheme();

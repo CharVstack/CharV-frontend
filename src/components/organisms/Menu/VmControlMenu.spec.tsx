@@ -5,9 +5,8 @@ import { render } from '@testing-library/react';
 import * as stories from './VmControlMenu.stories';
 
 describe('VmControlMenu', () => {
+  const { Default, Disabled, Open } = composeStories(stories);
   describe('Static', () => {
-    const { Default, Disabled } = composeStories(stories);
-
     test('ボタンが有効', () => {
       const { container } = render(<Default />);
       const canvas = within(container);
@@ -19,6 +18,12 @@ describe('VmControlMenu', () => {
       const canvas = within(container);
       const button = canvas.getByText<HTMLButtonElement>('Actions');
       expect(button.disabled).toBeTruthy();
+    });
+  });
+  describe('Interaction', () => {
+    test('メニュー展開', async () => {
+      const { container } = render(<Open />);
+      await Open.play({ canvasElement: container });
     });
   });
 });
