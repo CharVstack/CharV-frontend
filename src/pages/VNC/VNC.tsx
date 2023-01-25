@@ -12,7 +12,7 @@ type Props = {
 export const VNC = ({ vmId }: Props) => {
   const vncScreenRef = useRef<React.ElementRef<typeof VncScreen>>(null);
   const isProduction = useIsProduction();
-  const backendOrigin = import.meta.env.VITE_BACKEND_BASE_URL.replace(/^http/, 'ws');
+  const backendOrigin = import.meta.env.VITE_BACKEND_BASE_URL?.replace(/^http/, 'ws') ?? '';
   const [desktopName, setDesktopName] = useState<string | undefined>('');
 
   const onDesktopName = useCallback((e?: { detail: { name: string } }) => {
