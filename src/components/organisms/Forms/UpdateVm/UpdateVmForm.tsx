@@ -1,4 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { InputAdornment, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useForm, useFormContext } from 'react-hook-form';

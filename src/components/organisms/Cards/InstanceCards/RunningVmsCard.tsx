@@ -30,6 +30,9 @@ export const RunningVmsCard = () => {
   return <BaseRunningVmsCard allVms={vmIds?.length} runningVms={runningVms?.length} />;
 };
 
+/**
+ * @package
+ */
 export const BaseRunningVmsCard = ({ allVms, runningVms }: RunningVmsCardProps) => {
   const theme = useTheme();
   const stoppedVmsColor: string = theme.palette.grey['800'];

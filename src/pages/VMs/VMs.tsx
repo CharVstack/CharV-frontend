@@ -1,9 +1,9 @@
 import { Container, Box } from '@mui/material';
 
 import { Head } from '@components/atoms/Head';
-import { DeleteVmButton, CreateNewVmButton } from '@components/organisms/Buttons';
+import { CreateNewVmButton, DeleteVmsButton } from '@components/organisms/Buttons';
 import { CreateVmDialog } from '@components/organisms/Dialogs';
-import { VmControlMenu } from '@components/organisms/Menu/VmControlMenu';
+import { VmsControlMenu } from '@components/organisms/Menu';
 import { InstanceTable } from '@components/organisms/Tables';
 
 export const VMs = () => (
@@ -12,8 +12,8 @@ export const VMs = () => (
     <Container>
       <Box sx={{ display: 'flex', justifyContent: 'right', gap: '1vw', pb: '1vh' }}>
         <CreateNewVmButton />
-        <VmControlMenu />
-        <DeleteVmButton />
+        <VmsControlMenu />
+        <DeleteVmsButton />
       </Box>
       <InstanceTable />
     </Container>

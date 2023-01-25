@@ -1,5 +1,4 @@
-import { Box, Stack } from '@mui/material';
-import MUICard from '@mui/material/Card';
+import { Box, Stack, Card as MUICard } from '@mui/material';
 
 import { CardProps } from './CardProps';
 import { CardTitle } from './CardTitle';

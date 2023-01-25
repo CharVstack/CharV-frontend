@@ -1,9 +1,6 @@
 import { getSWRDefaultKey } from '@aspida/swr';
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { Box } from '@mui/material';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { Box, Button, Menu, MenuItem } from '@mui/material';
 import memoizeOne from 'memoize-one';
 import { useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';

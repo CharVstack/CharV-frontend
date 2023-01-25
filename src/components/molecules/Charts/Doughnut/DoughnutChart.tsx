@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material';
 import { ChartOptions, ChartData, Chart, ArcElement, Tooltip, Legend, LinearScale } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-import { Charts } from '../types/types';
+import { Charts } from '../types';
 
 Chart.register(ArcElement, Legend, Tooltip, LinearScale);
 

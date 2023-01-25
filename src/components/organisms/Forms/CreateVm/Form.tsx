@@ -1,4 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod/dist/zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { InputAdornment, Stack } from '@mui/material';
 import { useForm, useFormContext } from 'react-hook-form';
 import { z } from 'zod';
@@ -7,7 +7,7 @@ import { NumberField, TextField } from '@components/organisms/FormParts';
 
 import { createVmFormSchema } from './schemas';
 
-type BaseCreateVmFormProps = {
+type CreateVmFormProps = {
   isConfirm: boolean;
 };
 
@@ -26,7 +26,7 @@ export const useCreateVmForm = () =>
 
 export const useCreateVmFormContext = () => useFormContext<CreateVmFormInputs>();
 
-export const CreateVmForm = ({ isConfirm }: BaseCreateVmFormProps) => (
+export const CreateVmForm = ({ isConfirm }: CreateVmFormProps) => (
   <Stack spacing={2}>
     <TextField
       type="text"

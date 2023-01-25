@@ -4,9 +4,9 @@ import { Suspense } from 'react';
 import { useVmByVmId } from '@aspida/v1';
 import { Head } from '@components/atoms/Head';
 import { Loading } from '@components/atoms/Loading';
-import { ConsoleButton, BaseDeleteVmButton, EditVmButton } from '@components/organisms/Buttons';
+import { ConsoleButton, DeleteVmButton, EditVmButton } from '@components/organisms/Buttons';
 import { EditVmDialog } from '@components/organisms/Dialogs';
-import { BaseVmControlMenu } from '@components/organisms/Menu';
+import { VmControlMenu } from '@components/organisms/Menu';
 import { VMDetailTable } from '@components/organisms/Tables';
 
 type Props = {
@@ -23,8 +23,8 @@ export const VmDetail = ({ vmId }: Props) => {
       <Box sx={{ display: 'flex', justifyContent: 'right', gap: '1vw', pb: '1vh' }}>
         <ConsoleButton vmId={vmId} />
         <EditVmButton />
-        <BaseVmControlMenu vms={[vmId]} />
-        <BaseDeleteVmButton vms={[vmId]} />
+        <VmControlMenu vmId={vmId} />
+        <DeleteVmButton vmId={vmId} />
       </Box>
       <Head title={data.vm.name} />
       <VMDetailTable vm={data.vm} />
