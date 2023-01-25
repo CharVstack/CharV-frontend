@@ -1,6 +1,6 @@
 import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within, waitFor } from '@storybook/testing-library';
 import { FormProvider } from 'react-hook-form';
 
 import schema from '@openapi-spec/v1.json';
@@ -28,11 +28,16 @@ export const Default: ComponentStoryObj<typeof UpdateVmForm> = {
   args: {
     isConfirm: false,
   },
-  play: ({ canvasElement }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const name = canvas.getByLabelText<HTMLInputElement>('名前');
     const cpu = canvas.getByLabelText<HTMLInputElement>('CPU');
     const memory = canvas.getByLabelText<HTMLInputElement>('メモリ');
+    await waitFor(() => {
+      expect(name.value).toBe('ubuntu');
+      expect(cpu.value).toBe('4');
+      expect(memory.value).toBe('2048');
+    });
     userEvent.clear(name);
     userEvent.clear(cpu);
     userEvent.clear(memory);
@@ -45,9 +50,6 @@ export const Default: ComponentStoryObj<typeof UpdateVmForm> = {
     userEvent.clear(name);
     userEvent.clear(cpu);
     userEvent.clear(memory);
-    expect(name.value).toBe('');
-    expect(cpu.value).toBe('0');
-    expect(memory.value).toBe('0');
   },
 };
 
@@ -55,7 +57,7 @@ export const InConfirm: ComponentStoryObj<typeof UpdateVmForm> = {
   args: {
     isConfirm: true,
   },
-  play: ({ canvasElement }) => {
+  play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const name = canvas.getByLabelText<HTMLInputElement>('名前');
     const cpu = canvas.getByLabelText<HTMLInputElement>('CPU');
@@ -63,8 +65,10 @@ export const InConfirm: ComponentStoryObj<typeof UpdateVmForm> = {
     userEvent.type(name, 'foo');
     userEvent.type(cpu, '1');
     userEvent.type(memory, '1');
-    expect(name.value).toBe('');
-    expect(cpu.value).toBe('0');
-    expect(memory.value).toBe('0');
+    await waitFor(() => {
+      expect(name.value).toBe('ubuntu');
+      expect(cpu.value).toBe('4');
+      expect(memory.value).toBe('2048');
+    });
   },
 };

@@ -3,6 +3,8 @@ import { rest, ResponseResolver, RestContext, RestRequest } from 'msw';
 
 type A1<T> = T extends (a1: infer I) => unknown ? I : never;
 
+const withBase = (path: string) => new URL(path, import.meta.env.VITE_BACKEND_BASE_URL).toString();
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Post<Config = any> = {
   post: (option: {
@@ -57,28 +59,28 @@ export function restPost<T extends Post>(
   api: T,
   resolver: ResponseResolver<RestRequest<A1<T['post']>['body']>, RestContext, Awaited<ReturnType<T['post']>>['body']>
 ) {
-  return rest.post(api.$path(), resolver);
+  return rest.post(withBase(api.$path()), resolver);
 }
 
 export function restGet<T extends Get>(
   api: T,
   resolver: ResponseResolver<RestRequest<A1<T['get']>['body']>, RestContext, Awaited<ReturnType<T['get']>>['body']>
 ) {
-  return rest.get(api.$path(), resolver);
+  return rest.get(withBase(api.$path()), resolver);
 }
 
 export function restPut<T extends Put>(
   api: T,
   resolver: ResponseResolver<RestRequest<A1<T['put']>['body']>, RestContext, Awaited<ReturnType<T['put']>>['body']>
 ) {
-  return rest.put(api.$path(), resolver);
+  return rest.put(withBase(api.$path()), resolver);
 }
 
 export function restPatch<T extends Patch>(
   api: T,
   resolver: ResponseResolver<RestRequest<A1<T['patch']>['body']>, RestContext, Awaited<ReturnType<T['patch']>>['body']>
 ) {
-  return rest.patch(api.$path(), resolver);
+  return rest.patch(withBase(api.$path()), resolver);
 }
 
 export function restDelete<T extends Delete>(
@@ -89,5 +91,5 @@ export function restDelete<T extends Delete>(
     Awaited<ReturnType<T['delete']>>['body']
   >
 ) {
-  return rest.delete(api.$path(), resolver);
+  return rest.delete(withBase(api.$path()), resolver);
 }

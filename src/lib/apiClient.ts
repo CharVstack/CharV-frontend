@@ -1,6 +1,5 @@
-import aspida from '@aspida/axios';
-import axios from 'axios';
+import aspida from '@aspida/fetch';
 
 import api from '@api-hooks/v1/$api';
 
-export const apiClient = api(aspida(axios, { baseURL: import.meta.env.VITE_BACKEND_BASE_URL }));
+export const apiClient = api(aspida(fetch, { baseURL: import.meta.env.VITE_BACKEND_BASE_URL }));

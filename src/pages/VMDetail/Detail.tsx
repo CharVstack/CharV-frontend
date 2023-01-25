@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { Suspense } from 'react';
 
 import { useVmByVmId } from '@aspida/v1';
 import { Head } from '@components/atoms/Head';
@@ -28,7 +29,9 @@ export const VmDetail = ({ vmId }: Props) => {
       </Box>
       <Head title={data.vm.name} />
       <VMDetailTable vm={data.vm} />
-      <EditVmDialog vmId={vmId} />
+      <Suspense>
+        <EditVmDialog vmId={vmId} />
+      </Suspense>
     </>
   );
 };

@@ -7,17 +7,8 @@ import { mswDecorator, initialize } from 'msw-storybook-addon';
 import { withScreenshot } from 'storycap';
 import 'storycap/register';
 
-const prefix = import.meta.env.VITE_STORYBOOK_PREFIX;
-
 if (import.meta.env.MODE !== 'test') {
-  initialize({
-    serviceWorker:
-      prefix !== undefined
-        ? {
-            url: `/${prefix}mockServiceWorker.js`,
-          }
-        : {},
-  });
+  initialize();
 }
 
 export const decorators = [

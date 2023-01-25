@@ -3,15 +3,12 @@ import { setGlobalConfig } from '@storybook/testing-react';
 import * as globalStorybookConfig from './.storybook/preview';
 import { server } from './src/lib/msw/server';
 
-beforeAll(() => {
+beforeAll(async () => {
   // @ts-ignore
   setGlobalConfig(globalStorybookConfig);
-  return server.listen();
+  return server.listen({ onUnhandledRequest: 'error' });
 });
 
-afterEach(() => {
-  server.resetHandlers();
-  return vitest.clearAllMocks();
-});
+afterEach(() => server.resetHandlers());
 
 afterAll(() => server.close());
