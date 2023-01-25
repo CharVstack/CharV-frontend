@@ -10,8 +10,9 @@ import { useState, useMemo } from 'react';
 import { mutate } from 'swr';
 
 import { VmPowerActions } from '@api-hooks/v1/@types';
-import { useSelectedVmReadOnlyAtom, useResetSelectedVmAtom } from '@components/organisms/Tables';
 import { apiClient } from '@lib/apiClient';
+
+import { useSelectedVmReadOnlyAtom, useResetSelectedVmAtom } from './atoms';
 
 type BaseVmControlMenuProps = {
   vms: string[];
@@ -44,12 +45,17 @@ const useSubmitHandlerFactory = (vms: string[], handleClose: () => void) => {
   return submitHandlerFactory;
 };
 
-export const VmControlMenu = () => {
+export const VmsControlMenu = () => {
   const vms = useSelectedVmReadOnlyAtom();
 
   return <BaseVmControlMenu vms={vms} />;
 };
 
+export const VmControlMenu = ({ vmId }: { vmId: string }) => <BaseVmControlMenu vms={[vmId]} />;
+
+/**
+ * @package
+ */
 export const BaseVmControlMenu = ({ vms }: BaseVmControlMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

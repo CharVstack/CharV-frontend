@@ -20,7 +20,12 @@
       "@*": ["./src/*"]
     },
     "baseUrl": "./",
-    "types": ["vitest/globals", "vitest/importMeta"]
+    "types": ["vitest/globals", "vitest/importMeta"],
+    "plugins": [
+      {
+        "name": "eslint-plugin-import-access"
+      }
+    ]
   },
   "include": ["src", "vitest.setup.ts"]
 }

@@ -1,2 +1,2 @@
-export { VmControlMenu, BaseVmControlMenu } from './VmControlMenu';
-export { VmActionMenu } from './VmActionMenu';
+export * from './VMControlMenu';
+export * from './VMActionMenu';

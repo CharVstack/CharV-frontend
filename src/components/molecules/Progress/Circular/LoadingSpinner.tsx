@@ -1,5 +1,4 @@
-import { Backdrop } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+import { Backdrop, CircularProgress } from '@mui/material';
 
 export const LoadingSpinner = ({ open }: { open: boolean }) => (
   <Backdrop

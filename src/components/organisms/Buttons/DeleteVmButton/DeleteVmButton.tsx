@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 import { useCallback } from 'react';
 import { mutate } from 'swr';
 
-import { useSelectedVmReadOnlyAtom } from '@components/organisms/Tables';
+import { useSelectedVmReadOnlyAtom } from '@components/organisms/Menu';
 import { apiClient } from '@lib/apiClient';
 
 const useDeleteHandler = (vms: string[]) => {
@@ -23,11 +23,16 @@ const useDeleteHandler = (vms: string[]) => {
   return deleteHandler;
 };
 
-export const DeleteVmButton = () => {
+export const DeleteVmsButton = () => {
   const vms = useSelectedVmReadOnlyAtom();
   return <BaseDeleteVmButton vms={vms} />;
 };
 
+export const DeleteVmButton = ({ vmId }: { vmId: string }) => <BaseDeleteVmButton vms={[vmId]} />;
+
+/**
+ * @package
+ */
 export const BaseDeleteVmButton = ({ vms }: { vms: string[] }) => {
   const handleDelete = useDeleteHandler(vms);
   return (

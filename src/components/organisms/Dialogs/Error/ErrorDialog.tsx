@@ -40,6 +40,9 @@ export const ErrorDialog = () => {
   return <BaseErrorDialog message={message} title={title} open={open} onClose={close} />;
 };
 
+/**
+ * @package
+ */
 export const BaseErrorDialog = ({ open, title, message, onClose }: BaseDialogProps) => {
   const theme = useTheme();
 

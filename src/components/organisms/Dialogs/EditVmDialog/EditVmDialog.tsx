@@ -1,6 +1,5 @@
 import { getSWRDefaultKey } from '@aspida/swr';
 import { Button, DialogActions, DialogTitle } from '@mui/material';
-import { atom, useAtom, useSetAtom, useAtomValue } from 'jotai';
 import { useSnackbar } from 'notistack';
 import { useState, useCallback, Suspense, lazy } from 'react';
 import { FormProvider } from 'react-hook-form';
@@ -20,16 +19,7 @@ import { DevToolType } from '@utils/devtools/HookForm';
 
 import { DialogWithAtoms as Dialog } from '../DialogWithAtoms';
 
-const baseAtom = atom(false);
-
-const updateVmDialogAtom = atom<boolean, boolean>(
-  (get) => get(baseAtom),
-  (_get, set, newValue) => set(baseAtom, newValue)
-);
-
-export const useWritableUpdateVmDialog = () => useAtom(updateVmDialogAtom);
-export const useReadOnlyUpdateVmDialog = () => useAtomValue(updateVmDialogAtom);
-export const useWriteOnlyUpdateVmDialog = () => useSetAtom(updateVmDialogAtom);
+import { updateVmDialogAtom, useWriteOnlyUpdateVmDialog } from './atoms';
 
 export const EditVmDialog = ({ vmId }: { vmId: string }) => {
   const methods = useUpdateVmForm(vmId);
@@ -51,6 +41,9 @@ export const EditVmDialog = ({ vmId }: { vmId: string }) => {
   );
 };
 
+/**
+ * @package
+ */
 export const BaseEditVmDialog = ({ vmId }: { vmId: string }) => {
   const {
     reset,

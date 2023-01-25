@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material';
 import { DataGrid, GridCellParams, GridColumns } from '@mui/x-data-grid';
-import { atom, useSetAtom, useAtomValue, useAtom } from 'jotai';
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -9,21 +8,7 @@ import { useAllVms } from '@aspida/v1';
 import { LoadingSpinner } from '@components/molecules/Progress';
 import { StatusColumn } from '@components/organisms/Columns';
 import { HookErrorDialog } from '@components/organisms/Dialogs';
-import { VmActionMenu } from '@components/organisms/Menu';
-
-const baseAtom = atom<string[]>([]);
-
-const selectedVmAtom = atom<string[], string[]>(
-  (get) => get(baseAtom),
-  (_get, set, newValue) => set(baseAtom, newValue)
-);
-
-const resetSelectedVmAtom = atom(null, (_get, set) => set(baseAtom, []));
-
-export const useSelectedVmWritableAtom = () => useAtom(selectedVmAtom);
-export const useSelectedVmReadOnlyAtom = () => useAtomValue(selectedVmAtom);
-export const useSelectedVmWriteOnlyAtom = () => useSetAtom(selectedVmAtom);
-export const useResetSelectedVmAtom = () => useSetAtom(resetSelectedVmAtom);
+import { VmActionMenu, useSelectedVmWritableAtom } from '@components/organisms/Menu';
 
 export const InstanceTable = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

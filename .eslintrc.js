@@ -1,3 +1,5 @@
+const { execSync } = require('child_process');
+const allowedList = `${execSync('./scripts/print-allowed-dir.sh')}`.replace(/\n$/, '').split('\n');
 module.exports = {
   env: {
     browser: true,
@@ -12,6 +14,7 @@ module.exports = {
     'prettier',
     'plugin:storybook/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:import/typescript',
   ],
   overrides: [
     {
@@ -29,7 +32,17 @@ module.exports = {
     tsconfigRootDir: __dirname,
     project: ['./tsconfig.json'],
   },
-  plugins: ['react', '@typescript-eslint', 'unused-imports', 'jest-dom', 'testing-library', 'jsx-a11y', 'deprecation'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'unused-imports',
+    'jest-dom',
+    'testing-library',
+    'jsx-a11y',
+    'deprecation',
+    'import',
+    'import-access',
+  ],
   ignorePatterns: ['.eslintrc.js', 'vite.config.ts', 'vitest.setup.ts', 'squoosh.ts'],
   rules: {
     'no-use-before-define': 'off',
@@ -101,6 +114,11 @@ module.exports = {
     ],
     'no-underscore-dangle': [0],
     'deprecation/deprecation': 'error',
+    'import-access/jsdoc': ['error'],
+    'import/no-internal-modules': [
+      'error',
+      { allow: [...allowedList, 'msw/node', 'react-dom/client', 'swr/mutation', '@hookform/resolvers/zod'] },
+    ],
   },
   settings: {
     'import/resolver': {
