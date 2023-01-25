@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridCellParams, GridColumns } from '@mui/x-data-grid';
 import { atom, useSetAtom, useAtomValue, useAtom } from 'jotai';
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ export const InstanceTable = () => {
   const [pageSize, setPageSize] = useState(10);
   const [selectedVm, setSelectedVm] = useSelectedVmWritableAtom();
 
-  const columns: GridColDef[] = useMemo(
+  const columns: GridColumns = useMemo(
     () => [
       {
         field: 'name',
@@ -50,13 +50,15 @@ export const InstanceTable = () => {
         renderHeader: () => <Typography>Status</Typography>,
         filterable: false,
         sortable: false,
-        flex: 1,
         hideable: false,
+        flex: 0.3,
         renderCell: (params: GridCellParams<string, Vm>) => <StatusColumn rowId={params.id} />,
       },
       {
         field: 'actions',
         headerName: 'Actions',
+        headerAlign: 'center',
+        align: 'center',
         renderHeader: () => <Typography>Actions</Typography>,
         sortable: false,
         hideable: false,
@@ -75,22 +77,26 @@ export const InstanceTable = () => {
   }
 
   return (
-    <DataGrid
-      sx={{ backgroundColor: (theme) => theme.palette.grey[900], boxShadow: 1 }}
-      columns={columns}
-      rows={data.vms}
-      getRowId={(row: Vm) => row.metadata.id}
-      pageSize={pageSize}
-      onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-      rowsPerPageOptions={[10, 25, 50]}
-      checkboxSelection
-      autoHeight
-      disableSelectionOnClick
-      hideFooter
-      onSelectionModelChange={(selected) => {
-        setSelectedVm(selected.map((v) => v.toString()));
-      }}
-      selectionModel={selectedVm}
-    />
+    <div style={{ display: 'flex' }}>
+      <div style={{ flexGrow: 1 }}>
+        <DataGrid
+          sx={{ backgroundColor: (theme) => theme.palette.grey[900], boxShadow: 1 }}
+          columns={columns}
+          rows={data.vms}
+          getRowId={(row: Vm) => row.metadata.id}
+          pageSize={pageSize}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          rowsPerPageOptions={[10, 25, 50]}
+          checkboxSelection
+          autoHeight
+          disableSelectionOnClick
+          hideFooter
+          onSelectionModelChange={(selected) => {
+            setSelectedVm(selected.map((v) => v.toString()));
+          }}
+          selectionModel={selectedVm}
+        />
+      </div>
+    </div>
   );
 };

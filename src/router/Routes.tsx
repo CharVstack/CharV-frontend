@@ -11,7 +11,8 @@ import { VNCRoute } from './VNC';
 export const Routes = () => (
   <Suspense fallback={<Loading />}>
     <BaseRoutes>
-      <Route index element={<HomeRoute />} />
+      <Route index element={<Navigate replace to="/home" />} />
+      <Route path="home" element={<HomeRoute />} />
       <Route path="vms" element={<VMsRoute />} />
       <Route path="vms/:vmId" element={<VMDetailRoute />} />
       <Route path="*" element={<Navigate replace to="/" />} />

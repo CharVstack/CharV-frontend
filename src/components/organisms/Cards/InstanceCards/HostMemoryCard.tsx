@@ -26,8 +26,8 @@ export const HostMemoryCard = () => {
   }
 
   const hostMemoryData: Charts = {
+    Available: { value: totalMemorySize - usedMemorySize },
     Used: { value: usedMemorySize, color: usedMemoryColor },
-    Free: { value: totalMemorySize - usedMemorySize },
   };
 
   const chartOptions: DoughnutChartProps['options'] = {

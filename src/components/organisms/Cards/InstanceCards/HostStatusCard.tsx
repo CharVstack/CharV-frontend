@@ -56,6 +56,7 @@ export const HostStatusCard = () => {
     plugins: {
       tooltip: {
         callbacks: {
+          title: (context) => context.map((item) => `${item.label} utilization`),
           label: (context) => Intl.NumberFormat([], { style: 'unit', unit: 'percent' }).format(context.parsed.x),
         },
       },

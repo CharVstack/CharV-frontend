@@ -1,4 +1,4 @@
-import { CssBaseline, createTheme, ThemeProvider, Theme as MUITheme } from '@mui/material';
+import { CssBaseline, createTheme, ThemeProvider, Theme as MUITheme, rgbToHex } from '@mui/material';
 import { deepmerge } from '@mui/utils';
 import { atom, useAtomValue, useSetAtom } from 'jotai';
 import { ReactNode } from 'react';
