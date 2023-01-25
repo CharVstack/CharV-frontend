@@ -3,7 +3,9 @@ import { rest, ResponseResolver, RestContext, RestRequest } from 'msw';
 
 type A1<T> = T extends (a1: infer I) => unknown ? I : never;
 
-const withBase = (path: string) => new URL(path, import.meta.env.VITE_BACKEND_BASE_URL).toString();
+const baseURL = import.meta.env.VITE_BACKEND_BASE_URL;
+
+const withBase = (path: string) => (baseURL !== undefined ? new URL(path, baseURL).toString() : path);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Post<Config = any> = {
