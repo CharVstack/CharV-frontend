@@ -34,7 +34,7 @@
     "jotai": "1.13.1",
     "jotai-devtools": "0.1.0",
     "memoize-one": "6.0.0",
-    "msw": "0.49.3",
+    "msw": "1.0.0",
     "notistack": "2.0.8",
     "react": "18.2.0",
     "react-chartjs-2": "5.2.0",
