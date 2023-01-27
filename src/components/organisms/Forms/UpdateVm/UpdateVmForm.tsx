@@ -62,8 +62,7 @@ export const UpdateVmForm = ({ isConfirm }: BaseUpdateVmFormProps) => (
       }}
       InputLabelProps={{ shrink: true }}
     />
-    <TextField
-      type="number"
+    <NumberField
       name="cpu"
       variant="standard"
       label="CPU"
@@ -76,7 +75,6 @@ export const UpdateVmForm = ({ isConfirm }: BaseUpdateVmFormProps) => (
     />
     <NumberField
       name="memory"
-      type="number"
       variant="standard"
       label="メモリ"
       InputProps={{
