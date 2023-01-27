@@ -5,7 +5,7 @@ import { useState, useCallback, Suspense, lazy } from 'react';
 import { FormProvider } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 
-import { PatchUpdateVMRequest } from '@api-hooks/v1/@types';
+import { PatchUpdateVMRequest, Vm } from '@api-hooks/v1/@types';
 import { UpdateVmForm, useUpdateVmForm, useUpdateVmFormContext } from '@components/organisms/Forms';
 import {
   InstanceTabs,
@@ -22,14 +22,14 @@ import { DialogWithAtoms as Dialog } from '../DialogWithAtoms';
 import { updateVmDialogAtom, useWriteOnlyUpdateVmDialog } from './atoms';
 
 export const EditVmDialog = ({ vmId }: { vmId: string }) => {
-  const methods = useUpdateVmForm(vmId);
+  const { methods, defaultValues } = useUpdateVmForm(vmId);
   const isProduction = useIsProduction();
   const DevTool = lazy(() => import('@utils/devtools/HookForm')) as DevToolType;
 
   return (
     <>
       <FormProvider {...methods}>
-        <BaseEditVmDialog vmId={vmId} />
+        <BaseEditVmDialog vmId={vmId} defaultValues={defaultValues} />
       </FormProvider>
 
       {!isProduction && (
@@ -44,7 +44,13 @@ export const EditVmDialog = ({ vmId }: { vmId: string }) => {
 /**
  * @package
  */
-export const BaseEditVmDialog = ({ vmId }: { vmId: string }) => {
+export const BaseEditVmDialog = ({
+  vmId,
+  defaultValues,
+}: {
+  vmId: string;
+  defaultValues: Pick<Vm, 'name' | 'cpu' | 'memory'>;
+}) => {
   const {
     reset,
     handleSubmit,
@@ -81,10 +87,10 @@ export const BaseEditVmDialog = ({ vmId }: { vmId: string }) => {
   const [isConfirm, setIsConfirm] = useState(false);
 
   const handleClose = useCallback(() => {
-    reset();
+    reset(defaultValues);
     setCurrentTab(0);
     setIsConfirm(false);
-  }, [reset, setCurrentTab]);
+  }, [reset, setCurrentTab, defaultValues]);
 
   // POST Req
   const finish = (body: PatchUpdateVMRequest) => trigger(body);
@@ -107,7 +113,7 @@ export const BaseEditVmDialog = ({ vmId }: { vmId: string }) => {
 
   return (
     <Dialog onClose={handleClose} atom={updateVmDialogAtom}>
-      <DialogTitle>新規仮想マシンの作成</DialogTitle>
+      <DialogTitle>{defaultValues.name} の修正</DialogTitle>
       <form onSubmit={(e) => e.preventDefault()}>
         <InstanceTabs setIsConfirm={setIsConfirm}>
           <UpdateVmForm isConfirm={isConfirm} />
