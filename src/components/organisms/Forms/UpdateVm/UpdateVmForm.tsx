@@ -1,9 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { InputAdornment, Stack } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm, useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 
+import { Vm } from '@api-hooks/v1/@types';
 import { useVmByVmId } from '@aspida/v1';
 import { NumberField, TextField } from '@components/organisms/FormParts';
 
@@ -17,14 +18,20 @@ export type UpdateVmFormInputs = z.infer<typeof updateVmFormSchema>;
 
 export const useUpdateVmForm = (vmId: string) => {
   const { data } = useVmByVmId(vmId);
+  const [defaultValues, setDefaultValues] = useState<Pick<Vm, 'name' | 'cpu' | 'memory'>>({
+    name: '',
+    cpu: 0,
+    memory: 0,
+  });
   const methods = useForm<UpdateVmFormInputs>({
     mode: 'all',
     resolver: zodResolver(updateVmFormSchema),
     shouldUnregister: true,
-    defaultValues: { name: '', cpu: 0, memory: 0 },
+    defaultValues,
   });
   useEffect(() => {
     if (data) {
+      setDefaultValues(data.vm);
       methods.setValue('name', data.vm.name);
       methods.setValue('cpu', data.vm.cpu);
       methods.setValue('memory', data.vm.memory);
@@ -38,7 +45,7 @@ export const useUpdateVmForm = (vmId: string) => {
       );
     }
   }, [data, methods]);
-  return methods;
+  return { methods, defaultValues };
 };
 
 export const useUpdateVmFormContext = () => useFormContext<UpdateVmFormInputs>();

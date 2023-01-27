@@ -11,7 +11,7 @@ export default {
   component: UpdateVmForm,
   decorators: [
     (Story) => {
-      const methods = useUpdateVmForm(
+      const { methods } = useUpdateVmForm(
         schema.components.responses.GetAllVMsList200Response.content['application/json'].examples['example-1'].value
           .vms[0].metadata.id
       );

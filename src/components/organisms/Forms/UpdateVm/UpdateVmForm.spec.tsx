@@ -12,7 +12,9 @@ describe('UpdateVmForm', () => {
           .vms[0].metadata.id
       )
     );
-    const { setValue, handleSubmit, reset } = view.result.current;
+    const {
+      methods: { setValue, handleSubmit, reset },
+    } = view.result.current;
     test('Valid', async () =>
       act(async () => {
         const mockSubmit = vitest.fn();
