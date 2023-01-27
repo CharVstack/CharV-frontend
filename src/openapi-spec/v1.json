@@ -82,7 +82,8 @@
             "description": "No Content"
           }
         },
-        "description": "VMを削除する"
+        "description": "VMを削除する",
+        "tags": ["vm"]
       }
     },
     "/api/v1/host": {
@@ -613,7 +614,8 @@
                   "type": "string"
                 },
                 "memory": {
-                  "type": "integer"
+                  "type": "integer",
+                  "format": "uint64"
                 },
                 "cpu": {
                   "type": "integer"
@@ -644,7 +646,8 @@
                   "type": "string"
                 },
                 "memory": {
-                  "type": "integer"
+                  "type": "integer",
+                  "format": "uint64"
                 },
                 "cpu": {
                   "type": "integer"
