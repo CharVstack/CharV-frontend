@@ -13149,10 +13149,10 @@ react-transition-group@^4.4.5:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-vnc@0.5.7:
-  version "0.5.7"
-  resolved "https://registry.yarnpkg.com/react-vnc/-/react-vnc-0.5.7.tgz#2ea303f37371641ee20e44e0a59dc94585824416"
-  integrity sha512-RceU/kEbsQgv2wLjsAbW6J2TmXWSYzsxCHoYQckXLtk0NKDp53MjOKBVNLcecl1OYcGrjQRjoz5DRtbfLp22Og==
+react-vnc@0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/react-vnc/-/react-vnc-0.5.8.tgz#6957f5cc4cbdfde56ad01deca7fa7571869acd32"
+  integrity sha512-DJZ87qGmsNMRiT0WQbPx7aes/ko0xiYLeZ3l8MfK55gUfeQ6qByLnYW99XIV6O6KNGjDYGbp2jC1pAtMIZ+VBA==
 
 react@18.2.0:
   version "18.2.0"
