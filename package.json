@@ -22,7 +22,7 @@
     "@mui/icons-material": "5.11.0",
     "@mui/material": "5.11.6",
     "@mui/utils": "5.11.2",
-    "@mui/x-data-grid": "5.17.20",
+    "@mui/x-data-grid": "5.17.21",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@types/node": "16.18.11",
