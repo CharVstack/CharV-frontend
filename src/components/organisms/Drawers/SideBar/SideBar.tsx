@@ -5,8 +5,7 @@ import { DrawerLinkItem } from '@components/molecules/ListItems';
 
 export const SideBar = () => (
   <Drawer
-    variant="persistent"
-    open
+    variant="permanent"
     sx={{ zIndex: (theme) => theme.zIndex.drawer }}
     PaperProps={{ sx: { background: 'rgba(255,255,255,0.15)' } }}
   >
