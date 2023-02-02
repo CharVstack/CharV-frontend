@@ -5,5 +5,12 @@
   "automerge": true,
   "labels": ["renovate"],
   "platformAutomerge": true,
-  "schedule": ["after 9am on monday", "before 12am on monday"]
+  "schedule": ["after 9am on monday", "before 12am on monday"],
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchPackageNames": ["jotai", "jotai-devtools"],
+      "groupName": "jotai"
+    }
+  ]
 }
