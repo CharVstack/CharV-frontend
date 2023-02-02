@@ -31,7 +31,7 @@
     "@types/react-router-dom": "5.3.3",
     "aspida": "1.11.0",
     "chart.js": "4.2.0",
-    "jotai": "1.13.1",
+    "jotai": "2.0.0",
     "jotai-devtools": "0.2.0",
     "memoize-one": "6.0.0",
     "msw": "1.0.0",
