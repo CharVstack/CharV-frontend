@@ -10473,10 +10473,10 @@ joi@^17.6.0:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jotai-devtools@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/jotai-devtools/-/jotai-devtools-0.1.0.tgz#db7c1f26136ed15ed8906bb1bedd92204ec06efc"
-  integrity sha512-tHo22cXxl1mljcOJ2k17tOj25/0myvMdVAtAM6jiw3MsD5e9YoHAGNVFbTO3LrZhviDH4rcR/NknsNAI2XH28A==
+jotai-devtools@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/jotai-devtools/-/jotai-devtools-0.2.0.tgz#daaea5a1bd29e120a5227fe8b7863fcde5b632fb"
+  integrity sha512-LAvCOBB+SUdbq4Kr4cex8rOS18FCxUvwTXhVXQZX5qv6jY07rF+qikQISuniEmAbcPH4J/4GqwjWCZsGn3Tprw==
   dependencies:
     "@redux-devtools/extension" "^3.2.3"
 
