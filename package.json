@@ -30,7 +30,7 @@
     "@types/react-dom": "18.0.10",
     "@types/react-router-dom": "5.3.3",
     "aspida": "1.11.0",
-    "chart.js": "4.2.0",
+    "chart.js": "4.2.1",
     "jotai": "2.0.0",
     "jotai-devtools": "0.2.0",
     "memoize-one": "6.0.0",
