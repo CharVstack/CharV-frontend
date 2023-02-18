@@ -1,6 +1,6 @@
 import { getSWRDefaultKey } from '@aspida/swr';
 import { Button, DialogActions, DialogTitle } from '@mui/material';
-import { atom, useAtom, useSetAtom, useAtomValue } from 'jotai';
+import { atom, useAtom, useSetAtom, useAtomValue, ExtractAtomValue, ExtractAtomArgs } from 'jotai';
 import { useSnackbar } from 'notistack';
 import { useState, useCallback, Suspense, lazy } from 'react';
 import { FormProvider } from 'react-hook-form';
@@ -22,7 +22,7 @@ import { DialogWithAtoms as Dialog } from '../DialogWithAtoms';
 
 const baseAtom = atom(false);
 
-const createVmDialogAtom = atom<boolean, boolean>(
+const createVmDialogAtom = atom<ExtractAtomValue<typeof baseAtom>, ExtractAtomArgs<typeof baseAtom>, void>(
   (get) => get(baseAtom),
   (_get, set, newValue) => set(baseAtom, newValue)
 );

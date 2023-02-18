@@ -1,5 +1,5 @@
 import { AddTask as AddTaskIcon, Create as CreateIcon } from '@mui/icons-material';
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { atom, ExtractAtomArgs, ExtractAtomValue, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useFormContext } from 'react-hook-form';
 
 import { TabsWithAtoms as Tabs, TabProps } from '../TabsWithAtoms';
@@ -11,7 +11,7 @@ type Props = {
 
 const baseAtom = atom(0);
 
-const instanceTabsAtom = atom<number, number>(
+const instanceTabsAtom = atom<ExtractAtomValue<typeof baseAtom>, ExtractAtomArgs<typeof baseAtom>, void>(
   (get) => get(baseAtom),
   (_get, set, newValue) => set(baseAtom, newValue)
 );

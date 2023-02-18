@@ -4,7 +4,7 @@ import { useCallback, ReactNode } from 'react';
 
 type DialogProps = {
   onClose?: () => void;
-  atom: WritableAtom<boolean, boolean>;
+  atom: WritableAtom<boolean, [boolean], void>;
   children: ReactNode;
 };
 

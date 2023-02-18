@@ -1,5 +1,5 @@
 import { Typography, Dialog, DialogContent, DialogTitle, useTheme, DialogActions, Button } from '@mui/material';
-import { atom, ExtractAtomValue, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { atom, ExtractAtomArgs, ExtractAtomValue, useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { useCallback } from 'react';
 
 type BaseDialogProps = {
@@ -12,12 +12,12 @@ type BaseDialogProps = {
 const baseAtom = atom({ open: false, message: 'エラーメッセージ', title: 'Error' });
 
 const errorDialogReadOnlyAtom = atom((get) => get(baseAtom));
-const errorDialogWritableAtom = atom<ExtractAtomValue<typeof baseAtom>, Partial<ExtractAtomValue<typeof baseAtom>>>(
+const errorDialogWritableAtom = atom<ExtractAtomValue<typeof baseAtom>, ExtractAtomArgs<typeof baseAtom>, void>(
   (get) => get(baseAtom),
   (get, set, newValue) => set(baseAtom, { ...get(baseAtom), ...newValue })
 );
 const errorDialogToggleAtom = atom(null, (get, set) => set(baseAtom, { ...get(baseAtom), open: !get(baseAtom).open }));
-const errorDialogWriteOnlyAtom = atom<null, Partial<ExtractAtomValue<typeof baseAtom>>>(null, (get, set, newValue) =>
+const errorDialogWriteOnlyAtom = atom<null, ExtractAtomArgs<typeof baseAtom>, void>(null, (get, set, newValue) =>
   set(baseAtom, { ...get(baseAtom), ...newValue })
 );
 
@@ -35,7 +35,7 @@ export const HookErrorDialog = ({ message, title }: Omit<ExtractAtomValue<typeof
 export const ErrorDialog = () => {
   const [{ title, message, open }, setDialog] = useErrorDialogAtom();
 
-  const close = useCallback(() => setDialog({ open: false }), [setDialog]);
+  const close = useCallback(() => setDialog({ title, message, open: false }), [setDialog, title, message]);
 
   return <BaseErrorDialog message={message} title={title} open={open} onClose={close} />;
 };
