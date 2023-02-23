@@ -14,7 +14,7 @@ type Props = {
   children?: React.ReactNode;
   tabs: TabProps[];
   orientation: NonNullable<TabsTypeMap['props']['orientation']>;
-  currentTabAtom: WritableAtom<number, number>;
+  currentTabAtom: WritableAtom<number, [number], void>;
 };
 
 export const TabsWithAtoms = ({ children, tabs, orientation, currentTabAtom }: Props) => {

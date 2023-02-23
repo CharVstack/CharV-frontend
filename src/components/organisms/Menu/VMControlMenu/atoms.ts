@@ -1,8 +1,8 @@
-import { atom, useSetAtom, useAtomValue, useAtom } from 'jotai';
+import { atom, useSetAtom, useAtomValue, useAtom, ExtractAtomArgs, ExtractAtomValue } from 'jotai';
 
 const baseAtom = atom<string[]>([]);
 
-const selectedVmAtom = atom<string[], string[]>(
+const selectedVmAtom = atom<ExtractAtomValue<typeof baseAtom>, ExtractAtomArgs<typeof baseAtom>, void>(
   (get) => get(baseAtom),
   (_get, set, newValue) => set(baseAtom, newValue)
 );

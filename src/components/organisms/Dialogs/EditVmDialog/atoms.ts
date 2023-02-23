@@ -1,11 +1,11 @@
-import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { atom, ExtractAtomArgs, ExtractAtomValue, useAtom, useAtomValue, useSetAtom } from 'jotai';
 
 const baseAtom = atom(false);
 
 /**
  * @package
  */
-export const updateVmDialogAtom = atom<boolean, boolean>(
+export const updateVmDialogAtom = atom<ExtractAtomValue<typeof baseAtom>, ExtractAtomArgs<typeof baseAtom>, void>(
   (get) => get(baseAtom),
   (_get, set, newValue) => set(baseAtom, newValue)
 );

@@ -8,7 +8,7 @@ import { TabsWithAtoms as Tabs, TabProps } from './Tabs';
 
 const baseAtom = atom(0);
 
-const tabAtom = atom<number, number>(
+const tabAtom = atom<number, [number], void>(
   (get) => get(baseAtom),
   (_get, set, newValue) => set(baseAtom, newValue)
 );
