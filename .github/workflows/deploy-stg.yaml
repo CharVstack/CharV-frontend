@@ -23,6 +23,8 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          VITE_BACKEND_BASE_URL: ${{ secrets.STG_BACKEND_URL }}
 
       - name: Rename build/
         run: mv build html
