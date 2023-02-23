@@ -4,32 +4,36 @@
 
 ## 開発環境の構築
 
-```shell
+- node v16
+- yarn v1
+
+```bash
 yarn install
 ```
 
 ## スクリプト
 
-開発
+### プレビュー
 
-`http://localhost:3000` をブラウザで開く
-
-```shell
+```bash
 # フロントサーバの開始
 yarn start:front
 # モックサーバの開始
 yarn start:api
 ```
 
-ビルド
+`http://localhost:3000` をブラウザで開く
 
-```shell
-yarn build
+### ビルド
+
+```bash
+# ./build に出力される
+VITE_BACKEND_URL=http://<backend origin> yarn build
 ```
 
-文法チェックとフォーマット
+### 文法チェックとフォーマット
 
-```shell
+```bash
 # 文法チェック
 yarn lint
 
@@ -38,8 +42,17 @@ yarn fix:prettier
 yarn fix:eslint
 ```
 
-テスト
+### テスト
 
-```shell
+```bash
 yarn test
 ```
+
+## ドキュメント確認
+
+```bash
+# 自動でブラウザが開く
+yarn storybook
+```
+
+`http://localhsot:6006` をブラウザで開く
