@@ -51,7 +51,7 @@
     "@babel/core": "7.20.12",
     "@hookform/devtools": "4.3.0",
     "@squoosh/lib": "0.5.3",
-    "@stoplight/prism-cli": "4.10.5",
+    "@stoplight/prism-cli": "4.10.6",
     "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-actions": "6.5.16",
     "@storybook/addon-docs": "6.5.16",
