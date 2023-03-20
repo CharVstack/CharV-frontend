@@ -101,7 +101,7 @@
     "squoosh": "github:GoogleChromeLabs/squoosh#cd336909fc9fdf31d2ca47991d475e4e736bc752",
     "storycap": "4.0.0",
     "vite": "4.1.4",
-    "vite-tsconfig-paths": "4.0.5",
+    "vite-tsconfig-paths": "4.0.7",
     "vitest": "0.28.4"
   },
   "engines": {
