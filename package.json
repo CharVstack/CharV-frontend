@@ -20,7 +20,7 @@
     "@emotion/styled": "11.10.6",
     "@hookform/resolvers": "2.9.11",
     "@mui/icons-material": "5.11.11",
-    "@mui/material": "5.11.13",
+    "@mui/material": "5.11.14",
     "@mui/utils": "5.11.13",
     "@mui/x-data-grid": "5.17.26",
     "@testing-library/jest-dom": "5.16.5",
