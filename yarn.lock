@@ -15078,10 +15078,10 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-"squoosh@github:GoogleChromeLabs/squoosh#cee51bf355b830a65f901c47a55d3ef8e1056b60":
+"squoosh@github:GoogleChromeLabs/squoosh#ecc715fe557ce57ba57f2535e87d68411bbf7de2":
   version "2.0.0"
-  uid cee51bf355b830a65f901c47a55d3ef8e1056b60
-  resolved "https://codeload.github.com/GoogleChromeLabs/squoosh/tar.gz/cee51bf355b830a65f901c47a55d3ef8e1056b60"
+  uid ecc715fe557ce57ba57f2535e87d68411bbf7de2
+  resolved "https://codeload.github.com/GoogleChromeLabs/squoosh/tar.gz/ecc715fe557ce57ba57f2535e87d68411bbf7de2"
 
 sshpk@^1.7.0:
   version "1.17.0"
