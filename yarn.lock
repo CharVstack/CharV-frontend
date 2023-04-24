@@ -15,12 +15,12 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@aspida/fetch@1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@aspida/fetch/-/fetch-1.11.0.tgz#19c3757f07ad8e42575253cad8ced0ff064628fa"
-  integrity sha512-ISi67d6YIL9thIXvbq6ac0UYAtcojILCiOEbjhCky55uyoGHV7z+ISgwzUf7X8CxTdY8iXiimcz6AMNtBfdiyw==
+"@aspida/fetch@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@aspida/fetch/-/fetch-1.12.0.tgz#4f6ace7ec3bdeb7b10cc67932a7a14f7304be478"
+  integrity sha512-g3eJubTTTOtkabzxbettVLV9PBQnN4AP0WfVDymjl/nfMEV/HaWSEnO7MfRIwnTQu+IN16u+NGgetiPlEofrtw==
   dependencies:
-    aspida "^1.7.1"
+    aspida "^1.12.0"
 
 "@aspida/swr@1.11.0":
   version "1.11.0"
@@ -5910,6 +5910,16 @@ aspida@1.11.0:
   version "1.11.0"
   resolved "https://registry.yarnpkg.com/aspida/-/aspida-1.11.0.tgz#a01f75ed3c85929de592afc71802fa1c689a3b7d"
   integrity sha512-TVQ4bKJQ5nLm6GCZRIzBA8fQe7AhilYkpsQWg0DeBNKm2u7kbulxyCD8xXOqs41Xkrt+jNG7/GGkkseDPgUSOQ==
+  dependencies:
+    "@types/minimist" "^1.2.2"
+    chokidar "^3.5.3"
+    form-data "^4.0.0"
+    minimist "^1.2.6"
+
+aspida@^1.12.0:
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/aspida/-/aspida-1.12.0.tgz#b5eb2bdade2123ceef0760eabf7d28957ec5b083"
+  integrity sha512-/5uJohv+laB14HJcRLdE0HHYhluB2g7nwuUu+JXvNU6OC06S5OvwYjiEnuDshYN+U+1fqkucoz/CWdYxbvl3JA==
   dependencies:
     "@types/minimist" "^1.2.2"
     chokidar "^3.5.3"
