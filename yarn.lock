@@ -22,12 +22,12 @@
   dependencies:
     aspida "^1.12.0"
 
-"@aspida/swr@1.11.0":
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/@aspida/swr/-/swr-1.11.0.tgz#50cd841936d4d5b41413a87d5bd81831620fa71b"
-  integrity sha512-GmR0VaUPWw9EaeMi96BSBf3Y7dGMxrPAD8z97/3ewsokpoKmK0FiX+SBt+ygGHKqqKRnCLwgQvfR0NEpTCMo8A==
+"@aspida/swr@1.12.0":
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/@aspida/swr/-/swr-1.12.0.tgz#8e4026a34235824d04d3a8c1d4933980fdb4af66"
+  integrity sha512-ztzJUcXtH0iwjSy7+f1yT7j8ObVrRL76JR+FsdjYdmKtX/Sf13odioXjaAF+dV2GgBVMjJwNGsbjeaX93iZMeg==
   dependencies:
-    aspida "^1.7.1"
+    aspida "^1.12.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.5.5", "@babel/code-frame@^7.8.3":
   version "7.16.7"
@@ -5933,16 +5933,6 @@ aspida@^1.12.0:
     form-data "^4.0.0"
     minimist "^1.2.6"
 
-aspida@^1.7.1:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/aspida/-/aspida-1.10.2.tgz#7e175c7ee9abe15339cfef44c12bb50e78c8ddf4"
-  integrity sha512-nkHIA6a0lb6pXQjNYAJCf/SN3pTRJArD1RVQMeXivlcfaa9v5qj8DSC/8KHApM0a3Rz76o1LUyIxXg5yEGrM8w==
-  dependencies:
-    "@types/minimist" "^1.2.2"
-    chokidar "^3.5.1"
-    form-data "^4.0.0"
-    minimist "^1.2.5"
-
 assert-plus@1.0.0, assert-plus@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assert-plus/-/assert-plus-1.0.0.tgz#f12e0f3c5d77b0b1cdd9146942e4e96c1e4dd525"
@@ -6853,7 +6843,7 @@ chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.4.1, chokidar@^3.4.2, chokidar@^3.5.1, chokidar@^3.5.2, chokidar@^3.5.3:
+chokidar@^3.4.1, chokidar@^3.4.2, chokidar@^3.5.2, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
