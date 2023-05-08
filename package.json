@@ -48,7 +48,7 @@
     "zod": "3.21.4"
   },
   "devDependencies": {
-    "@babel/core": "7.21.5",
+    "@babel/core": "7.21.8",
     "@hookform/devtools": "4.3.1",
     "@squoosh/lib": "0.5.3",
     "@stoplight/prism-cli": "4.13.0",
