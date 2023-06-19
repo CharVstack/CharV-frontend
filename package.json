@@ -95,7 +95,7 @@
     "reg-publish-s3-plugin": "0.12.1",
     "reg-suit": "0.12.1",
     "rimraf": "4.4.1",
-    "rollup-plugin-visualizer": "5.9.0",
+    "rollup-plugin-visualizer": "5.9.2",
     "serve": "14.2.0",
     "simple-git-hooks": "2.8.1",
     "squoosh": "github:GoogleChromeLabs/squoosh#ecc715fe557ce57ba57f2535e87d68411bbf7de2",
