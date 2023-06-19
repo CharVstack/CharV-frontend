@@ -99,7 +99,7 @@
     "serve": "14.2.0",
     "simple-git-hooks": "2.8.1",
     "squoosh": "github:GoogleChromeLabs/squoosh#ecc715fe557ce57ba57f2535e87d68411bbf7de2",
-    "storycap": "4.1.1",
+    "storycap": "4.1.2",
     "vite": "4.3.9",
     "vite-tsconfig-paths": "4.2.0",
     "vitest": "0.31.1"
